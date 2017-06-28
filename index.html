@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Anemic components for rich-data presentation [Demo]</title>
+</head>
+<style>
+  #c1,
+  #c2,
+  #c4 {
+    fill: rgb(255, 255, 255);
+    margin: 10px;
+  }
+
+  #c4 {
+    width: 300px;
+    height:300px;
+  }
+
+  #c4 .bar {
+  }
+
+  #border {
+    fill: rgb(255, 255, 255);
+    stroke-width: 1;
+    stroke: #ccc;
+  }
+
+  .bar {
+    fill: rgb(0, 120, 255);
+  }
+
+  #axes {
+    fill: rgb(255, 255, 255);
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+  }
+
+  .axes {
+    stroke-width: 1;
+    stroke: rgb(128, 0, 0);
+  }
+</style>
+
+<body>
+  <script src="lib/anemic.js"></script>
+  <!-- <script src="app/js/greet.service.js"></script> -->
+  <!-- <script src="app/js/weather.service.js"></script> -->
+  <!-- <script src="app/js/app.js"></script> -->
+</body>
+
+<svg id="c1" height="300" width="300"></svg>
+<svg id="c2" height="300" width="300"></svg>
+
+<script>
+  rect("c1", "border")
+    .$xy(1, 1)
+    .$width(298)
+    .$height(298);
+
+  var axesNode = g("c1", "axes");
+  hline(axesNode, "x-axis", 1, 150, "100%"); // x-axis
+  vline(axesNode, "y-axis", 150, 1, "100%"); // y-axis
+
+  var space = 10;
+  var w = 20;
+  var xOffset = 75;
+
+  rect("c1")
+    .$class("bar")
+    .$x(xOffset + (space + w) * 0)
+    .$y(150 - 10)
+    .$width(w)
+    .$height(10);
+
+  rect("c1")
+    .$class("bar")
+    .$x(xOffset + (space + w) * 1)
+    .$y(150 - 50)
+    .$width(w)
+    .$height(50);
+
+  rect("c1")
+    .$class("bar")
+    .$x(xOffset + (space + w) * 2)
+    .$y(150 - 40)
+    .$width(w)
+    .$height(40);
+
+  rect("c1")
+    .$class("bar")
+    .$x(xOffset + (space + w) * 3)
+    .$y(150 - 20)
+    .$width(w)
+    .$height(20);
+
+  rect("c1")
+    .$class("bar")
+    .$x(xOffset + (space + w) * 4)
+    .$y(150 - 30)
+    .$width(w)
+    .$height(30);
+</script>
+
+<script>
+  /*
+    container("c3", [
+    axes(150, 150),
+    bars([
+      offset(0),
+      $values(10, 50, 40, 20, 30)
+      ])
+    ]);
+  */
+
+  /*
+    // axes(150, 150),
+    container("c4", [
+      $ydir([
+        bars([$values(10, 50, 40, 20, 30)]),
+        lines([
+          $values(10, 50, 40, 20, 30),
+          $join([
+            ellipses([$xOffset(150), $values(10, 50, 40, 20, 30)]),
+            ellipses([$xOffset(300), $values(10, 50, 40, 20, 30)
+          ])
+        ]),
+      ])
+    ]);
+
+    //// https://github.com/Automattic/expect.js
+
+    container("c4", c => {
+      $verticalFlow()
+      bars([
+        $values([10, 50, 40, 20, 30]),
+        $labels(["$10 Million", "$50 Million", "$40 Million", "$20 Million", "$30 Million"])
+      ])
+      ellipses([$group("e1"), $xOffset(150), $values([10, 50, 40, 20, 30])])
+      ellipses([$group("e2"), $xOffset(300), $values([10, 50, 40, 20, 30])])
+      lines([$values([10, 50, 40, 20, 30]), $join(["e1", "e2"])]);
+    });
+    */
+
+  container("c4", function(c) {
+    c.$verticalFlow()
+    c.bars([
+      $values([10, 20, 40, 60, 80, 100]),
+      $xOffset(25),
+      $maxHeight(100)
+    ])
+    c.labels(["$10 Million", "$50 Million", "$40 Million", "$20 Million", "$30 Million"])
+    c.ellipses([$group("e1"), $xOffset(150), $values([10, 50, 40, 20, 30])])
+    c.ellipses([$group("e2"), $xOffset(300), $values([10, 50, 40, 20, 30])])
+    c.lines([$values([10, 50, 40, 20, 30]), $join(["e1", "e2"])]);
+  })
+
+</script>
+</html>
