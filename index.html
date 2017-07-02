@@ -51,9 +51,9 @@
   <script src="lib/anemic-intents.js"></script>
   <script src="lib/anemic.js"></script>
 
-  <svg style="width:300px; height:300px; border:red 1px solid">
+  <!-- <svg style="width:300px; height:300px; border:red 1px solid">
     <path d""></path>
-  </svg>
+  </svg> -->
 </body>
 
 <script>
@@ -74,12 +74,15 @@
 
   container("c4", c => {
     // c.commonEffects([$flowDirection({vertical: true}), $offset(100)])
-    c.bars(barsData, [$maxHeight(50), $y(50), $yOffset(30), $width(200)])
-    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(200)])//, $xOffset(80)])
-    c.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
 
-    c.lines(linesData1, [])
-    // c.lines(linesData, [$xOffset(80), $width(300), $join(["e1", "e2"])])
+    // c.bars(barsData, [$maxWidth(50), $x(50), $yOffset(30), $height(20)])
+
+    c.bars(barsData, [$maxHeight(50), $y(50), $yOffset(30), $width(200)])
+    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(200)])
+    c.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
+    //
+    // c.lines(linesData1, [])
+    // // c.lines(linesData, [$xOffset(80), $width(300), $join(["e1", "e2"])])
   })
 
 </script>
