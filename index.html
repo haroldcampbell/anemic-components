@@ -6,16 +6,11 @@
   <title>Anemic components for rich-data presentation [Demo]</title>
 </head>
 <style>
-  #c1,
-  #c2,
   #c4 {
     fill: rgb(255, 255, 255);
     margin: 10px;
-  }
-
-  #c4 {
-    width: 300px;
-    height:300px;
+    width: 500px;
+    height:500px;
   }
 
   #c4 .bar {
@@ -31,6 +26,13 @@
     fill: rgb(0, 120, 255);
   }
 
+  #b1 .bar, #e1 .ellipse {
+    fill: rgba(0, 255, 128, .75);
+  }
+  #b2 .bar, #e2 .ellipse {
+    fill: rgba(255, 128, 0, .75);
+  }
+
   #axes {
     fill: rgb(255, 255, 255);
     stroke-width: 1;
@@ -44,116 +46,40 @@
 </style>
 
 <body>
+  <script src="lib/anemic-utils.js"></script>
+  <script src="lib/anemic-core.js"></script>
+  <script src="lib/anemic-intents.js"></script>
   <script src="lib/anemic.js"></script>
-  <!-- <script src="app/js/greet.service.js"></script> -->
-  <!-- <script src="app/js/weather.service.js"></script> -->
-  <!-- <script src="app/js/app.js"></script> -->
+
+  <svg style="width:300px; height:300px; border:red 1px solid">
+    <path d""></path>
+  </svg>
 </body>
 
-<svg id="c1" height="300" width="300"></svg>
-<svg id="c2" height="300" width="300"></svg>
-
 <script>
-  rect("c1", "border")
-    .$xy(1, 1)
-    .$width(298)
-    .$height(298);
+  var barsData = $data([50, 20, 30, 10, 50], "height");
+  var ellipsesData = $data([50, 20, 30, 10, 50], "diameter");
 
-  var axesNode = g("c1", "axes");
-  hline(axesNode, "x-axis", 1, 150, "100%"); // x-axis
-  vline(axesNode, "y-axis", 150, 1, "100%"); // y-axis
+  var ellipsesData2 = $data([20, 10, 30], "diameter");
 
-  var space = 10;
-  var w = 20;
-  var xOffset = 75;
+  var barsData2 = $data([20, 30, 50, 60, 60], "height");
 
-  rect("c1")
-    .$class("bar")
-    .$x(xOffset + (space + w) * 0)
-    .$y(150 - 10)
-    .$width(w)
-    .$height(10);
+  var linesData1 = $data([10, 20, 80, 70, 40], "y");
+  var linesData2 = $data([10, 20, 80, 70, 40], "stroke");
 
-  rect("c1")
-    .$class("bar")
-    .$x(xOffset + (space + w) * 1)
-    .$y(150 - 50)
-    .$width(w)
-    .$height(50);
+  // container("c2", c => {
+  //   c.bars(barsData2, [$group("b2"), $y(100), $maxHeight(60), $width(20), $yOffset(20)])
+  //   c.bars(barsData, [$group("b1"), $y(100), $maxHeight(50), $width(20), $xOffset(20)])
+  // })
 
-  rect("c1")
-    .$class("bar")
-    .$x(xOffset + (space + w) * 2)
-    .$y(150 - 40)
-    .$width(w)
-    .$height(40);
+  container("c4", c => {
+    // c.commonEffects([$flowDirection({vertical: true}), $offset(100)])
+    c.bars(barsData, [$maxHeight(50), $y(50), $yOffset(30), $width(200)])
+    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(200)])//, $xOffset(80)])
+    c.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
 
-  rect("c1")
-    .$class("bar")
-    .$x(xOffset + (space + w) * 3)
-    .$y(150 - 20)
-    .$width(w)
-    .$height(20);
-
-  rect("c1")
-    .$class("bar")
-    .$x(xOffset + (space + w) * 4)
-    .$y(150 - 30)
-    .$width(w)
-    .$height(30);
-</script>
-
-<script>
-  /*
-    container("c3", [
-    axes(150, 150),
-    bars([
-      offset(0),
-      $values(10, 50, 40, 20, 30)
-      ])
-    ]);
-  */
-
-  /*
-    // axes(150, 150),
-    container("c4", [
-      $ydir([
-        bars([$values(10, 50, 40, 20, 30)]),
-        lines([
-          $values(10, 50, 40, 20, 30),
-          $join([
-            ellipses([$xOffset(150), $values(10, 50, 40, 20, 30)]),
-            ellipses([$xOffset(300), $values(10, 50, 40, 20, 30)
-          ])
-        ]),
-      ])
-    ]);
-
-    //// https://github.com/Automattic/expect.js
-
-    container("c4", c => {
-      $verticalFlow()
-      bars([
-        $values([10, 50, 40, 20, 30]),
-        $labels(["$10 Million", "$50 Million", "$40 Million", "$20 Million", "$30 Million"])
-      ])
-      ellipses([$group("e1"), $xOffset(150), $values([10, 50, 40, 20, 30])])
-      ellipses([$group("e2"), $xOffset(300), $values([10, 50, 40, 20, 30])])
-      lines([$values([10, 50, 40, 20, 30]), $join(["e1", "e2"])]);
-    });
-    */
-
-  container("c4", function(c) {
-    c.$verticalFlow()
-    c.bars([
-      $values([10, 20, 40, 60, 80, 100]),
-      $xOffset(25),
-      $maxHeight(100)
-    ])
-    c.labels(["$10 Million", "$50 Million", "$40 Million", "$20 Million", "$30 Million"])
-    c.ellipses([$group("e1"), $xOffset(150), $values([10, 50, 40, 20, 30])])
-    c.ellipses([$group("e2"), $xOffset(300), $values([10, 50, 40, 20, 30])])
-    c.lines([$values([10, 50, 40, 20, 30]), $join(["e1", "e2"])]);
+    c.lines(linesData1, [])
+    // c.lines(linesData, [$xOffset(80), $width(300), $join(["e1", "e2"])])
   })
 
 </script>
