@@ -9,11 +9,16 @@
   #c4 {
     fill: rgb(255, 255, 255);
     margin: 10px;
-    width: 500px;
+    width: 700px;
     height:500px;
   }
 
   #c4 .bar {
+  }
+
+  #c4 .path {
+    stroke: rgba(255,110,110, 0.5);
+    fill: none;
   }
 
   #border {
@@ -23,14 +28,22 @@
   }
 
   .bar {
-    fill: rgb(0, 120, 255);
+    fill: rgba(0, 120, 255, 0.5);
   }
 
   #b1 .bar, #e1 .ellipse {
-    fill: rgba(0, 255, 128, .75);
+    fill: rgb(0, 120, 255);
   }
   #b2 .bar, #e2 .ellipse {
-    fill: rgba(255, 128, 0, .75);
+    fill: rgb(255,110,110);
+  }
+
+  #e3 {
+    z-index: 1;
+  }
+
+  #e2, #e1 {
+    z-index: 2;
   }
 
   #axes {
@@ -64,26 +77,32 @@
 
   var barsData2 = $data([20, 30, 50, 60, 60], "height");
 
-  var linesData1 = $data([10, 20, 80, 70, 40], "y");
+  var linesData1 = $data([
+    1, 1, 4,
+    2, 1, 5,
+    1, 1, 7,
+    2, 1, 2,
+    5, 1, 1,
+  ], "strokeWidth");
   var linesData2 = $data([10, 20, 80, 70, 40], "stroke");
 
   // container("c2", c => {
   //   c.bars(barsData2, [$group("b2"), $y(100), $maxHeight(60), $width(20), $yOffset(20)])
   //   c.bars(barsData, [$group("b1"), $y(100), $maxHeight(50), $width(20), $xOffset(20)])
   // })
+  // c.commonEffects([$flowDirection({vertical: true}), $offset(100)])
+  // c.bars(barsData, [$maxWidth(50), $x(50), $yOffset(30), $height(20)])
 
   container("c4", c => {
-    // c.commonEffects([$flowDirection({vertical: true}), $offset(100)])
-
-    // c.bars(barsData, [$maxWidth(50), $x(50), $yOffset(30), $height(20)])
-
-    c.bars(barsData, [$maxHeight(50), $y(50), $yOffset(30), $width(200)])
-    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(200)])
+    c.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)])
+    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)])
     c.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
-    //
-    // c.lines(linesData1, [])
-    // // c.lines(linesData, [$xOffset(80), $width(300), $join(["e1", "e2"])])
+    c.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"], true), $group("e3"), $maxStrokeWidth(15)])
+    c.onRenderCompleted(() => {
+      $moveBelow("e3", "be")
+    })
   })
+  // // c.lines(linesData, [$xOffset(80), $width(300), $join(["e1", "e2"])])
 
 </script>
 </html>
