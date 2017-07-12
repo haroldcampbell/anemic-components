@@ -17,9 +17,17 @@
   }
 
   #c4 .path {
-    stroke: rgba(255,110,110, 0.5);
+    stroke: rgba(255,0,110, 0.5);
     fill: none;
   }
+  #e3 > .path:nth-last-child(3n) {
+    stroke: rgba(0, 120, 255, 0.5);
+  }
+
+  #e3 > .path:nth-child(3n) {
+    stroke: rgba(128,128,128, 0.5);
+  }
+
 
   #border {
     fill: rgb(255, 255, 255);
@@ -34,9 +42,20 @@
   #b1 .bar, #e1 .ellipse {
     fill: rgb(0, 120, 255);
   }
+
   #b2 .bar, #e2 .ellipse {
     fill: rgb(255,110,110);
   }
+
+   #e2 :nth-child(1) {
+     fill: rgba(0, 120, 255, 0.75);
+   }
+   #e2 :nth-child(2) {
+     fill: rgba(255,0,110, 0.75);
+   }
+   #e2 :nth-child(3) {
+     fill: rgba(128,128,128, 0.75);
+   }
 
   #e3 {
     z-index: 1;
@@ -93,12 +112,12 @@
   // c.commonEffects([$flowDirection({vertical: true}), $offset(100)])
   // c.bars(barsData, [$maxWidth(50), $x(50), $yOffset(30), $height(20)])
 
-  container("c4", c => {
-    c.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)])
-    c.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)])
-    c.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
-    c.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"], true), $group("e3"), $maxStrokeWidth(15)])
-    c.onRenderCompleted(() => {
+  container("c4", _ => {
+    _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)])
+    _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)])
+    _.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)])
+    _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"], true), $group("e3"), $maxStrokeWidth(15)])
+    _.onRenderCompleted(() => {
       $moveBelow("e3", "be")
     })
   })
