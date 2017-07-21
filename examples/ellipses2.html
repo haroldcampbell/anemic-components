@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Anemic components for rich-data presentation [Demo]</title>
+</head>
+<style>
+  #c4 {
+    fill: rgb(255, 255, 255);
+    margin: 10px;
+    width: 700px;
+    height: 500px;
+  }
+
+  #c4 .path {
+    stroke: rgba(255, 0, 110, 0.5);
+    fill: none;
+  }
+
+  #e1 .ellipse,
+  #e2 .ellipse,
+  #e3 .ellipse,
+  #e4 .ellipse {
+    fill: rgba(0, 120, 255, 0.35);
+  }
+</style>
+
+<body>
+  <script src="../lib/anemic-utils.js"></script>
+  <script src="../lib/anemic-core.js"></script>
+  <script src="../lib/anemic-intents.js"></script>
+  <script src="../lib/anemic.js"></script>
+</body>
+
+<script>
+  var ellipsesData1 = $data([10, 60, 30, 40, 50], "diameter");
+  var ellipsesData2 = $data([50, 25, 60, 10, 100], "diameter");
+
+  var ellipsesData3 = $data([15, 80, 20, 60, 70], "diameter");
+  var ellipsesData4 = $data([30, 40, 40, 30, 50], "diameter");
+
+  container("c4", _ => {
+    _.ellipses(ellipsesData1, [$group("e1"), $y(50), $x(40), $xOffset(80), $max(20)])
+    _.ellipses(ellipsesData2, [$group("e2"), $y(50), $x(40), $xOffset(80), $max(40)])
+    _.ellipses(ellipsesData3, [$group("e3"), $y(50), $x(40), $xOffset(80), $max(30)])
+    _.ellipses(ellipsesData4, [$group("e4"), $y(50), $x(40), $xOffset(80), $max(15)])
+  });
+</script>
+
+</html>

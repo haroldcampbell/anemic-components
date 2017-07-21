@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Anemic components for rich-data presentation [Demo]</title>
+</head>
+<style>
+  #c4 {
+    fill: rgb(255, 255, 255);
+    margin: 10px;
+    width: 700px;
+    height: 500px;
+  }
+
+  #c4 .bar {}
+
+  #c4 .path {
+    stroke: rgba(255, 0, 110, 0.5);
+    fill: none;
+  }
+
+  #e3>.path:nth-last-child(3n) {
+    stroke: rgba(0, 120, 255, 0.5);
+  }
+
+  #e3>.path:nth-child(3n) {
+    stroke: rgba(128, 128, 128, 0.5);
+  }
+
+
+  #border {
+    fill: rgb(255, 255, 255);
+    stroke-width: 1;
+    stroke: #ccc;
+  }
+
+  .bar {
+    fill: rgba(0, 120, 255, 0.5);
+  }
+
+  #b1 .bar,
+  #e1 .ellipse {
+    fill: rgb(0, 120, 255);
+  }
+
+  #b2 .bar,
+  #e2 .ellipse {
+    fill: rgb(255, 110, 110);
+  }
+
+  #e2 :nth-child(1) {
+    fill: rgba(0, 120, 255, 0.75);
+  }
+
+  #e2 :nth-child(2) {
+    fill: rgba(255, 0, 110, 0.75);
+  }
+
+  #e2 :nth-child(3) {
+    fill: rgba(128, 128, 128, 0.75);
+  }
+
+  #e3 {
+    z-index: 1;
+  }
+
+  #e2,
+  #e1 {
+    z-index: 2;
+  }
+</style>
+
+<body>
+  <script src="../lib/anemic-utils.js"></script>
+  <script src="../lib/anemic-core.js"></script>
+  <script src="../lib/anemic-intents.js"></script>
+  <script src="../lib/anemic.js"></script>
+</body>
+
+<script>
+  var barsData = $data([50, 20, 30, 10, 50], "height");
+  var ellipsesData = $data([50, 20, 30, 10, 50], "diameter");
+  var ellipsesData2 = $data([20, 10, 30], "diameter");
+  var linesData1 = $data([
+    1, 1, 4,
+    2, 1, 5,
+    1, 1, 7,
+    2, 1, 2,
+    5, 1, 1,
+  ], "strokeWidth");
+  var linesData2 = $data([10, 20, 80, 70, 40], "stroke");
+
+  container("c4", _ => {
+    _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
+    _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
+    _.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
+    _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"]), $group("e3"), $maxStrokeWidth(15)]);
+    _.onRenderCompleted(() => {
+      $moveBelow("e3", "be")
+    });
+  });
+</script>
+
+</html>
