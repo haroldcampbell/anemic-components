@@ -4,84 +4,85 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Anemic components for rich-data presentation [Demo]</title>
+  <link href="styles.css" media="all" rel="stylesheet" />
+  <link href="visuals.css" media="all" rel="stylesheet" />
+  <script src="script.js"></script>
 </head>
-<style>
-  #c4 {
-    fill: rgb(255, 255, 255);
-    margin: 10px;
-    width: 700px;
-    height: 500px;
-  }
-
-  #c4 .bar {}
-
-  #c4 .path {
-    stroke: rgba(255, 0, 110, 0.5);
-    fill: none;
-  }
-
-  #e3>.path:nth-last-child(3n) {
-    stroke: rgba(0, 120, 255, 0.5);
-  }
-
-  #e3>.path:nth-child(3n) {
-    stroke: rgba(128, 128, 128, 0.5);
-  }
-
-
-  #border {
-    fill: rgb(255, 255, 255);
-    stroke-width: 1;
-    stroke: #ccc;
-  }
-
-  .bar {
-    fill: rgba(0, 120, 255, 0.5);
-  }
-
-  #b1 .bar,
-  #e1 .ellipse {
-    fill: rgb(0, 120, 255);
-  }
-
-  #b2 .bar,
-  #e2 .ellipse {
-    fill: rgb(255, 110, 110);
-  }
-
-  #e2 :nth-child(1) {
-    fill: rgba(0, 120, 255, 0.75);
-  }
-
-  #e2 :nth-child(2) {
-    fill: rgba(255, 0, 110, 0.75);
-  }
-
-  #e2 :nth-child(3) {
-    fill: rgba(128, 128, 128, 0.75);
-  }
-
-  #e3 {
-    z-index: 1;
-  }
-
-  #e2,
-  #e1 {
-    z-index: 2;
-  }
-</style>
 
 <body>
   <script src="../lib/anemic-utils.js"></script>
   <script src="../lib/anemic-core.js"></script>
   <script src="../lib/anemic-intents.js"></script>
   <script src="../lib/anemic.js"></script>
+
+  <!-- <iframe id="menu-frame" src="menus.html" onload="resizeIframe(this)"></iframe> -->
+  <div class="menu">
+    <h1>Examples</h1>
+    <ul>
+      <li><a href="#ex1" target="_parent">Bars 1</a></li>
+      <li><a href="#ex2" target="_parent">Bars 2</a></li>
+      <li><a href="#ex3" target="_parent">Bars 3</a></li>
+      <li><a href="#ex4" target="_parent">Ellipses</a></li>
+      <li><a href="#ex5" target="_parent">Concentric Ellipse</a></li>
+      <li><a href="#ex6" target="_parent">Advanced</a></li>
+    </ul>
+  </div>
+
+
+  <h2><a name="ex1"></a>Example 1: Bars</h2>
+  <div id="example-1" class="container"></div>
+  <pre class="code-example">
+  container("c4", _ => {
+    _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
+  }, $id("example-1"));</pre>
+
+  <h2><a name="ex2"></a>Example 2: Bars</h2>
+  <div id="example-2" class="container"></div>
+  <pre class="code-example">
+  container("c4", _ => {
+    _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
+  }, $id("example-2"));</pre>
+
+  <h2><a name="ex3"></a>Example 3: Bars</h2>
+  <div id="example-3" class="container"></div>
+  <pre class="code-example">
+  container("c4", _ => {
+    _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
+  }, $id("example-3"));</pre>
+
+  <h2><a name="ex4"></a>Example 4: Ellipses</h2>
+  <div id="example-4" class="container"></div>
+  <pre class="code-example">
+  container("c4", _ => {
+    _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
+  }, $id("example-4"));</pre>
+
+  <h2><a name="ex5"></a>Example 5: Concentric Ellipses</h2>
+  <div id="example-5" class="container"></div>
+  <pre class="code-example">
+  container("c5", _ => {
+    _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)])
+    _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)])
+    _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)])
+    _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)])
+  }, $id("example-5"));</pre>
+
+  <h2><a name="ex6"></a>Example 6: Advanced</h2>
+  <div id="example-6" class="container"></div>
+  <pre class="code-example">
+  container("c4", _ => {
+    _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
+    _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
+    _.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
+    _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"]), $group("e3"), $maxStrokeWidth(15)]);
+    _.onRenderCompleted(() => {
+      $moveBelow("e3", "be")
+    }, $id("example-6"));
+  });</pre>
 </body>
 
 <script>
   var barsData = $data([50, 20, 30, 10, 50], "height");
-  var ellipsesData = $data([50, 20, 30, 10, 50], "diameter");
-  var ellipsesData2 = $data([20, 10, 30], "diameter");
   var linesData1 = $data([
     1, 1, 4,
     2, 1, 5,
@@ -91,15 +92,47 @@
   ], "strokeWidth");
   var linesData2 = $data([10, 20, 80, 70, 40], "stroke");
 
+  container("c1", _ => {
+    _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
+  }, $id("example-1"));
+
+  container("c2", _ => {
+    _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
+  }, $id("example-2"));
+
+  container("c3", _ => {
+    _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
+  }, $id("example-3"));
+
+  var ellipsesData1 = $data([10, 60, 30, 40, 50], "diameter");
+
   container("c4", _ => {
-    _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
-    _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
-    _.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
-    _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"]), $group("e3"), $maxStrokeWidth(15)]);
+    _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
+  }, $id("example-4"));
+
+  var ex4EllipsesData2 = $data([50, 25, 60, 10, 100], "diameter");
+  var ex4EllipsesData3 = $data([15, 80, 20, 60, 70], "diameter");
+  var ex4EllipsesData4 = $data([30, 40, 40, 30, 50], "diameter");
+
+  container("c5", _ => {
+    _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)])
+    _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)])
+    _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)])
+    _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)])
+  }, $id("example-5"));
+
+  var ex6EllipsesData1 = $data([50, 20, 30, 10, 50], "diameter");
+  var ex6EllipsesData2 = $data([20, 10, 30], "diameter");
+
+  container("c6", _ => {
+    _.bars(barsData, [$group("c6-be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
+    _.ellipses(ex6EllipsesData1, [$group("c6-e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
+    _.ellipses(ex6EllipsesData2, [$group("c6-e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
+    _.connectingLines(linesData1, [$joinGroupItems(["c6-e1", "c6-e2"]), $group("c6-e3"), $maxStrokeWidth(15)]);
     _.onRenderCompleted(() => {
-      $moveBelow("e3", "be")
+      $moveBelow("c6-e3", "c6-be")
     });
-  });
+  }, $id("example-6"));
 </script>
 
 </html>
