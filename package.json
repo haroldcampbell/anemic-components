@@ -23,7 +23,7 @@
     "prestart": "npm install",
     "start": "http-server -a 0.0.0.0 -p 8001",
     "pretest": "",
-    "test": "mocha",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
