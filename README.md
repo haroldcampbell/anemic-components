@@ -1,5 +1,7 @@
 # Anemic Components
 
+[![Build Status](https://travis-ci.org/haroldcampbell/anemic-components.svg?branch=master)](https://travis-ci.org/haroldcampbell/anemic-components)
+
 Rich-data presentation library written in JavaScript (ES6)
 
 This library is still in its infancy (Pre-alpha).
