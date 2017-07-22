@@ -3,7 +3,7 @@
   "private": true,
   "name": "Anemic-Components",
   "description": "Anemic components for rich-data presentation",
-  "repository": "https://github.com/haroldcampbell/AnemicComponents",
+  "repository": "https://github.com/haroldcampbell/anemic-components",
   "license": "Apache 2.0",
   "dependencies": {
     "http-server": "^0.6.1",
@@ -28,7 +28,11 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor test/protractor-conf.js",
-    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + cat('bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
+    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + cat('bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\"",
+    "doc": "./node_modules/.bin/jsdoc lib/*.js --destination ./doc"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jsdoc": "^3.5.3",
+    "jsdoc-to-markdown": "^3.0.0"
+  }
 }
