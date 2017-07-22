@@ -3,17 +3,17 @@
 
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Anemic components for rich-data presentation [Demo]</title>
+  <title>AnCUI [Demo]</title>
   <link href="styles.css" media="all" rel="stylesheet" />
   <link href="visuals.css" media="all" rel="stylesheet" />
   <script src="script.js"></script>
 </head>
 
 <body>
-  <script src="../lib/anemic-utils.js"></script>
-  <script src="../lib/anemic-core.js"></script>
-  <script src="../lib/anemic-intents.js"></script>
-  <script src="../lib/anemic.js"></script>
+  <script src="../lib/utils.js"></script>
+  <script src="../lib/ancui-core.js"></script>
+  <script src="../lib/ancui-intents.js"></script>
+  <script src="../lib/ancui-pipeline.js"></script>
 
   <div class="menu">
     <h1>Examples</h1>
@@ -75,8 +75,8 @@
     _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"]), $group("e3"), $maxStrokeWidth(15)]);
     _.onRenderCompleted(() => {
       $moveBelow("e3", "be")
-    }, $id("example-6"));
-  });</pre>
+    });
+  }, $id("example-6"));</pre>
 </body>
 
 <script>

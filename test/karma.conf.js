@@ -4,10 +4,10 @@ module.exports = function(config){
         basePath : '../',
 
         files : [
-          'lib/anemic-utils.js'
-          ,'lib/anemic-core.js'
-          ,'lib/anemic-intents.js'
-          ,'lib/anemic.js'
+          'lib/utils.js'
+          ,'lib/ancui-core.js'
+          ,'lib/ancui-intents.js'
+          ,'lib/ancui-pipeline.js'
           ,'test/unit/**/*.js'
         ],
 

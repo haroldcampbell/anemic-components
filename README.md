@@ -1,14 +1,53 @@
-# Anemic Components
+# AnCUI
 
 [![Build Status](https://travis-ci.org/haroldcampbell/anemic-components.svg?branch=master)](https://travis-ci.org/haroldcampbell/anemic-components)
 
-Rich-data presentation library written in JavaScript (ES6)
+A rich-data presentation library written in JavaScript (ES6) that demonstrates how Anemic Components can be used for presenting rich-data.
 
-This library is still in its infancy (Pre-alpha).
+This library is still in its infancy.
 
-# What does it do?
+# Anemic Components
 
-The library uses a declarative-style programming interface to visualize data.
+Anemic Components adhere to five core design principles. When adopted, the resulting components/libraries can be used to:
+
+* visualize rich-data
+* perform analytics
+* perform statistical analysis
+
+Please take a look the [wiki](https://github.com/haroldcampbell/anemic-components/wiki) from information.
+
+# Installation
+
+First clone the repo with the following command.
+
+```
+git clone https://github.com/haroldcampbell/anemic-components
+
+cd anemic-components
+```
+
+# Browser Examples
+
+To view the examples, you'll need **nodejs**.
+
+From the `anemic-components` folder install node.js packages.
+
+```
+npm install
+```
+
+Start the server.
+
+```
+npm start
+```
+
+In your browser, navigate to examples:
+```
+http://localhost:8001/examples/
+```
+
+# What can we do right now with AnCUI?
 
 The code snippet below shows an example of the declarative nature of the library.
 
@@ -28,7 +67,7 @@ This produces the following image:
 
 <img src="./common/images/advanced-example.png" width="400">
 
-Please take a look here from more [examples](./examples/index.html).
+Please take a look the [wiki](https://github.com/haroldcampbell/anemic-components/wiki) from information.
 
 # Pull Requests
 
