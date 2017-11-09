@@ -23,7 +23,7 @@
       <li><a href="#ex1" target="_parent">Bars 1</a></li>
       <li><a href="#ex2" target="_parent">Bars 2</a></li>
       <li><a href="#ex3a" target="_parent">Bars 3-a</a></li>
-      <li><a href="#ex3b" target="_parent">Bars 3-b</a></li>
+      <li><a href="#ex3b" target="_parent">Bars 3-b (align bottom)</a></li>
       <li><a href="#ex4" target="_parent">Ellipses</a></li>
       <li><a href="#ex5" target="_parent">Concentric Ellipse</a></li>
       <li><a href="#ex6" target="_parent">Advanced</a></li>
@@ -59,11 +59,11 @@
     </li>
 
     <li>
-      <h2><a name="ex3b"></a>Example 3-b: Bars</h2>
+      <h2><a name="ex3b"></a>Example 3-b: Bars with vertical alignment </h2>
       <div id="example-3b" class="container"></div>
       <pre class="code-example">
   container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
+    _.bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)])
   }, $id("example-3b"));</pre>
     </li>
 
