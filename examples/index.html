@@ -12,62 +12,86 @@
 <body>
   <script src="../lib/utils.js"></script>
   <script src="../lib/ancui-core.js"></script>
+  <script src="../lib/ancui-data.js"></script>
   <script src="../lib/ancui-intents.js"></script>
   <script src="../lib/ancui-pipeline.js"></script>
+  <script src="../lib/ancui-visuals.js"></script>
 
   <div class="menu">
     <h1>Examples</h1>
     <ul>
       <li><a href="#ex1" target="_parent">Bars 1</a></li>
       <li><a href="#ex2" target="_parent">Bars 2</a></li>
-      <li><a href="#ex3" target="_parent">Bars 3</a></li>
+      <li><a href="#ex3a" target="_parent">Bars 3-a</a></li>
+      <li><a href="#ex3b" target="_parent">Bars 3-b</a></li>
       <li><a href="#ex4" target="_parent">Ellipses</a></li>
       <li><a href="#ex5" target="_parent">Concentric Ellipse</a></li>
       <li><a href="#ex6" target="_parent">Advanced</a></li>
     </ul>
   </div>
 
-  <h2><a name="ex1"></a>Example 1: Bars</h2>
-  <div id="example-1" class="container"></div>
-  <pre class="code-example">
+  <ul>
+    <li>
+      <h2><a name="ex1"></a>Example 1: Bars</h2>
+      <div id="example-1" class="container"></div>
+      <pre class="code-example">
   container("c4", _ => {
     _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
   }, $id("example-1"));</pre>
+    </li>
 
-  <h2><a name="ex2"></a>Example 2: Bars</h2>
-  <div id="example-2" class="container"></div>
-  <pre class="code-example">
+    <li>
+      <h2><a name="ex2"></a>Example 2: Bars</h2>
+      <div id="example-2" class="container"></div>
+      <pre class="code-example">
   container("c4", _ => {
     _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
   }, $id("example-2"));</pre>
+    </li>
 
-  <h2><a name="ex3"></a>Example 3: Bars</h2>
-  <div id="example-3" class="container"></div>
-  <pre class="code-example">
+    <li>
+      <h2><a name="ex3a"></a>Example 3-a: Bars</h2>
+      <div id="example-3a" class="container"></div>
+      <pre class="code-example">
   container("c4", _ => {
     _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
-  }, $id("example-3"));</pre>
+  }, $id("example-3a"));</pre>
+    </li>
 
-  <h2><a name="ex4"></a>Example 4: Ellipses</h2>
-  <div id="example-4" class="container"></div>
-  <pre class="code-example">
+    <li>
+      <h2><a name="ex3b"></a>Example 3-b: Bars</h2>
+      <div id="example-3b" class="container"></div>
+      <pre class="code-example">
+  container("c4", _ => {
+    _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
+  }, $id("example-3b"));</pre>
+    </li>
+
+    <li>
+      <h2><a name="ex4"></a>Example 4: Ellipses</h2>
+      <div id="example-4" class="container"></div>
+      <pre class="code-example">
   container("c4", _ => {
     _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
   }, $id("example-4"));</pre>
+    </li>
 
-  <h2><a name="ex5"></a>Example 5: Concentric Ellipses</h2>
-  <div id="example-5" class="container"></div>
-  <pre class="code-example">
+    <li>
+      <h2><a name="ex5"></a>Example 5: Concentric Ellipses</h2>
+      <div id="example-5" class="container"></div>
+      <pre class="code-example">
   container("c5", _ => {
     _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)])
     _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)])
     _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)])
     _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)])
   }, $id("example-5"));</pre>
+    </li>
 
-  <h2><a name="ex6"></a>Example 6: Advanced</h2>
-  <div id="example-6" class="container"></div>
-  <pre class="code-example">
+    <li>
+      <h2><a name="ex6"></a>Example 6: Advanced</h2>
+      <div id="example-6" class="container"></div>
+      <pre class="code-example">
   container("c4", _ => {
     _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
     _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
@@ -77,6 +101,9 @@
       $moveBelow("e3", "be")
     });
   }, $id("example-6"));</pre>
+    </li>
+  </ul>
+
 </body>
 
 <script>
@@ -89,7 +116,11 @@
     5, 1, 1,
   ], "strokeWidth");
   var linesData2 = $data([10, 20, 80, 70, 40], "stroke");
-
+/*
+  container("c1", _ => {
+    _.bars(barsData, "group:c4-e1 maxHeight:50 yOffset:30 width:150")
+  }, $id("example-1"));
+*/
   container("c1", _ => {
     _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
   }, $id("example-1"));
@@ -98,9 +129,13 @@
     _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
   }, $id("example-2"));
 
-  container("c3", _ => {
+  container("c3a", _ => {
     _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
-  }, $id("example-3"));
+  }, $id("example-3a"));
+
+  container("c3b", _ => {
+    _.bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)])
+  }, $id("example-3b"));
 
   var ellipsesData1 = $data([10, 60, 30, 40, 50], "diameter");
 

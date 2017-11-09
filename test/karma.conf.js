@@ -6,8 +6,10 @@ module.exports = function(config){
         files : [
           'lib/utils.js'
           ,'lib/ancui-core.js'
+          ,'lib/ancui-data.js'
           ,'lib/ancui-intents.js'
           ,'lib/ancui-pipeline.js'
+          ,'lib/ancui-visuals.js'
           ,'test/unit/**/*.js'
         ],
 

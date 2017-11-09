@@ -39,7 +39,6 @@ function resetVisuals(){
   visuals.__postRenderCallback = null;
 }
 
-
 /**
   Pushes the specified callback into the array n amount of times as specified by @times
   @method pump
@@ -54,6 +53,13 @@ Array.prototype.pump = function(times, callback) {
   return this;
 }
 
+/**
+  Pushes the result of specified callback into the array n amount of times as specified by @times
+  @method pumpFn
+
+  @param {number} times - the number of times to push the callback into the Array.
+  @param {function} callback - the callback whose result will be pushed into the Array.
+*/
 Array.prototype.pumpFn = function(times, callback) {
   for (let i = 0; i < times; i++) {
     this.push(callback())

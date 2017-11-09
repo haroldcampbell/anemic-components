@@ -1,12 +1,13 @@
-describe("Postion Intents", () => {
+describe("Position Intents", () => {
   var newValue = null;
+  var visuals = {};
 
   beforeEach(() => {
     newValue = 0;
   });
 
   it("should set x value with $x ", () => {
-    var visuals = [].pump(1, {
+    visuals.svgNodes = [].pump(1, {
       $x(value) {
         newValue = value;
       }
@@ -17,7 +18,7 @@ describe("Postion Intents", () => {
   });
 
   it("should set y value with $y", () => {
-    var visuals = [].pump(1, {
+    visuals.svgNodes = [].pump(1, {
       $y(value) {
         newValue = value;
       }
