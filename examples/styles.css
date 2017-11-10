@@ -11,6 +11,19 @@ body {
   font-weight: 100;
   color: #777;
   width: 500px;
+  padding: 5px 0;
+  line-height: 2em;
+  letter-spacing: 0.004em;
+  /*font-size: 1.0em;*/
+}
+
+.desc strong {
+  font-weight: 400;
+  color: #333;
+  font-style: italic;
+  background-color: #FFF6DA;
+  padding: 2px 8px;
+  border-radius: 3px;
 }
 
 ul, li {
@@ -30,14 +43,15 @@ a:visited {
   color: #444;
 }
 
-.code-example {
+pre.code-example {
   color: #333;
-  font-size: 1.2em;
+  font-size: 1.0em;
   font-family: monospace;
-  line-height: 1.6em;
-  background-color: #f3f3f3;
+  line-height: 1.7em;
+  background-color: #f6f6f3;
   padding: 10px;
-  margin-bottom: 40px;
+  margin: 0 20px 50px 0;
+  border-left: solid 2px #f0f0e0;
 }
 
 .menu {
@@ -46,9 +60,6 @@ a:visited {
   padding: 5px 20px 0 20px;
   margin: 0 30px 0 0;
   background: #f3f3f3;
-  /*border: solid 2px #e3e3e3;*/
-  /*border-radius: 10px;*/
-
   position:fixed;
   top: 0px;
   left: 0px;
@@ -69,23 +80,17 @@ a:visited {
 
 .menu a {
   color: #777;
-  /*font-size: 0.9em;*/
   font-weight: 200;
   text-decoration: none;
   padding: 10px 0 10px 10px;
   display:block;
 }
 
-
 .menu a:hover {
   color: #444;
   background-color: #e0e0e0;
 }
 
-.container {
-  /*padding: 10px;*/
-}
-
 svg {
-  border: solid 2px #e3e3e3;
+  border: solid 1px #efefe3;
 }
