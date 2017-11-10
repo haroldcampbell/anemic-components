@@ -4,6 +4,14 @@
   height: 400px;
 }
 
+.ex-tiny svg{
+  height: 150px;
+}
+
+.ex-short svg{
+  height: 200px;
+}
+
 .container svg .path {
   stroke: rgba(255, 0, 110, 0.5);
   fill: none;

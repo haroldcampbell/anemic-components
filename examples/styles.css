@@ -7,6 +7,12 @@ body {
   /*padding:0;*/
 }
 
+.desc {
+  font-weight: 100;
+  color: #777;
+  width: 500px;
+}
+
 ul, li {
   padding: 0;
   margin: 0;
@@ -35,21 +41,45 @@ a:visited {
 }
 
 .menu {
-  width: 200px;
+  width: 230px;
 
-  padding: 20px;
-  margin: 30px;
+  padding: 5px 20px 0 20px;
+  margin: 0 30px 0 0;
   background: #f3f3f3;
-  border: solid 2px #e3e3e3;
-  border-radius: 10px;
+  /*border: solid 2px #e3e3e3;*/
+  /*border-radius: 10px;*/
 
   position:fixed;
   top: 0px;
   left: 0px;
+  height: 100%;
 }
 
 .menu h1 {
   margin-top: 10px;
+}
+
+.menu li {
+  border-bottom: solid 1px #ddd;
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu a {
+  color: #777;
+  /*font-size: 0.9em;*/
+  font-weight: 200;
+  text-decoration: none;
+  padding: 10px 0 10px 10px;
+  display:block;
+}
+
+
+.menu a:hover {
+  color: #444;
+  background-color: #e0e0e0;
 }
 
 .container {

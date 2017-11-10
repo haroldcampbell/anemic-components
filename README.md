@@ -36,6 +36,13 @@ From the `anemic-components` folder install node.js packages.
 npm install
 ```
 
+Build the packages.
+
+```
+npm run webpack
+npm run webpack-ex
+```
+
 Start the server.
 
 ```
@@ -75,4 +82,6 @@ Lots of work left to be done. Looking forward to pull requests.
 
 # Version
 
+0.0.3 (Pre-alpha): Add $alginRight(...) intent
+0.0.2 (Pre-alpha): Add $alginBottom(...) intent
 0.0.1 (Pre-alpha)

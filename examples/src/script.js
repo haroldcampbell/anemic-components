@@ -3,6 +3,7 @@ import {
   $data,
   $max,
   $maxHeight,
+  $maxWidth,
   $maxDiameter,
   $maxStrokeWidth,
   $x,
@@ -15,6 +16,7 @@ import {
   $height,
   $moveBelow,
   $alignBottom,
+  $alignRight,
   $joinGroupItems,
   $group,
   container,
@@ -34,9 +36,17 @@ container("c1", _ => {
   _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
 }, $id("example-1"));
 
-container("c2", _ => {
+container("c2a", _ => {
   _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
-}, $id("example-2"));
+}, $id("example-2a"));
+
+container("c2b", _ => {
+  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $yOffset(30), $height(20)])
+}, $id("example-2b"));
+
+container("c2c", _ => {
+  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $alignRight(), $yOffset(30), $height(20)])
+}, $id("example-2c"));
 
 container("c3a", _ => {
   _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])

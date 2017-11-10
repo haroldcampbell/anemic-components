@@ -13,7 +13,9 @@
     <h1>Examples</h1>
     <ul>
       <li><a href="#ex1" target="_parent">Bars 1</a></li>
-      <li><a href="#ex2" target="_parent">Bars 2</a></li>
+      <li><a href="#ex2a" target="_parent">Bars 2-a</a></li>
+      <li><a href="#ex2b" target="_parent">Bars 2-b</a></li>
+      <li><a href="#ex2c" target="_parent">Bars 2-c (align right)</a></li>
       <li><a href="#ex3a" target="_parent">Bars 3-a</a></li>
       <li><a href="#ex3b" target="_parent">Bars 3-b (align bottom)</a></li>
       <li><a href="#ex4" target="_parent">Ellipses</a></li>
@@ -22,28 +24,59 @@
     </ul>
   </div>
 
-  <ul>
+  <ul class="examples-containers">
     <li>
-      <h2><a name="ex1"></a>Example 1: Bars</h2>
+      <h2><a name="ex1"></a>Example 1: Bars (with data-based height)</h2>
       <div id="example-1" class="container"></div>
+      <p class="desc">
+        The height of the bars is based on the <strong>barsData</strong>. The max height of each bar is defined by
+        <strong>$maxHeight(...)</strong>, while the space between the bars is determined by <strong>$yOffset(...)</strong>.
+      </p>
       <pre class="code-example">
-  container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
+  container("c1", _ => {
+    _.bars(barsData, [<strong>$maxHeight</strong>(50), $yOffset(30), $width(150)])
   }, $id("example-1"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex2"></a>Example 2: Bars</h2>
-      <div id="example-2" class="container"></div>
+      <h2><a name="ex2a"></a>Example 2-a: Bars</h2>
+      <div id="example-2a" class="container"></div>
+      <p class="desc">
+        In this example, the bars are being horizontally shifted by <strong>$xOffset(...)</strong>.
+      </p>
       <pre class="code-example">
-  container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)])
-  }, $id("example-2"));</pre>
+  container("c2a", _ => {
+    _.bars(barsData, [$maxHeight(50), $yOffset(30), <strong>$xOffset</strong>(30), $width(150)])
+  }, $id("example-2a"));</pre>
+    </li>
+
+    <li>
+      <h2><a name="ex2b"></a>Example 2-b: Bars</h2>
+      <div id="example-2b" class="container ex-tiny"></div>
+      <p class="desc">
+        A very basic horizontal bar chart.
+      </p>
+      <pre class="code-example">
+  container("c2b", _ => {
+    _.bars(barsData, [$maxWidth(50), $yOffset(30), $height(20)])
+  }, $id("example-2b"));</pre>
+    </li>
+
+    <li>
+      <h2><a name="ex2c"></a>Example 2-c: Bars (aligned right)</h2>
+      <div id="example-2c" class="container ex-tiny"></div>
+      <p class="desc">
+        A very basic horizontal bar chart. However, now we have aligned it right by using <strong>$alignRight(...)</strong>.
+      </p>
+      <pre class="code-example">
+  container("c2c", _ => {
+    _.bars(barsData, [$maxWidth(50), <strong>$alignRight</strong>(), $yOffset(30), $height(20)])
+  }, $id("example-2c"));</pre>
     </li>
 
     <li>
       <h2><a name="ex3a"></a>Example 3-a: Bars</h2>
-      <div id="example-3a" class="container"></div>
+      <div id="example-3a" class="container ex-tiny"></div>
       <pre class="code-example">
   container("c4", _ => {
     _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
@@ -51,17 +84,20 @@
     </li>
 
     <li>
-      <h2><a name="ex3b"></a>Example 3-b: Bars with vertical alignment </h2>
-      <div id="example-3b" class="container"></div>
+      <h2><a name="ex3b"></a>Example 3-b: Bars (align bottom)</h2>
+      <div id="example-3b" class="container ex-tiny"></div>
+      <p class="desc">
+        We can align the typical bar chart by using <strong>$alignBottom(...)</strong>.
+      </p>
       <pre class="code-example">
   container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)])
+    _.bars(barsData, [$maxHeight(50), <strong>$alignBottom(100)</strong>, $xOffset(30), $width(15)])
   }, $id("example-3b"));</pre>
     </li>
 
     <li>
       <h2><a name="ex4"></a>Example 4: Ellipses</h2>
-      <div id="example-4" class="container"></div>
+      <div id="example-4" class="container ex-tiny"></div>
       <pre class="code-example">
   container("c4", _ => {
     _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
@@ -70,7 +106,7 @@
 
     <li>
       <h2><a name="ex5"></a>Example 5: Concentric Ellipses</h2>
-      <div id="example-5" class="container"></div>
+      <div id="example-5" class="container ex-tiny"></div>
       <pre class="code-example">
   container("c5", _ => {
     _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)])
