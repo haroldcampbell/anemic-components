@@ -1,22 +1,28 @@
+import * as utils from "./utils"
+import {$data} from "../../lib/ancui-data"
+import {container} from "../../lib/ancui-pipeline"
+import "../../lib/ancui-visuals"
+import {$noop} from "../../lib/ancui-intents"
+
 describe("Pipeline", () => {
   let initialChildren = null;
 
   beforeAll(() => {
-    initialChildren = captureDocumentBodyChildNodes()
+    initialChildren = utils.captureDocumentBodyChildNodes()
   });
 
   beforeEach(() => {
-    resetVisuals()
+    utils.resetVisuals()
   });
 
   afterEach(() => {
-    resetDocumentBody(initialChildren);
+    utils.resetDocumentBody(initialChildren);
   });
 
   it("should call all effects", () => {
     var effectsCalled = 0;
     const data = $data([])
-    const mockNode = new MockNode();
+    const mockNode = new utils.MockNode();
     const noopCallback = _ => {
       effectsCalled++;
     };
@@ -39,12 +45,12 @@ describe("Pipeline", () => {
     const visuals = container("test1", visualsCallback);
     const svgNode = document.getElementById("test1");
 
-    didCall2 = true;
+    // didCall2 = true;
     expect(svgNode).toBeTruthy();
   });
 
   it("should add svgNode to parentElement", () => {
-    const parentElement = new MockNode();
+    const parentElement = new utils.MockNode();
     const visualsCallback = _ => {
       _.bars($data([1, 2, 3]), []);
     };
@@ -58,7 +64,7 @@ describe("Pipeline", () => {
 
     beforeEach(() => {
       data = $data([1, 2, 3]);
-      parentElement = new MockNode();
+      parentElement = new utils.MockNode();
     });
 
     it("bar should add rects to svgNode", () => {
@@ -73,7 +79,7 @@ describe("Pipeline", () => {
     });
 
     it("ellipses should add ellipses to svgNode", () => {
-      const parentElement = new MockNode();
+      const parentElement = new utils.MockNode();
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.ellipses(data, []);
@@ -85,7 +91,7 @@ describe("Pipeline", () => {
     });
 
     it("connectingLines should add paths to svgNode", () => {
-      const parentElement = new MockNode();
+      const parentElement = new utils.MockNode();
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.connectingLines(data, []);

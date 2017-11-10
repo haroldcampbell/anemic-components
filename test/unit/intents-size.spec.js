@@ -1,3 +1,18 @@
+import {MockNode} from "./utils"
+import {_$} from "../../lib/ancui-core"
+import {$data} from "../../lib/ancui-data"
+
+import {
+  $width,
+  $height,
+  $max,
+  $maxWidth,
+  $maxHeight,
+  $maxY,
+  $maxDiameter,
+  $maxStrokeWidth
+} from "../../lib/ancui-intents"
+
 describe("Size Intents", () => {
   var visuals = {};
   var visualsCount = 3;
@@ -68,7 +83,7 @@ describe("Size Intents", () => {
 
       $max(100).action(visuals);
 
-      svgNodes = visuals.svgNodes;
+      const svgNodes = visuals.svgNodes;
       expect(svgNodes[0].$width()).toBe(25);
       expect(svgNodes[0].$height()).toBe(25);
 
@@ -102,7 +117,7 @@ describe("Size Intents", () => {
 
       $maxDiameter(100).action(visuals);
 
-      svgNodes = visuals.svgNodes;
+      let svgNodes = visuals.svgNodes;
       expect(svgNodes[0].$width()).toBe(12.5);
       expect(svgNodes[0].$height()).toBe(12.5);
 
@@ -125,6 +140,32 @@ describe("Size Intents", () => {
       expect(visuals.svgNodes[0].$strokeWidth()).toBe(7.5);
       expect(visuals.svgNodes[1].$strokeWidth()).toBe(15);
       expect(visuals.svgNodes[2].$strokeWidth()).toBe(30);
+    });
+
+    it("$maxHeight", () => {
+      visuals.svgNodes.forEach((v) => {
+        v._dataProperty = "height";
+        v.$height = _$._height(v);
+      });
+
+      $maxHeight(30).action(visuals);
+
+      expect(visuals.svgNodes[0].$height()).toBe(7.5);
+      expect(visuals.svgNodes[1].$height()).toBe(15);
+      expect(visuals.svgNodes[2].$height()).toBe(30);
+    });
+
+    it("$maxWidth", () => {
+      visuals.svgNodes.forEach((v) => {
+        v._dataProperty = "width";
+        v.$width = _$._width(v);
+      });
+
+      $maxWidth(30).action(visuals);
+
+      expect(visuals.svgNodes[0].$width()).toBe(7.5);
+      expect(visuals.svgNodes[1].$width()).toBe(15);
+      expect(visuals.svgNodes[2].$width()).toBe(30);
     });
   });
 });

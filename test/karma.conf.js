@@ -1,32 +1,54 @@
-module.exports = function(config){
-    config.set({
+// var webpackConfig = require('../webpack.config');
+const ancuiBasePath = "ancuiBasePath";
 
-        basePath : '../',
+module.exports = function(config) {
+  config.set({
 
-        files : [
-          'lib/utils.js'
-          ,'lib/ancui-core.js'
-          ,'lib/ancui-data.js'
-          ,'lib/ancui-intents.js'
-          ,'lib/ancui-pipeline.js'
-          ,'lib/ancui-visuals.js'
-          ,'test/unit/**/*.js'
-        ],
+    basePath: '../',
 
-        autoWatch : true,
+    files: [
+      'lib/*.js',
+      'test/unit/utils.js',
+      'test/unit/intents-*.spec.js',
+      'test/unit/pipeline.spec.js',
+    ],
 
-        frameworks: ['jasmine'],
+    preprocessors: {
+      'lib/*.js':['webpack'],
+      'test/unit/utils.js': ['webpack'],
+      'test/unit/intents-*.spec.js': ['webpack', 'sourcemap'],
+      'test/unit/pipeline.spec.js': ['webpack', 'sourcemap'],
+    },
 
-        browsers : ['Chrome'],
+    webpack: {
+      devtool: 'inline-source-map',
+    },
 
-        plugins : [
-            'karma-chrome-launcher',
-            'karma-jasmine'
-        ],
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true,
+      stats: {
+          chunks: false
+      }
+    },
 
-        junitReporter : {
-            outputFile: 'test_out/unit.xml',
-            suite: 'unit'
-        }
-    });
+    autoWatch: true,
+
+    frameworks: ['jasmine'],
+
+    browsers: ['Chrome'],
+
+    plugins: [
+      'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-webpack',
+      'karma-sourcemap-loader'
+    ],
+
+    junitReporter: {
+      outputFile: 'test_out/unit.xml',
+      suite: 'unit'
+    }
+  });
 };

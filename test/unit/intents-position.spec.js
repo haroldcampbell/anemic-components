@@ -1,3 +1,5 @@
+import {$x, $y} from '../../lib/ancui-intents.js'
+
 describe("Position Intents", () => {
   var newValue = null;
   var visuals = {};

@@ -1,3 +1,7 @@
+import {MockNode} from "./utils"
+import {_$} from "../../lib/ancui-core"
+import {$rxOffset, $ryOffset, $xOffset, $yOffset} from "../../lib/ancui-intents"
+
 describe("Offset Intents", () => {
   describe("rx/ry Offsets: Supporting properties present", () => {
     var visuals = {};
@@ -18,7 +22,7 @@ describe("Offset Intents", () => {
 
       $rxOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$cx()).toBe(10);
       expect(svgNodes[1].$cx()).toBe(40);
       expect(svgNodes[2].$cx()).toBe(70);
@@ -35,7 +39,7 @@ describe("Offset Intents", () => {
 
       $ryOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$cy()).toBe(10);
       expect(svgNodes[1].$cy()).toBe(40);
       expect(svgNodes[2].$cy()).toBe(70);
@@ -63,7 +67,7 @@ describe("Offset Intents", () => {
 
       $rxOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$cx()).toBe(0);
       expect(svgNodes[1].$cx()).toBe(10);
       expect(svgNodes[2].$cx()).toBe(20);
@@ -79,7 +83,7 @@ describe("Offset Intents", () => {
 
       $ryOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$cy()).toBe(0);
       expect(svgNodes[1].$cy()).toBe(10);
       expect(svgNodes[2].$cy()).toBe(20);
@@ -106,7 +110,7 @@ describe("Offset Intents", () => {
 
       $xOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$x()).toBe(null);
       expect(svgNodes[1].$x()).toBe(20);
       expect(svgNodes[2].$x()).toBe(40);
@@ -122,7 +126,7 @@ describe("Offset Intents", () => {
 
       $yOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$y()).toBe(null);
       expect(svgNodes[1].$y()).toBe(20);
       expect(svgNodes[2].$y()).toBe(40);
@@ -148,7 +152,7 @@ describe("Offset Intents", () => {
 
       $xOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$x()).toBe(null);
       expect(svgNodes[1].$x()).toBe(10);
       expect(svgNodes[2].$x()).toBe(20);
@@ -163,7 +167,7 @@ describe("Offset Intents", () => {
 
       $yOffset(10).action(visuals);
 
-      svgNodes = visuals.svgNodes
+      let svgNodes = visuals.svgNodes
       expect(svgNodes[0].$y()).toBe(null);
       expect(svgNodes[1].$y()).toBe(10);
       expect(svgNodes[2].$y()).toBe(20);

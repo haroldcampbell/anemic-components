@@ -5,6 +5,7 @@
   "description": "Anemic components for rich-data presentation",
   "repository": "https://github.com/haroldcampbell/anemic-components",
   "license": "Apache 2.0",
+  "main": "dist/ancui.js",
   "dependencies": {
     "http-server": "^0.6.1",
     "jasmine-core": "^2.6.4",
@@ -29,10 +30,17 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor test/protractor-conf.js",
     "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + cat('bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\"",
-    "doc": "./node_modules/.bin/jsdoc lib/*.js --destination ./doc"
+    "doc": "./node_modules/.bin/jsdoc lib/*.js --destination ./doc",
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack-ex": "./node_modules/.bin/webpack --config webpack.example.config.js"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.17",
+    "html-webpack-plugin": "^2.30.1",
     "jsdoc": "^3.5.3",
-    "jsdoc-to-markdown": "^3.0.0"
+    "jsdoc-to-markdown": "^3.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.5",
+    "webpack": "^3.8.1"
   }
 }

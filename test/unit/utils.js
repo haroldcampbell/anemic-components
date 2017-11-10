@@ -1,9 +1,10 @@
+import {getVisuals} from '../../lib/ancui-pipeline.js'
 /**
   Saves the current childNodes of the document.body
   @method captureDocumentBodyChildNodes
   @returns {Array} the nodes that are currently in the document.body.
 */
-function captureDocumentBodyChildNodes() {
+export function captureDocumentBodyChildNodes() {
   const initialChildren = [];
   document.body.childNodes.forEach(node => {
     initialChildren.push(node);
@@ -17,7 +18,7 @@ function captureDocumentBodyChildNodes() {
   @method resetDocumentBody
   @param {Arrray} initialChildrenNodes - the nodes that should be in the document.body
 */
-function resetDocumentBody(initialChildrenNodes) {
+export function resetDocumentBody(initialChildrenNodes) {
   document.body.childNodes.forEach(node => {
     document.body.removeChild(node);
   });
@@ -32,7 +33,7 @@ function resetDocumentBody(initialChildrenNodes) {
   The method also sets currentContainer and __postRenderCallback to null
   @method resetVisuals
 */
-function resetVisuals(){
+export function resetVisuals(){
   const visuals = getVisuals();
   visuals.nodes = {};
   visuals.currentContainer = null;
@@ -71,7 +72,7 @@ Array.prototype.pumpFn = function(times, callback) {
   Represents an Mocked HTML attribute used for testing.
   @class MockAttribute
 */
-class MockAttribute {
+export class MockAttribute {
   constructor() {
     this._name = null;
     this._value = null;
@@ -98,7 +99,7 @@ class MockAttribute {
   Represents an Mocked HTML node used for testing
   @class MockNode
 */
-class MockNode {
+export class MockNode {
   constructor() {
     this._attributes = {};
     this._children = [];
