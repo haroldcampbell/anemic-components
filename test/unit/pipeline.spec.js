@@ -67,6 +67,17 @@ describe("Pipeline", () => {
       parentElement = new utils.MockNode();
     });
 
+    it("arcs should add paths to svgNode", () => {
+      const visualsCallback = _ => {
+        // Data consists of 3 elements, so we should get 3 visusals
+        _.arcs(data, []);
+      }
+      const visuals = container("test", visualsCallback, parentElement)
+      const svgNode = parentElement.childNodes[0];
+
+      expect(svgNode.childNodes.length).toBe(3);
+    });
+
     it("bar should add rects to svgNode", () => {
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals

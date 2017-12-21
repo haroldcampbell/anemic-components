@@ -7,6 +7,7 @@ module.exports = {
     './lib/ancui-core.js',
     './lib/ancui-data.js',
     './lib/ancui-intents.js',
+    './lib/ancui-intents-arcs.js',
     './lib/ancui-pipeline.js',
     './lib/ancui-visuals.js',
   ],

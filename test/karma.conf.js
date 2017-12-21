@@ -9,6 +9,7 @@ module.exports = function(config) {
     files: [
       'lib/*.js',
       'test/unit/utils.js',
+      'test/unit/core-*.spec.js',
       'test/unit/intents-*.spec.js',
       'test/unit/pipeline.spec.js',
     ],
@@ -16,6 +17,7 @@ module.exports = function(config) {
     preprocessors: {
       'lib/*.js':['webpack'],
       'test/unit/utils.js': ['webpack'],
+      'test/unit/core-*.spec.js': ['webpack', 'sourcemap'],
       'test/unit/intents-*.spec.js': ['webpack', 'sourcemap'],
       'test/unit/pipeline.spec.js': ['webpack', 'sourcemap'],
     },
