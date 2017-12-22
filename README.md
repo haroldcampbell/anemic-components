@@ -39,8 +39,8 @@ npm install
 Build the packages.
 
 ```
-npm run webpack
-npm run webpack-ex
+npm run bundle
+npm run bundle-example
 ```
 
 Start the server.
@@ -82,6 +82,7 @@ Lots of work left to be done. Looking forward to pull requests.
 
 # Version History
 
+- 0.0.4 (Pre-alpha): Add arcs and related intent
 - 0.0.3 (Pre-alpha): Add $alginRight(...) intent
 - 0.0.2 (Pre-alpha): Add $alginBottom(...) intent
 - 0.0.1 (Pre-alpha)
