@@ -1,9 +1,14 @@
-import {getVisuals} from '../../lib/ancui-pipeline.js'
+import {
+  getVisuals
+} from '../../lib/ancui-pipeline.js'
+
 /**
-  Saves the current childNodes of the document.body
-  @method captureDocumentBodyChildNodes
-  @returns {Array} the nodes that are currently in the document.body.
-*/
+ * Saves the current childNodes of the document.body
+ *
+ * @function captureDocumentBodyChildNodes
+ *
+ * @return {Array} the nodes that are currently in the document.body.
+ */
 export function captureDocumentBodyChildNodes() {
   const initialChildren = [];
   document.body.childNodes.forEach(node => {
@@ -14,10 +19,12 @@ export function captureDocumentBodyChildNodes() {
 }
 
 /**
-  Sets the document.body with the specified nodes
-  @method resetDocumentBody
-  @param {Arrray} initialChildrenNodes - the nodes that should be in the document.body
-*/
+ * Sets the document.body with the specified nodes.
+ *
+ * @function resetDocumentBody
+ *
+ * @param {Arrray} initialChildrenNodes - the nodes that should be in the document.body
+ */
 export function resetDocumentBody(initialChildrenNodes) {
   document.body.childNodes.forEach(node => {
     document.body.removeChild(node);
@@ -29,11 +36,12 @@ export function resetDocumentBody(initialChildrenNodes) {
 }
 
 /**
-  Resets the visuals by removing all of the stored nodes.
-  The method also sets currentContainer and __postRenderCallback to null
-  @method resetVisuals
-*/
-export function resetVisuals(){
+ * Resets the visuals by removing all of the stored nodes.
+ * The method also sets currentContainer and __postRenderCallback to null.
+ *
+ * @function resetVisuals
+ */
+export function resetVisuals() {
   const visuals = getVisuals();
   visuals.nodes = {};
   visuals.currentContainer = null;
@@ -41,13 +49,18 @@ export function resetVisuals(){
 }
 
 /**
-  Pushes the specified callback into the array n amount of times as specified by @times
-  @method pump
-
-  @param {number} times - the number of times to push the callback into the Array.
-  @param {function} callback - the callback being pushed into the Array.
-*/
-Array.prototype.pump = function(times, callback) {
+ * Pushes the specified callback into the array n amount of times as specified
+ * by @times.
+ *
+ * @method pump
+ *
+ * @param {number} times - the number of times to push the callback into the
+ *  Array.
+ * @param {function} callback - the callback being pushed into the Array.
+ *
+ * @return {Object} - The array itself.
+ */
+Array.prototype.pump = function (times, callback) {
   for (let i = 0; i < times; i++) {
     this.push(callback)
   }
@@ -55,13 +68,19 @@ Array.prototype.pump = function(times, callback) {
 }
 
 /**
-  Pushes the result of specified callback into the array n amount of times as specified by @times
-  @method pumpFn
-
-  @param {number} times - the number of times to push the callback into the Array.
-  @param {function} callback - the callback whose result will be pushed into the Array.
-*/
-Array.prototype.pumpFn = function(times, callback) {
+ * Pushes the result of specified callback into the array n amount of times as
+ * specified by @times
+ *
+ * @method pumpFn
+ *
+ * @param {number} times - the number of times to push the callback into the
+ *  Array.
+ * @param {function} callback - the callback whose result will be pushed into
+ *  the Array.
+ *
+ * @return {Object} - the array itself
+ */
+Array.prototype.pumpFn = function (times, callback) {
   for (let i = 0; i < times; i++) {
     this.push(callback())
   }
@@ -69,9 +88,10 @@ Array.prototype.pumpFn = function(times, callback) {
 }
 
 /**
-  Represents an Mocked HTML attribute used for testing.
-  @class MockAttribute
-*/
+ * Represents an Mocked HTML attribute used for testing.
+ *
+ * @class MockAttribute
+ */
 export class MockAttribute {
   constructor() {
     this._name = null;
@@ -96,9 +116,10 @@ export class MockAttribute {
 }
 
 /**
-  Represents an Mocked HTML node used for testing
-  @class MockNode
-*/
+ * Represents an Mocked HTML node used for testing.
+ *
+ * @class MockNode
+ */
 export class MockNode {
   constructor() {
     this._attributes = {};
