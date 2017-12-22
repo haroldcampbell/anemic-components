@@ -12,123 +12,228 @@
   <div class="menu">
     <h1>Examples</h1>
     <ul>
-      <li><a href="#ex1" target="_parent">Bars 1</a></li>
-      <li><a href="#ex2a" target="_parent">Bars 2-a</a></li>
-      <li><a href="#ex2b" target="_parent">Bars 2-b</a></li>
-      <li><a href="#ex2c" target="_parent">Bars 2-c (align right)</a></li>
-      <li><a href="#ex3a" target="_parent">Bars 3-a</a></li>
-      <li><a href="#ex3b" target="_parent">Bars 3-b (align bottom)</a></li>
-      <li><a href="#ex4" target="_parent">Ellipses</a></li>
-      <li><a href="#ex5" target="_parent">Concentric Ellipse</a></li>
-      <li><a href="#ex6" target="_parent">Advanced</a></li>
+      <li>
+        <a href="#bars" target="_parent">Bars</a>
+      </li>
+      <li>
+        <a href="#ellipses" target="_parent">Ellipses</a>
+      </li>
+      <li>
+        <a href="#arcs" target="_parent">Arcs</a>
+      </li>
+      <li>
+        <a href="#advanced" target="_parent">Advanced</a>
+      </li>
     </ul>
   </div>
 
+  <a name="bars"></a>
   <ul class="examples-containers">
     <li>
-      <h2><a name="ex1"></a>Example 1: Bars (with data-based height)</h2>
-      <div id="example-1" class="container"></div>
+      <h2>Bar Example 1: Data-driven height</h2>
+      <div id="example-bar-1" class="container"></div>
       <p class="desc">
-        The height of the bars is based on the <strong>barsData</strong>. The max height of each bar is defined by
-        <strong>$maxHeight(...)</strong>, while the space between the bars is determined by <strong>$yOffset(...)</strong>.
+        The height of the bars is based on the
+        <strong>barsData</strong>. The max height of each bar is defined by
+        <strong>$maxHeight(...)</strong>, while the space between the bars is determined by
+        <strong>$yOffset(...)</strong>.
       </p>
       <pre class="code-example">
-  container("c1", _ => {
-    _.bars(barsData, [<strong>$maxHeight</strong>(50), $yOffset(30), $width(150)])
-  }, $id("example-1"));</pre>
+container("bar-1", _ => {
+  _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)]);
+}, $id("example-bar-1"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex2a"></a>Example 2-a: Bars</h2>
-      <div id="example-2a" class="container"></div>
+      <h2>Bar Example 2: Horizontally shifted</h2>
+      <div id="example-bar-2" class="container"></div>
       <p class="desc">
-        In this example, the bars are being horizontally shifted by <strong>$xOffset(...)</strong>.
+        In this example, the bars are being horizontally shifted by
+        <strong>$xOffset(...)</strong>.
       </p>
       <pre class="code-example">
-  container("c2a", _ => {
-    _.bars(barsData, [$maxHeight(50), $yOffset(30), <strong>$xOffset</strong>(30), $width(150)])
-  }, $id("example-2a"));</pre>
+container("bar-2", _ => {
+  _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)]);
+}, $id("example-bar-2"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex2b"></a>Example 2-b: Bars</h2>
-      <div id="example-2b" class="container ex-tiny"></div>
+      <h2>Bar Example 3: Data-driven length</h2>
+      <div id="example-bar-3" class="container ex-tiny"></div>
       <p class="desc">
         A very basic horizontal bar chart.
       </p>
       <pre class="code-example">
-  container("c2b", _ => {
-    _.bars(barsData, [$maxWidth(50), $yOffset(30), $height(20)])
-  }, $id("example-2b"));</pre>
+container("bar-3", _ => {
+  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $yOffset(30), $height(20)]);
+}, $id("example-bar-3"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex2c"></a>Example 2-c: Bars (aligned right)</h2>
-      <div id="example-2c" class="container ex-tiny"></div>
+      <h2>Bar Example 4: Aligned right</h2>
+      <div id="example-bar-4" class="container ex-tiny"></div>
       <p class="desc">
-        A very basic horizontal bar chart. However, now we have aligned it right by using <strong>$alignRight(...)</strong>.
+        A very basic horizontal bar chart. However, now we have aligned it right by using
+        <strong>$alignRight(...)</strong>.
       </p>
       <pre class="code-example">
-  container("c2c", _ => {
-    _.bars(barsData, [$maxWidth(50), <strong>$alignRight</strong>(), $yOffset(30), $height(20)])
-  }, $id("example-2c"));</pre>
+container("bar-4", _ => {
+  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $alignRight(), $yOffset(30), $height(20)]);
+}, $id("example-bar-4"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex3a"></a>Example 3-a: Bars</h2>
-      <div id="example-3a" class="container ex-tiny"></div>
+      <h2>Bar Example 5: Horizontal orientation</h2>
+      <div id="example-bar-5" class="container ex-tiny"></div>
       <pre class="code-example">
-  container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
-  }, $id("example-3a"));</pre>
+container("bar-5", _ => {
+  _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)]);
+}, $id("example-bar-5"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex3b"></a>Example 3-b: Bars (align bottom)</h2>
-      <div id="example-3b" class="container ex-tiny"></div>
+      <h2>Bar Example 6: Aligned to base</h2>
+      <div id="example-bar-6" class="container ex-tiny"></div>
       <p class="desc">
-        We can align the typical bar chart by using <strong>$alignBottom(...)</strong>.
+        We can align the typical bar chart by using
+        <strong>$alignBottom(...)</strong>.
       </p>
       <pre class="code-example">
-  container("c4", _ => {
-    _.bars(barsData, [$maxHeight(50), <strong>$alignBottom(100)</strong>, $xOffset(30), $width(15)])
-  }, $id("example-3b"));</pre>
+container("bar-6", _ => {
+  _.bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)]);
+}, $id("example-bar-6"));</pre>
+    </li>
+  </ul>
+
+  <a name="ellipses"></a>
+  <ul class="examples-containers">
+    <li>
+      <h2>Ellipse Example 1</h2>
+      <div id="example-ellipses-1" class="container ex-tiny"></div>
+      <pre class="code-example">
+container("ellipses-1", _ => {
+  _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)]);
+}, $id("example-ellipses-1"));</pre>
     </li>
 
     <li>
-      <h2><a name="ex4"></a>Example 4: Ellipses</h2>
-      <div id="example-4" class="container ex-tiny"></div>
+      <h2>Ellipse Example 2: Concentric Ellipses</h2>
+      <div id="example-ellipses-2" class="container ex-tiny"></div>
       <pre class="code-example">
-  container("c4", _ => {
-    _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
-  }, $id("example-4"));</pre>
+container("ellipses-2", _ => {
+  _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)]);
+  _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)]);
+  _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)]);
+  _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)]);
+}, $id("example-ellipses-2"));</pre>
+    </li>
+  </ul>
+
+  <a name="arcs"></a>
+  <ul class="examples-containers">
+    <li>
+      <h2>Arc Example 1</h2>
+      <div id="example-arc-1" class="container ex-short"></div>
+      <p class="desc">
+        The result of
+        <strong>$arcRadiusOffset(...)</strong> vs.
+        <strong>$arcSpanOffset(...)</strong>.
+      </p>
+      <pre class="code-example">
+container("arc-1", _ => {
+  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), <strong>$arcRadiusOffset(5)</strong>])
+  _.arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), <strong>$arcSpanOffset(10)</strong>, $arcRadius(50)])
+}, $id("example-arc-1"));
+</pre>
     </li>
 
     <li>
-      <h2><a name="ex5"></a>Example 5: Concentric Ellipses</h2>
-      <div id="example-5" class="container ex-tiny"></div>
+      <h2>Arc Example 2</h2>
+      <div id="example-arc-2" class="container ex-short"></div>
+      <p class="desc">
+        When combined.
+      </p>
       <pre class="code-example">
-  container("c5", _ => {
-    _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)])
-    _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)])
-    _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)])
-    _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)])
-  }, $id("example-5"));</pre>
+container("arc-2", _ => {
+  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), <strong>$arcSpanOffset(10)</strong>, $arcRadius(50), <strong>$arcRadiusOffset(5)</strong>])
+}, $id("example-arc-2"));
+</pre>
     </li>
 
     <li>
-      <h2><a name="ex6"></a>Example 6: Advanced</h2>
-      <div id="example-6" class="container"></div>
+      <h2>Arc Example 3</h2>
+      <div id="example-arc-3" class="container ex-short"></div>
+      <p class="desc">
+        We can also rotate the arcs around their origin with
+        <strong>$arcRotateBy(...)</strong>.
+      </p>
       <pre class="code-example">
-  container("c4", _ => {
-    _.bars(barsData, [$group("be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
-    _.ellipses(ellipsesData, [$group("e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
-    _.ellipses(ellipsesData2, [$group("e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
-    _.connectingLines(linesData1, [$joinGroupItems(["e1", "e2"]), $group("e3"), $maxStrokeWidth(15)]);
-    _.onRenderCompleted(() => {
-      $moveBelow("e3", "be")
-    });
-  }, $id("example-6"));</pre>
+container("arc-3", _ => {
+  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), $arcRadiusOffset(5), <strong>$arcRotateBy(30)</strong>])
+  _.arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), <strong>$arcRotateBy(30)</strong>])
+  _.arcs(exArcData1, [$x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), $arcRadiusOffset(5), <strong>$arcRotateBy(30)</strong>])
+}, $id("example-arc-3"));
+</pre>
+    </li>
+
+    <li>
+      <h2>Arc Example 4</h2>
+      <div id="example-arc-4" class="container ex-short"></div>
+      <p class="desc">
+        We can apply custom intents to each arc with
+        <strong>$arcRenderFn(...)</strong>.
+      </p>
+      <pre class="code-example">
+container("arc-4", _ => {
+  _.arcs(exArcData1, [
+    $x(80), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
+    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+      let base = i / (exArcData1.data.length * 1.0);
+      v.$strokeColor(hsl(base));
+      v.$strokeWidth(intent.data.maxWidth);
+      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
+    }),
+  ]);
+
+  _.arcs(exArcData1, [
+    $x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
+    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+      let base = i / (exArcData1.data.length * 1.0);
+      v.$strokeColor(hsl(base));
+      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
+      v.$strokeWidth(intent.data.maxWidth + intent.data.maxWidth * base * 10);
+    }),
+  ]);
+
+  _.arcs(exArcData1, [
+    $x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(0),
+    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
+      let strokeWidth = intent.data.maxWidth / v._dataValue;
+      v.$attr("stroke-linecap", "butt");
+      v.$strokeWidth(strokeWidth);
+      v.$strokeColor(intent.data.colors[i]);
+      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
+    }),
+  ]);
+}, $id("example-arc-4"));</pre>
+    </li>
+  </ul>
+
+  <a name="advanced"></a>
+  <ul class="examples-containers">
+    <li>
+      <h2>Advanced Example</h2>
+      <div id="example-advanced-1" class="container"></div>
+      <pre class="code-example">
+container("advanced-1", _ => {
+  _.bars(barsData, [$group("c6-be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
+  _.ellipses(ex6EllipsesData1, [$group("c6-e1"), $maxDiameter(50), $y(50), $ryOffset(30), $x(150)]);
+  _.ellipses(ex6EllipsesData2, [$group("c6-e2"), $maxDiameter(60), $y(55), $ryOffset(80), $x(400)]);
+  _.connectingLines(linesData1, [$joinGroupItems(["c6-e1", "c6-e2"]), $group("c6-e3"), $maxStrokeWidth(15)]);
+  _.onRenderCompleted(() => {
+    $moveBelow("c6-e3", "c6-be")
+  });
+}, $id("example-advanced-1"));</pre>
     </li>
   </ul>
   <script src="./dist/script.js" type="text/javascript"></script>

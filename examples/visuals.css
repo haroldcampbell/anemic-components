@@ -12,7 +12,8 @@
   height: 200px;
 }
 
-.container svg .path {
+.container svg .path,
+.container svg .arc {
   stroke: rgba(255, 0, 110, 0.5);
   fill: none;
 }

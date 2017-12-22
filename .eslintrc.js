@@ -17,6 +17,8 @@ module.exports = {
         "require-jsdoc": "off",
         "quotes": "off",
         "comma-dangle": "off",
-        // "no-trailing-spaces": "off"
+        "arrow-parens": "off",
+        "eol-last": "off",
+        "max-len": "off",
     },
 };

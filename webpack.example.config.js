@@ -12,7 +12,12 @@ module.exports = {
       './lib/ancui-pipeline.js',
       './lib/ancui-visuals.js',
     ],
-    script: './examples/src/script.js'
+    script: [
+      './examples/src/examples-arc.js',
+      './examples/src/examples-bar.js',
+      './examples/src/examples-ellipse.js',
+      './examples/src/script.js',
+    ]
   },
 
   plugins: [
