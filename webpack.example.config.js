@@ -17,7 +17,10 @@ module.exports = {
       './examples/src/examples-bar.js',
       './examples/src/examples-ellipse.js',
       './examples/src/script.js',
-    ]
+    ],
+    experimental: [
+      './examples/src/script.experimental.js',
+    ],
   },
 
   plugins: [

@@ -76,6 +76,23 @@ This produces the following image:
 
 Please take a look the [wiki](https://github.com/haroldcampbell/anemic-components/wiki) from information.
 
+
+#### Experimental Examples
+
+To run the experimental examples, you will need to:
+
+1. Pull in the submodules by running
+
+```
+git submodule init
+git submodule update --remote
+```
+
+2. Navigate to the experimental examples
+
+```
+http://localhost:8001/examples/experimental.html
+```
 # Pull Requests
 
 Lots of work left to be done. Looking forward to pull requests.
