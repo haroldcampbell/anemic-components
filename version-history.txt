@@ -1,0 +1,6 @@
+This file provides and overview of the changes made each version.
+
+- 0.0.4 (Pre-alpha): Add arcs and related intent
+- 0.0.3 (Pre-alpha): Add $alginRight(...) intent
+- 0.0.2 (Pre-alpha): Add $alginBottom(...) intent
+- 0.0.1 (Pre-alpha)
