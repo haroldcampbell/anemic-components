@@ -20,7 +20,7 @@ describe("Pipeline", () => {
   });
 
   it("should call all effects", () => {
-    var effectsCalled = 0;
+    let effectsCalled = 0;
     const data = $data([])
     const mockNode = new utils.MockNode();
     const noopCallback = _ => {
@@ -42,10 +42,10 @@ describe("Pipeline", () => {
     const visualsCallback = _ => {
       _.bars($data([1, 2, 3]), []);
     };
-    const visuals = container("test1", visualsCallback);
+
+    container("test1", visualsCallback);
     const svgNode = document.getElementById("test1");
 
-    // didCall2 = true;
     expect(svgNode).toBeTruthy();
   });
 
@@ -54,13 +54,14 @@ describe("Pipeline", () => {
     const visualsCallback = _ => {
       _.bars($data([1, 2, 3]), []);
     };
-    const visuals = container("test", visualsCallback, parentElement);
+
+    container("test", visualsCallback, parentElement);
     expect(parentElement.childNodes.length).toBe(1);
   });
 
   describe("[adding multiple visuals]", () => {
-    var data = null;
-    var parentElement;
+    let data = null;
+    let parentElement;
 
     beforeEach(() => {
       data = $data([1, 2, 3]);
@@ -72,7 +73,8 @@ describe("Pipeline", () => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.arcs(data, []);
       }
-      const visuals = container("test", visualsCallback, parentElement)
+
+      container("test", visualsCallback, parentElement)
       const svgNode = parentElement.childNodes[0];
 
       expect(svgNode.childNodes.length).toBe(3);
@@ -83,7 +85,8 @@ describe("Pipeline", () => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.bars(data, []);
       }
-      const visuals = container("test", visualsCallback, parentElement)
+
+      container("test", visualsCallback, parentElement)
       const svgNode = parentElement.childNodes[0];
 
       expect(svgNode.childNodes.length).toBe(3);
@@ -95,7 +98,8 @@ describe("Pipeline", () => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.ellipses(data, []);
       }
-      const visuals = container("test", visualsCallback, parentElement)
+
+      container("test", visualsCallback, parentElement)
       const svgNode = parentElement.childNodes[0];
 
       expect(svgNode.childNodes.length).toBe(3);
@@ -107,7 +111,8 @@ describe("Pipeline", () => {
         // Data consists of 3 elements, so we should get 3 visusals
         _.connectingLines(data, []);
       }
-      const visuals = container("test", visualsCallback, parentElement)
+
+      container("test", visualsCallback, parentElement)
       const svgNode = parentElement.childNodes[0];
 
       expect(svgNode.childNodes.length).toBe(3);

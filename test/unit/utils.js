@@ -1,5 +1,6 @@
 import {
-  getVisuals
+  getVisuals,
+  __createVisual
 } from '../../lib/ancui-pipeline.js'
 
 /**
@@ -144,4 +145,15 @@ export class MockNode {
   appendChild(childNode) {
     this._children.push(childNode);
   }
+}
+
+export function createMockedVisual(shape, data) {
+  let parentNode = new MockNode();
+  let visual = __createVisual(null, parentNode)
+  visual.withData(data);
+  visual.withSVGShapeCreator((visual) => {
+    return shape(visual.container)
+  });
+  visual.createShapes();
+  return visual
 }

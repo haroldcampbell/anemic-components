@@ -1,6 +1,8 @@
 import {MockNode} from "./utils"
 import {_$} from "../../lib/ancui-core"
 import {$data} from "../../lib/ancui-data"
+import {__createVisual} from "../../lib/ancui-pipeline"
+import {rect} from "../../lib/ancui-core"
 
 import {
   $width,
@@ -14,76 +16,58 @@ import {
 } from "../../lib/ancui-intents"
 
 describe("Size Intents", () => {
-  var visuals = {};
-  var visualsCount = 3;
+  let visual = null;
+  let data = $data([1]);
 
   beforeEach(() => {
-    visuals.svgNodes = [].pumpFn(visualsCount, () => {
-      return new MockNode();
-    })
+    let parentNode = new MockNode();
+
+    visual = __createVisual(null, parentNode)
+    visual.withData(data);
+    visual.withSVGShapeCreator((visual) => {
+      return rect(visual.container)
+     });
+    visual.createShapes();
   });
 
-  it("should set $width on visuals", () => {
-    visuals.svgNodes.forEach((v) => {
-      v.$width = _$._width(v);
-    })
+  it("should set $width on visual", () => {
+    $width(150).action(visual);
 
-    $width(150).action(visuals);
-
-    expect(visuals.svgNodes[0].$width()).toBe(150);
+    expect(visual.svgNodes[0].$width()).toBe(150);
   });
 
-  it("should set $height visuals", () => {
-    visuals.svgNodes.forEach((v) => {
-      v.$height = _$._height(v);
-    })
+  it("should set $height visual", () => {
+    $height(150).action(visual);
 
-    $height(150).action(visuals);
-
-    expect(visuals.svgNodes[0].$height()).toBe(150);
+    expect(visual.svgNodes[0].$height()).toBe(150);
   });
 
   describe("[that use a dataValue]", () => {
-    var data = [1, 2, 4];
-    var normalizedData = $data(data).asNormalized();
+    data = $data([1, 2, 4]);
 
     beforeEach(() => {
-      visuals.svgNodes.forEach((v, index) => {
-        v._dataValue = normalizedData[index];
-      });
+      visual.withData(data);
+      visual.createShapes();
     });
 
     it("should set the $maxHeight", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$height = _$._height(v);
-      });
+      $height(100).action(visual);
 
-      $height(100).action(visuals);
-
-      expect(visuals.svgNodes[0].$height()).toBe(100);
-      expect(visuals.svgNodes[1].$height()).toBe(100);
-      expect(visuals.svgNodes[2].$height()).toBe(100);
+      expect(visual.svgNodes[0].$height()).toBe(100);
+      expect(visual.svgNodes[1].$height()).toBe(100);
+      expect(visual.svgNodes[2].$height()).toBe(100);
     });
 
     it("should set the $maxWidth", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$width = _$._width(v);
-      });
+      $width(100).action(visual);
 
-      $width(100).action(visuals);
-
-      expect(visuals.svgNodes[0].$width()).toBe(100);
+      expect(visual.svgNodes[0].$width()).toBe(100);
     });
 
     it("should set $max size", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$width = _$._width(v);
-        v.$height = _$._height(v);
-      });
+      $max(100).action(visual);
 
-      $max(100).action(visuals);
-
-      const svgNodes = visuals.svgNodes;
+      const svgNodes = visual.svgNodes;
       expect(svgNodes[0].$width()).toBe(25);
       expect(svgNodes[0].$height()).toBe(25);
 
@@ -92,32 +76,28 @@ describe("Size Intents", () => {
 
       expect(svgNodes[2].$width()).toBe(100);
       expect(svgNodes[2].$height()).toBe(100);
-
     });
 
     it("should set $maxY", () => {
-      visuals.svgNodes.forEach((v) => {
+      visual.svgNodes.forEach((v) => {
         v._dataProperty = "y";
-        v.$y = _$._y(v);
       });
 
-      $maxY(100).action(visuals);
+      $maxY(100).action(visual);
 
-      expect(visuals.svgNodes[0].$y()).toBe(25);
-      expect(visuals.svgNodes[1].$y()).toBe(50);
-      expect(visuals.svgNodes[2].$y()).toBe(100);
+      expect(visual.svgNodes[0].$y()).toBe(25);
+      expect(visual.svgNodes[1].$y()).toBe(50);
+      expect(visual.svgNodes[2].$y()).toBe(100);
     });
 
     it("$maxDiameter", () => {
-      visuals.svgNodes.forEach((v) => {
+      visual.svgNodes.forEach((v) => {
         v._dataProperty = "diameter";
-        v.$width = _$._width(v);
-        v.$height = _$._height(v);
       });
 
-      $maxDiameter(100).action(visuals);
+      $maxDiameter(100).action(visual);
 
-      let svgNodes = visuals.svgNodes;
+      let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$width()).toBe(12.5);
       expect(svgNodes[0].$height()).toBe(12.5);
 
@@ -126,46 +106,42 @@ describe("Size Intents", () => {
 
       expect(svgNodes[2].$width()).toBe(50);
       expect(svgNodes[2].$height()).toBe(50);
-
     });
 
     it("$maxStrokeWidth", () => {
-      visuals.svgNodes.forEach((v) => {
+      visual.svgNodes.forEach((v) => {
         v._dataProperty = "strokeWidth";
-        v.$strokeWidth = _$.__attr(v, "stroke-width");
       });
 
-      $maxStrokeWidth(30).action(visuals);
+      $maxStrokeWidth(30).action(visual);
 
-      expect(visuals.svgNodes[0].$strokeWidth()).toBe(7.5);
-      expect(visuals.svgNodes[1].$strokeWidth()).toBe(15);
-      expect(visuals.svgNodes[2].$strokeWidth()).toBe(30);
+      expect(visual.svgNodes[0].$strokeWidth()).toBe(7.5);
+      expect(visual.svgNodes[1].$strokeWidth()).toBe(15);
+      expect(visual.svgNodes[2].$strokeWidth()).toBe(30);
     });
 
     it("$maxHeight", () => {
-      visuals.svgNodes.forEach((v) => {
+      visual.svgNodes.forEach((v) => {
         v._dataProperty = "height";
-        v.$height = _$._height(v);
       });
 
-      $maxHeight(30).action(visuals);
+      $maxHeight(30).action(visual);
 
-      expect(visuals.svgNodes[0].$height()).toBe(7.5);
-      expect(visuals.svgNodes[1].$height()).toBe(15);
-      expect(visuals.svgNodes[2].$height()).toBe(30);
+      expect(visual.svgNodes[0].$height()).toBe(7.5);
+      expect(visual.svgNodes[1].$height()).toBe(15);
+      expect(visual.svgNodes[2].$height()).toBe(30);
     });
 
     it("$maxWidth", () => {
-      visuals.svgNodes.forEach((v) => {
+      visual.svgNodes.forEach((v) => {
         v._dataProperty = "width";
-        v.$width = _$._width(v);
       });
 
-      $maxWidth(30).action(visuals);
+      $maxWidth(30).action(visual);
 
-      expect(visuals.svgNodes[0].$width()).toBe(7.5);
-      expect(visuals.svgNodes[1].$width()).toBe(15);
-      expect(visuals.svgNodes[2].$width()).toBe(30);
+      expect(visual.svgNodes[0].$width()).toBe(7.5);
+      expect(visual.svgNodes[1].$width()).toBe(15);
+      expect(visual.svgNodes[2].$width()).toBe(30);
     });
   });
 });

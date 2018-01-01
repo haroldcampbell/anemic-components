@@ -20,5 +20,6 @@ module.exports = {
         "arrow-parens": "off",
         "eol-last": "off",
         "max-len": "off",
+        "space-before-function-paren": "off",
     },
 };

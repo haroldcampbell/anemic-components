@@ -1,177 +1,151 @@
-import {MockNode} from "./utils"
-import {_$} from "../../lib/ancui-core"
-import {$rxOffset, $ryOffset, $xOffset, $yOffset} from "../../lib/ancui-intents"
+import {
+  createMockedVisual
+} from "./utils"
+import {
+  ellipse
+} from "../../lib/ancui-core"
+import {
+  $rx,
+  $ry,
+  $rxOffset,
+  $ryOffset,
+  $xOffset,
+  $yOffset,
+  $width,
+  $height,
+} from "../../lib/ancui-intents"
+import {
+  $data
+} from "../../lib/ancui-data"
 
-describe("Offset Intents", () => {
-  describe("rx/ry Offsets: Supporting properties present", () => {
-    var visuals = {};
+describe("rx/ry Offsets: Supporting properties present", () => {
+  let visual = null;
+  let data = $data([10, 20, 0, 10]);
 
-    beforeEach(() => {
-      visuals.svgNodes = [].pumpFn(4, () => {
-        return new MockNode();
-      })
-    });
-
-    it("$rxOffset should update $cx when $rx is set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v._dataProperty = "diameter";
-        v.$cx = _$.__attr(v, "cx");
-        v.$rx = _$.__attr(v, "rx");
-        v.$rx(10);
-      })
-
-      $rxOffset(10).action(visuals);
-
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$cx()).toBe(10);
-      expect(svgNodes[1].$cx()).toBe(40);
-      expect(svgNodes[2].$cx()).toBe(70);
-      expect(svgNodes[3].$cx()).toBe(100);
-    });
-
-    it("$ryOffset should update $cy when $ry is set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v._dataProperty = "diameter";
-        v.$cy = _$.__attr(v, "cy");
-        v.$ry = _$.__attr(v, "ry");
-        v.$ry(10);
-      })
-
-      $ryOffset(10).action(visuals);
-
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$cy()).toBe(10);
-      expect(svgNodes[1].$cy()).toBe(40);
-      expect(svgNodes[2].$cy()).toBe(70);
-      expect(svgNodes[3].$cy()).toBe(100);
-    });
+  beforeEach(() => {
+    visual = createMockedVisual(ellipse, data);
+    visual.svgNodes.forEach((v) => {
+      v._dataProperty = "diameter";
+    })
   });
 
-  /** ----------------------------------------------------------------------- */
+  it("$rxOffset should update $cx when $rx is set", () => {
+    $rx(10).action(visual); // $rxOffset depends on rx being set
+    $rxOffset(10).action(visual);
 
-  describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
-    var visuals = {};
-
-    beforeEach(() => {
-      visuals.svgNodes = [].pumpFn(4, () => {
-        return new MockNode();
-      })
-    });
-
-    it("$rxOffset should update $cx when $rx is NOT set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v._dataProperty = "diameter";
-        v.$cx = _$.__attr(v, "cx");
-        v.$rx = _$.__attr(v, "rx");
-      })
-
-      $rxOffset(10).action(visuals);
-
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$cx()).toBe(0);
-      expect(svgNodes[1].$cx()).toBe(10);
-      expect(svgNodes[2].$cx()).toBe(20);
-      expect(svgNodes[3].$cx()).toBe(30);
-    });
-
-    it("$ryOffset should update $cy when $ry is NOT set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v._dataProperty = "diameter";
-        v.$cy = _$.__attr(v, "cy");
-        v.$ry = _$.__attr(v, "ry");
-      })
-
-      $ryOffset(10).action(visuals);
-
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$cy()).toBe(0);
-      expect(svgNodes[1].$cy()).toBe(10);
-      expect(svgNodes[2].$cy()).toBe(20);
-      expect(svgNodes[3].$cy()).toBe(30);
-    });
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$cx()).toBe(10);
+    expect(svgNodes[1].$cx()).toBe(40);
+    expect(svgNodes[2].$cx()).toBe(70);
+    expect(svgNodes[3].$cx()).toBe(100);
   });
 
-  /** ----------------------------------------------------------------------- */
-  describe("x/y Offset: Supporting properties present", () => {
-    var visuals={};
+  it("$ryOffset should update $cy when $ry is set", () => {
+    $ry(10).action(visual); // $ryOffset depends on ry being set
+    $ryOffset(10).action(visual);
 
-    beforeEach(() => {
-      visuals.svgNodes = [].pumpFn(4, () => {
-        return new MockNode();
-      })
-    });
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$cy()).toBe(10);
+    expect(svgNodes[1].$cy()).toBe(40);
+    expect(svgNodes[2].$cy()).toBe(70);
+    expect(svgNodes[3].$cy()).toBe(100);
+  });
+});
 
-    it("$xOffset should update $x when $width is set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$x = _$._x(v);
-        v.$width = _$._width(v);
-        v.$width(10);
-      })
+/** ----------------------------------------------------------------------- */
 
-      $xOffset(10).action(visuals);
+describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
+  let visual = null;
+  let data = $data([10, 20, 0, 10]);
 
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$x()).toBe(null);
-      expect(svgNodes[1].$x()).toBe(20);
-      expect(svgNodes[2].$x()).toBe(40);
-      expect(svgNodes[3].$x()).toBe(60);
-    });
-
-    it("$yOffset should update $y when $height is set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$y = _$._y(v);
-        v.$height = _$._height(v);
-        v.$height(10);
-      })
-
-      $yOffset(10).action(visuals);
-
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$y()).toBe(null);
-      expect(svgNodes[1].$y()).toBe(20);
-      expect(svgNodes[2].$y()).toBe(40);
-      expect(svgNodes[3].$y()).toBe(60);
-    });
+  beforeEach(() => {
+    visual = createMockedVisual(ellipse, data);
+    visual.svgNodes.forEach((v) => {
+      v._dataProperty = "diameter";
+    })
   });
 
-  /** ----------------------------------------------------------------------- */
-  describe("x/y Offset: Supporting properties *NOT* present", () => {
-    var visuals = {};
+  it("$rxOffset should update $cx when $rx is NOT set", () => {
+    $rxOffset(10).action(visual);
 
-    beforeEach(() => {
-      visuals.svgNodes = [].pumpFn(4, () => {
-        return new MockNode();
-      })
-    });
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$cx()).toBe(0);
+    expect(svgNodes[1].$cx()).toBe(10);
+    expect(svgNodes[2].$cx()).toBe(20);
+    expect(svgNodes[3].$cx()).toBe(30);
+  });
 
-    it("$xOffset should update $x when $width is NOT set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$x = _$._x(v);
-        v.$width = _$._width(v);
-      })
+  it("$ryOffset should update $cy when $ry is NOT set", () => {
+    $ryOffset(10).action(visual);
 
-      $xOffset(10).action(visuals);
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$cy()).toBe(0);
+    expect(svgNodes[1].$cy()).toBe(10);
+    expect(svgNodes[2].$cy()).toBe(20);
+    expect(svgNodes[3].$cy()).toBe(30);
+  });
+});
 
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$x()).toBe(null);
-      expect(svgNodes[1].$x()).toBe(10);
-      expect(svgNodes[2].$x()).toBe(20);
-      expect(svgNodes[3].$x()).toBe(30);
-    });
+/** ----------------------------------------------------------------------- */
 
-    it("$yOffset should update $y when $height is NOT set", () => {
-      visuals.svgNodes.forEach((v) => {
-        v.$y = _$._y(v);
-        v.$height = _$._height(v);
-      })
+describe("x/y Offset: Supporting properties present", () => {
+  let visual = null;
+  let data = $data([10, 20, 0, 10]);
 
-      $yOffset(10).action(visuals);
+  beforeEach(() => {
+    visual = createMockedVisual(ellipse, data);
+  });
 
-      let svgNodes = visuals.svgNodes
-      expect(svgNodes[0].$y()).toBe(null);
-      expect(svgNodes[1].$y()).toBe(10);
-      expect(svgNodes[2].$y()).toBe(20);
-      expect(svgNodes[3].$y()).toBe(30);
-    });
+  it("$xOffset should update $x when $width is set", () => {
+    $width(10).action(visual); // $xOffset depends on the width to be set
+    $xOffset(10).action(visual);
+
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$x()).toBe(null);
+    expect(svgNodes[1].$x()).toBe(20);
+    expect(svgNodes[2].$x()).toBe(40);
+    expect(svgNodes[3].$x()).toBe(60);
+  });
+
+  it("$yOffset should update $y when $height is set", () => {
+    $height(10).action(visual); // $yOffset depends on the height to be set
+    $yOffset(10).action(visual);
+
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$y()).toBe(null);
+    expect(svgNodes[1].$y()).toBe(20);
+    expect(svgNodes[2].$y()).toBe(40);
+    expect(svgNodes[3].$y()).toBe(60);
+  });
+});
+
+/** ----------------------------------------------------------------------- */
+
+describe("x/y Offset: Supporting properties *NOT* present", () => {
+  let visual = null;
+  let data = $data([10, 20, 0, 10]);
+
+  beforeEach(() => {
+    visual = createMockedVisual(ellipse, data);
+  });
+
+  it("$xOffset should update $x when $width is NOT set", () => {
+    $xOffset(10).action(visual);
+
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$x()).toBe(null);
+    expect(svgNodes[1].$x()).toBe(10);
+    expect(svgNodes[2].$x()).toBe(20);
+    expect(svgNodes[3].$x()).toBe(30);
+  });
+
+  it("$yOffset should update $y when $height is NOT set", () => {
+    $yOffset(10).action(visual);
+
+    let svgNodes = visual.svgNodes
+    expect(svgNodes[0].$y()).toBe(null);
+    expect(svgNodes[1].$y()).toBe(10);
+    expect(svgNodes[2].$y()).toBe(20);
+    expect(svgNodes[3].$y()).toBe(30);
   });
 });

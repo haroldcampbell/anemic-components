@@ -7,6 +7,7 @@ import {
 import {
   arc
 } from "../../lib/ancui-core"
+import {__createVisual} from "../../lib/ancui-pipeline"
 
 import {
   $arcSpanOffset,
@@ -19,48 +20,46 @@ import {
 } from "../../lib/ancui-intents-arcs"
 
 describe("Arc Intents", () => {
-  let visuals = {};
+  let visual = null;
   let data = $data([8, 5, 10]);
-  let normalizedData = data.asNormalized();
 
   beforeEach(() => {
     let parentNode = new MockNode();
-    visuals.$data = data;
-    visuals.svgNodes = [].pumpFn(data.itemCount(), () => {
-      return arc(parentNode)
-    });
 
-    visuals.svgNodes.forEach((v, index) => {
-      v._dataValue = normalizedData[index];
-    })
+    visual = __createVisual(null, parentNode)
+    visual.withData(data);
+    visual.withSVGShapeCreator((visual) => {
+      return arc(visual.container)
+     });
+    visual.createShapes();
   });
 
   it("$arcRadius() should set the radius of each arc to the same value", () => {
-    $arcRadius(10).action(visuals);
+    $arcRadius(10).action(visual);
 
-    let svgNodes = visuals.svgNodes
+    let svgNodes = visual.svgNodes
     expect(svgNodes[0].$radius()).toBe(10);
     expect(svgNodes[1].$radius()).toBe(10);
     expect(svgNodes[2].$radius()).toBe(10);
   });
 
   it("$arcRadiusOffset() should increment radius of each arc", () => {
-    visuals.svgNodes.forEach((v) => {
+    visual.svgNodes.forEach((v) => {
       v.$radius(10);
     })
 
-    $arcRadiusOffset(5).action(visuals);
+    $arcRadiusOffset(5).action(visual);
 
-    let svgNodes = visuals.svgNodes
+    let svgNodes = visual.svgNodes
     expect(svgNodes[0].$radius()).toBe(10);
     expect(svgNodes[1].$radius()).toBe(15);
     expect(svgNodes[2].$radius()).toBe(20);
   });
 
   it("$arcSpanUnit() should set the relative span/length of each arc", () => {
-    $arcSpanUnit(60).action(visuals);
+    $arcSpanUnit(60).action(visual);
 
-    let svgNodes = visuals.svgNodes
+    let svgNodes = visual.svgNodes
     /* Values based on $data */
     /* 8 normalized = 0.8, then 0.8 * span unit becomes 0.8 * 60 = 48*/
     expect(svgNodes[0].$arcSpan()).toBe(48);
@@ -74,26 +73,26 @@ describe("Arc Intents", () => {
     let spanOffset = 50;
 
     it("should be added to each arc", () => {
-      $arcSpanOffset(50).action(visuals);
+      $arcSpanOffset(50).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
 
       expect(svgNodes[0].$startAngle()).toBe(0);
       expect(svgNodes[1].$startAngle()).toBe(spanOffset * 1);
       expect(svgNodes[2].$startAngle()).toBe(spanOffset * 2);
     });
 
-    it("should update visuals.$startAngle()", () => {
+    it("should update visual.$startAngle()", () => {
       let startAngleInDegrees = 30;
 
-      visuals.svgNodes.forEach((v, index) => {
-        v._dataValue = normalizedData[index];
+      visual.svgNodes.forEach((v, index) => {
+        // v._dataValue = normalizedData[index];
         v.$startAngle(startAngleInDegrees);
       });
 
-      $arcSpanOffset(spanOffset).action(visuals);
+      $arcSpanOffset(spanOffset).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
       let expected = startAngleInDegrees;
       expect(svgNodes[0].$startAngle()).toBe(expected);
 
@@ -104,11 +103,11 @@ describe("Arc Intents", () => {
       expect(svgNodes[2].$startAngle()).toBe(expected);
     });
 
-    it("should update visuals.$startAngle() with $arcSpan", () => {
-      $arcSpanUnit(60).action(visuals);
-      $arcSpanOffset(spanOffset).action(visuals);
+    it("should update visual.$startAngle() with $arcSpan", () => {
+      $arcSpanUnit(60).action(visual);
+      $arcSpanOffset(spanOffset).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
 
       expect(svgNodes[0].$startAngle()).toBe(0);
       expect(svgNodes[1].$startAngle()).toBe(48 + spanOffset);
@@ -121,13 +120,13 @@ describe("Arc Intents", () => {
     let rotationInDegrees = 30;
 
     it("should increment the visual.$startAngle()", () => {
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
 
       expect(svgNodes[0].$startAngle()).toBe(0);
       expect(svgNodes[1].$startAngle()).toBe(0);
       expect(svgNodes[2].$startAngle()).toBe(0);
 
-      $arcRotateBy(rotationInDegrees).action(visuals);
+      $arcRotateBy(rotationInDegrees).action(visual);
 
       expect(svgNodes[0].$startAngle()).toBe(rotationInDegrees);
       expect(svgNodes[1].$startAngle()).toBe(rotationInDegrees);
@@ -135,10 +134,10 @@ describe("Arc Intents", () => {
     });
 
     it("should not interact with $arcSpanUnit", () => {
-      $arcRotateBy(rotationInDegrees).action(visuals);
-      $arcSpanUnit(60).action(visuals);
+      $arcRotateBy(rotationInDegrees).action(visual);
+      $arcSpanUnit(60).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
 
       expect(svgNodes[0].$startAngle()).toBe(rotationInDegrees);
       expect(svgNodes[1].$startAngle()).toBe(rotationInDegrees);
@@ -146,11 +145,11 @@ describe("Arc Intents", () => {
     });
 
     it("should interact with $arcSpanOffset", () => {
-      $arcSpanUnit(60).action(visuals);
-      $arcSpanOffset(spanOffset).action(visuals);
-      $arcRotateBy(rotationInDegrees).action(visuals);
+      $arcSpanUnit(60).action(visual);
+      $arcSpanOffset(spanOffset).action(visual);
+      $arcRotateBy(rotationInDegrees).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
       let expected = rotationInDegrees;
       expect(svgNodes[0].$startAngle()).toBe(expected);
 
@@ -172,20 +171,20 @@ describe("Arc Intents", () => {
         v.$startAngle(intent.data.first + index * intent.data.increment)
       }
 
-      $arcRenderFn(local, callback).action(visuals);
+      $arcRenderFn(local, callback).action(visual);
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
       expect(svgNodes[0].$startAngle()).toBe(local.first);
       expect(svgNodes[1].$startAngle()).toBe(local.first + local.increment);
       expect(svgNodes[2].$startAngle()).toBe(local.first + local.increment * 2);
     });
 
-    it("should call visuals.__renderPath() after executing callback", () => {
+    it("should call visual.__renderPath() after executing callback", () => {
       let callback = (intent, v, index) => {
         v.didExecuteCallback = true;
       }
 
-      visuals.svgNodes.forEach((v, index) => {
+      visual.svgNodes.forEach((v, index) => {
         v.__renderPath = () => {
           /* This mocked version of __renderPath will only set the startAngle
             if the callback was already called and it set didExecuteCallback.
@@ -197,13 +196,13 @@ describe("Arc Intents", () => {
         }
       });
 
-      let svgNodes = visuals.svgNodes
+      let svgNodes = visual.svgNodes
 
       expect(svgNodes[0].$startAngle()).toBe(0); /* Sanity check */
       expect(svgNodes[1].$startAngle()).toBe(0);
       expect(svgNodes[2].$startAngle()).toBe(0);
 
-      $arcRenderFn({}, callback).action(visuals);
+      $arcRenderFn({}, callback).action(visual);
 
       expect(svgNodes[0].$startAngle()).toBe(100);
       expect(svgNodes[1].$startAngle()).toBe(100);
@@ -212,15 +211,15 @@ describe("Arc Intents", () => {
   });
 
   it("$arcIntentFn", () => {
-    let visualsCount = 0
+    let visualCount = 0
     let didExecuteCallback = false;
-    let callback = (intent, visuals) => {
+    let callback = (intent, visual) => {
       didExecuteCallback = true;
-      visualsCount = visuals.length;
+      visualCount = visual.length;
     }
 
-    $arcIntentFn({}, callback).action(visuals);
+    $arcIntentFn({}, callback).action(visual);
     expect(didExecuteCallback).toBe(true);
-    expect(visualsCount).toBe(3);
+    expect(visualCount).toBe(3);
   });
 });
