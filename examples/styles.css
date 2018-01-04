@@ -14,7 +14,6 @@ body {
   padding: 5px 0;
   line-height: 2em;
   letter-spacing: 0.004em;
-  /*font-size: 1.0em;*/
 }
 
 .desc strong {
@@ -24,6 +23,19 @@ body {
   background-color: #FFF6DA;
   padding: 2px 8px;
   border-radius: 3px;
+}
+
+.file-ref {
+  padding-bottom: 5px;
+  color: #999;
+}
+
+.file-ref .example {
+  color: #ca30c7;
+}
+
+.file-ref .filename {
+  color: #ca30c7;
 }
 
 ul, li {
