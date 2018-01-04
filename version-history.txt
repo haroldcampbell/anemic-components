@@ -1,5 +1,11 @@
 This file provides and overview of the changes made each version.
 
+- 0.0.6 (Pre-alpha): Remove bundle requirement for library usages.
+
+This version allows developers to simply use the library from a <script></script>
+tag in their html file.
+
+- 0.0.5 (Pre-alpha): Add ability to redraw shapes based on new data
 - 0.0.4 (Pre-alpha): Add arcs and related intent
 - 0.0.3 (Pre-alpha): Add $alginRight(...) intent
 - 0.0.2 (Pre-alpha): Add $alginBottom(...) intent
