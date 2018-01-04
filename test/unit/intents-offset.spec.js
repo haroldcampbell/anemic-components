@@ -1,28 +1,25 @@
 import {
-  createMockedVisual
+  createMockedVisual,
+  extendIntentObj
 } from "./utils"
 import {
-  ellipse
+  ellipse,
+  getIntents
 } from "../../lib/ancui-core"
-import {
-  $rx,
-  $ry,
-  $rxOffset,
-  $ryOffset,
-  $xOffset,
-  $yOffset,
-  $width,
-  $height,
-} from "../../lib/ancui-intents"
 import {
   $data
 } from "../../lib/ancui-data"
 
+/* Explicity called to force the binding of __intents.internal */
+export * from "../../lib/ancui-intents"
+
 describe("rx/ry Offsets: Supporting properties present", () => {
-  let visual = null;
+  let visual;
+  let localIntents;
   let data = $data([10, 20, 0, 10]);
 
   beforeEach(() => {
+    localIntents = extendIntentObj(getIntents())
     visual = createMockedVisual(ellipse, data);
     visual.svgNodes.forEach((v) => {
       v._dataProperty = "diameter";
@@ -30,8 +27,8 @@ describe("rx/ry Offsets: Supporting properties present", () => {
   });
 
   it("$rxOffset should update $cx when $rx is set", () => {
-    $rx(10).action(visual); // $rxOffset depends on rx being set
-    $rxOffset(10).action(visual);
+    localIntents.$rx(10).action(visual); // $rxOffset depends on rx being set
+    localIntents.$rxOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cx()).toBe(10);
@@ -41,8 +38,8 @@ describe("rx/ry Offsets: Supporting properties present", () => {
   });
 
   it("$ryOffset should update $cy when $ry is set", () => {
-    $ry(10).action(visual); // $ryOffset depends on ry being set
-    $ryOffset(10).action(visual);
+    localIntents.$ry(10).action(visual); // $ryOffset depends on ry being set
+    localIntents.$ryOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cy()).toBe(10);
@@ -55,10 +52,12 @@ describe("rx/ry Offsets: Supporting properties present", () => {
 /** ----------------------------------------------------------------------- */
 
 describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
-  let visual = null;
+  let visual;
+  let localIntents;
   let data = $data([10, 20, 0, 10]);
 
   beforeEach(() => {
+    localIntents = extendIntentObj(getIntents())
     visual = createMockedVisual(ellipse, data);
     visual.svgNodes.forEach((v) => {
       v._dataProperty = "diameter";
@@ -66,7 +65,7 @@ describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
   });
 
   it("$rxOffset should update $cx when $rx is NOT set", () => {
-    $rxOffset(10).action(visual);
+    localIntents.$rxOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cx()).toBe(0);
@@ -76,7 +75,7 @@ describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
   });
 
   it("$ryOffset should update $cy when $ry is NOT set", () => {
-    $ryOffset(10).action(visual);
+    localIntents.$ryOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cy()).toBe(0);
@@ -89,16 +88,18 @@ describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
 /** ----------------------------------------------------------------------- */
 
 describe("x/y Offset: Supporting properties present", () => {
-  let visual = null;
+  let visual;
+  let localIntents;
   let data = $data([10, 20, 0, 10]);
 
   beforeEach(() => {
+    localIntents = extendIntentObj(getIntents())
     visual = createMockedVisual(ellipse, data);
   });
 
   it("$xOffset should update $x when $width is set", () => {
-    $width(10).action(visual); // $xOffset depends on the width to be set
-    $xOffset(10).action(visual);
+    localIntents.$width(10).action(visual); // $xOffset depends on the width to be set
+    localIntents.$xOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$x()).toBe(null);
@@ -108,8 +109,8 @@ describe("x/y Offset: Supporting properties present", () => {
   });
 
   it("$yOffset should update $y when $height is set", () => {
-    $height(10).action(visual); // $yOffset depends on the height to be set
-    $yOffset(10).action(visual);
+    localIntents.$height(10).action(visual); // $yOffset depends on the height to be set
+    localIntents.$yOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$y()).toBe(null);
@@ -122,15 +123,17 @@ describe("x/y Offset: Supporting properties present", () => {
 /** ----------------------------------------------------------------------- */
 
 describe("x/y Offset: Supporting properties *NOT* present", () => {
-  let visual = null;
+  let visual;
+  let localIntents;
   let data = $data([10, 20, 0, 10]);
 
   beforeEach(() => {
     visual = createMockedVisual(ellipse, data);
+    localIntents = extendIntentObj(getIntents())
   });
 
   it("$xOffset should update $x when $width is NOT set", () => {
-    $xOffset(10).action(visual);
+    localIntents.$xOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$x()).toBe(null);
@@ -140,7 +143,7 @@ describe("x/y Offset: Supporting properties *NOT* present", () => {
   });
 
   it("$yOffset should update $y when $height is NOT set", () => {
-    $yOffset(10).action(visual);
+    localIntents.$yOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$y()).toBe(null);

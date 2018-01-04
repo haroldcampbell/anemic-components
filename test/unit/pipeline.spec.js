@@ -2,10 +2,14 @@ import * as utils from "./utils"
 import {$data} from "../../lib/ancui-data"
 import {container} from "../../lib/ancui-pipeline"
 import "../../lib/ancui-visuals"
-import {$noop} from "../../lib/ancui-intents"
+import {getIntents} from "../../lib/ancui-core"
+
+/* Explicity called to force the binding of __intents.internal */
+export * from "../../lib/ancui-intents"
 
 describe("Pipeline", () => {
   let initialChildren = null;
+  // let localIntents;
 
   beforeAll(() => {
     initialChildren = utils.captureDocumentBodyChildNodes()
@@ -13,6 +17,7 @@ describe("Pipeline", () => {
 
   beforeEach(() => {
     utils.resetVisuals()
+    // localIntents = utils.extendIntentObj(getIntents())
   });
 
   afterEach(() => {
@@ -27,11 +32,11 @@ describe("Pipeline", () => {
       effectsCalled++;
     };
     const visualsCallback = _ => {
-      _.empty(data, [
-        $noop(noopCallback),
-        $noop(noopCallback),
-        $noop(noopCallback)
-      ]);
+      _.empty(data, (i) => {
+        i.$noop(noopCallback)
+        .$noop(noopCallback)
+        .$noop(noopCallback)
+      });
     }
 
     container("test", visualsCallback, mockNode)
@@ -40,7 +45,7 @@ describe("Pipeline", () => {
 
   it("should add svgNode to document.body when parentElement is not specified", () => {
     const visualsCallback = _ => {
-      _.bars($data([1, 2, 3]), []);
+      _.bars($data([1, 2, 3]), i => {});
     };
 
     container("test1", visualsCallback);
@@ -52,7 +57,7 @@ describe("Pipeline", () => {
   it("should add svgNode to parentElement", () => {
     const parentElement = new utils.MockNode();
     const visualsCallback = _ => {
-      _.bars($data([1, 2, 3]), []);
+      _.bars($data([1, 2, 3]), i => {});
     };
 
     container("test", visualsCallback, parentElement);
@@ -71,7 +76,7 @@ describe("Pipeline", () => {
     it("arcs should add paths to svgNode", () => {
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
-        _.arcs(data, []);
+        _.arcs(data, i => {});
       }
 
       container("test", visualsCallback, parentElement)
@@ -83,7 +88,7 @@ describe("Pipeline", () => {
     it("bar should add rects to svgNode", () => {
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
-        _.bars(data, []);
+        _.bars(data, i => {});
       }
 
       container("test", visualsCallback, parentElement)
@@ -96,7 +101,7 @@ describe("Pipeline", () => {
       const parentElement = new utils.MockNode();
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
-        _.ellipses(data, []);
+        _.ellipses(data, i => {});
       }
 
       container("test", visualsCallback, parentElement)
@@ -109,7 +114,7 @@ describe("Pipeline", () => {
       const parentElement = new utils.MockNode();
       const visualsCallback = _ => {
         // Data consists of 3 elements, so we should get 3 visusals
-        _.connectingLines(data, []);
+        _.connectingLines(data, i => {});
       }
 
       container("test", visualsCallback, parentElement)

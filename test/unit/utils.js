@@ -155,5 +155,33 @@ export function createMockedVisual(shape, data) {
     return shape(visual.container)
   });
   visual.createShapes();
+
   return visual
+}
+
+export function extendIntentObj(intentsObject) {
+  let localIntents = intentsObject.newIntents()
+
+  localIntents.intentAtIndex = function(index) {
+    if (index >= 0 || this.items.length < index) {
+      return this.items[index];
+    }
+    return null;
+  }
+
+  localIntents.actionAtIndex = function(index, visual) {
+    this.intentAtIndex(index).action(visual);
+  }
+
+  localIntents.action = function(visual) {
+    if (this.items.length == 0) {
+      throw "Can't call an action before an Intent. Try something similar to '$x(...).action(visual)'";
+    }
+
+    let lastAction = this.items.slice(-1)[0];
+
+    lastAction.action(visual)
+  }
+
+  return localIntents;
 }

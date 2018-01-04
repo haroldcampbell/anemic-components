@@ -1,17 +1,13 @@
-import {MockNode, createMockedVisual} from "./utils"
+import {createMockedVisual, extendIntentObj} from "./utils"
 import {$data} from "../../lib/ancui-data"
-import {_$} from "../../lib/ancui-core"
-import {rect} from "../../lib/ancui-core"
+import {rect, getIntents} from "../../lib/ancui-core"
 
-import {
-  $alignBottom,
-  $alignRight,
-  $maxHeight,
-  $maxWidth,
-} from "../../lib/ancui-intents"
+/* Explicity called to force the binding of __intents.internal */
+export * from "../../lib/ancui-intents"
 
 describe("Alignment Intents", () => {
-  let visual = null;
+  let visual;
+  let localIntents;
   let data = $data([10, 20, 0]);
 
   beforeEach(() => {
@@ -20,13 +16,14 @@ describe("Alignment Intents", () => {
 
   describe("$alignBottom", () => {
     beforeEach(() => {
+      localIntents = extendIntentObj(getIntents())
       visual.svgNodes.forEach((v, index) => {
         v._dataProperty = "height";
       });
     });
 
     it("should set $y to null if height was not set", () => {
-      $alignBottom().action(visual);
+      localIntents.$alignBottom().action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$y()).toBe(null);
@@ -35,8 +32,8 @@ describe("Alignment Intents", () => {
     });
 
     it("should use max height to update $y", () => {
-      $maxHeight(20).action(visual);
-      $alignBottom().action(visual);
+      localIntents.$maxHeight(20).action(visual);
+      localIntents.$alignBottom().action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$y()).toBe(10);
@@ -45,8 +42,8 @@ describe("Alignment Intents", () => {
     });
 
     it("should use supplied yBaseline to update $y when set", () => {
-      $maxHeight(20).action(visual);
-      $alignBottom(50).action(visual);
+      localIntents.$maxHeight(20).action(visual);
+      localIntents.$alignBottom(50).action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$y()).toBe(40);
@@ -57,13 +54,14 @@ describe("Alignment Intents", () => {
 
   describe("$alignRight", () => {
     beforeEach(() => {
+      localIntents = extendIntentObj(getIntents())
       visual.svgNodes.forEach((v, index) => {
         v._dataProperty = "width";
       });
     });
 
     it("should set $x to null if width was not set", () => {
-      $alignRight().action(visual);
+      localIntents.$alignRight().action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$x()).toBe(null);
@@ -72,8 +70,8 @@ describe("Alignment Intents", () => {
     });
 
     it("should use max width to update $x", () => {
-      $maxWidth(20).action(visual);
-      $alignRight().action(visual);
+      localIntents.$maxWidth(20).action(visual);
+      localIntents.$alignRight().action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$x()).toBe(10);
@@ -82,8 +80,8 @@ describe("Alignment Intents", () => {
     });
 
     it("should use supplied xBaseline to update $x when set", () => {
-      $maxWidth(20).action(visual);
-      $alignRight(50).action(visual);
+      localIntents.$maxWidth(20).action(visual);
+      localIntents.$alignRight(50).action(visual);
 
       let svgNodes = visual.svgNodes;
       expect(svgNodes[0].$x()).toBe(40);
