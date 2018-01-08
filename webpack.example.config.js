@@ -1,9 +1,15 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './lib/ancui.js',
+  entry: {
+    examples: [
+      './examples/src/examples-arc.js',
+      './examples/src/examples-bar.js',
+      './examples/src/examples-ellipse.js',
+      './examples/src/examples-advanced.js',
+    ],
+  },
 
   plugins: [
     new CleanWebpackPlugin(['examples/dist']),
@@ -12,6 +18,5 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'examples/dist'),
-    library: 'ancui',
   }
 };

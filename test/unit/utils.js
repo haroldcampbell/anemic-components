@@ -150,10 +150,12 @@ export class MockNode {
 export function createMockedVisual(shape, data) {
   let parentNode = new MockNode();
   let visual = __createVisual(null, parentNode)
+
   visual.withData(data);
-  visual.withSVGShapeCreator((visual) => {
-    return shape(visual.container)
+  visual.withSVGShapeCreator((parent) => {
+    return shape(parent)
   });
   visual.createShapes();
+
   return visual
 }

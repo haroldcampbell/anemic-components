@@ -51,13 +51,13 @@ container("bar-1", _ => {
 
   bars1 = _.empty()
   .withData(barsData)
-  .withEffects([$maxHeight(50), $alignBottom(100), $width(15), $xOffset(20)])
-  .withSVGShapeCreator((visual) => {
-    return rect(visual.container)
+  .withIntents([$maxHeight(50), $alignBottom(100), $width(15), $xOffset(20)])
+  .withSVGShapeCreator((container) => {
+    return rect(container)
       .$x(0)
       .$y(0)
       .$class("bar");
-  })
+  });
 }, $id("example-bar-1"));
 
 
@@ -68,7 +68,7 @@ window.onload = function () {
   slider.knob.onRangeChanged = function (s) {
     // arcs1.applyEffects([$arcRadius(50 + 25 * s.knob.range), $arcRadiusOffset(5)])
     // arcs2.applyEffects([$arcSpanOffset(10 + 25 * s.knob.range), $arcRadius(50)])
-    bars1.applyEffects([$xOffset(20 + 10 * s.knob.range)])
+    bars1.applyIntents([$xOffset(20 + 10 * s.knob.range)])
     console.log("slider:s1", (20 + 10 * s.knob.range))
   }
 }

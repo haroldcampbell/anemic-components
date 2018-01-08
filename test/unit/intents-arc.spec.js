@@ -1,5 +1,5 @@
 import {
-  MockNode
+  createMockedVisual
 } from "./utils"
 import {
   $data
@@ -7,8 +7,6 @@ import {
 import {
   arc
 } from "../../lib/ancui-core"
-
-import __createVisual from '../../lib/ancui-create-visual.js'
 
 import {
   $arcSpanOffset,
@@ -25,14 +23,7 @@ describe("Arc Intents", () => {
   let data = $data([8, 5, 10]);
 
   beforeEach(() => {
-    let parentNode = new MockNode();
-
-    visual = __createVisual(null, parentNode)
-    visual.withData(data);
-    visual.withSVGShapeCreator((visual) => {
-      return arc(visual.container)
-     });
-    visual.createShapes();
+    visual = createMockedVisual(arc, data)
   });
 
   it("$arcRadius() should set the radius of each arc to the same value", () => {

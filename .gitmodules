@@ -1,3 +1,6 @@
 [submodule "examples/libs/horizontal-slider"]
 	path = examples/libs/horizontal-slider
 	url = https://github.com/haroldcampbell/horizontal-slider.git
+[submodule "experimental/libs/horizontal-slider"]
+	path = experimental/libs/horizontal-slider
+	url = https://github.com/haroldcampbell/horizontal-slider.git

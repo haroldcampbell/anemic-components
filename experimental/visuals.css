@@ -1,0 +1,67 @@
+.container svg {
+  fill: rgb(255, 255, 255);
+  width: 500px;
+  height: 400px;
+}
+
+.ex-tiny svg{
+  height: 120px;
+}
+
+.ex-short svg{
+  height: 200px;
+}
+
+.container svg .path,
+.container svg .arc {
+  stroke: rgba(255, 0, 110, 0.5);
+  fill: none;
+}
+
+#c6-e3>.path:nth-last-child(3n) {
+  stroke: rgba(0, 120, 255, 0.5);
+}
+
+#c6-e3>.path:nth-child(3n) {
+  stroke: rgba(128, 128, 128, 0.5);
+}
+
+#border {
+  fill: rgb(255, 255, 255);
+  stroke-width: 1;
+  stroke: #ccc;
+}
+
+.bar {
+  fill: rgba(0, 120, 255, 0.5);
+}
+
+#c6-b1 .bar,
+#c4-e1 .ellipse,
+#c6-e1 .ellipse {
+  fill: rgb(0, 120, 255);
+}
+
+#c6-b2 .bar,
+#c6-e2 .ellipse {
+  fill: rgb(255, 110, 110);
+}
+
+#c6-e2 :nth-child(1) {
+  fill: rgba(0, 120, 255, 0.75);
+}
+
+#c6-e2 :nth-child(2) {
+  fill: rgba(255, 0, 110, 0.75);
+}
+
+#c6-e2 :nth-child(3) {
+  fill: rgba(128, 128, 128, 0.75);
+}
+
+#c5-e1 .ellipse,
+#c5-e2 .ellipse,
+#c5-e3 .ellipse,
+#c5-e4 .ellipse {
+  fill: rgba(0, 120, 255, 0.35);
+}
