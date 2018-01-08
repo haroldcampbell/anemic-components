@@ -1,7 +1,6 @@
-import {MockNode} from "./utils"
+import {createMockedVisual} from "./utils"
 import {$data} from "../../lib/ancui-data"
 import {rect} from "../../lib/ancui-core"
-import __createVisual from '../../lib/ancui-create-visual.js'
 
 import {
   $width,
@@ -19,14 +18,7 @@ describe("Size Intents", () => {
   let data = $data([1]);
 
   beforeEach(() => {
-    let parentNode = new MockNode();
-
-    visual = __createVisual(null, parentNode)
-    visual.withData(data);
-    visual.withSVGShapeCreator((visual) => {
-      return rect(visual.container)
-     });
-    visual.createShapes();
+    visual = createMockedVisual(rect, data);
   });
 
   it("should set $width on visual", () => {

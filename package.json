@@ -33,7 +33,8 @@
     "doc": "./node_modules/.bin/jsdoc lib/*.js --destination ./doc",
     "bundle": "./node_modules/.bin/webpack",
     "bundle-example": "./node_modules/.bin/webpack --config webpack.example.config.js",
-    "bundle-example-watch": "./node_modules/.bin/webpack --watch --config webpack.example.config.js"
+    "bundle-experimental": "./node_modules/.bin/webpack --config webpack.experimental.config.js",
+    "bundle-experimental-watch": "./node_modules/.bin/webpack --watch --config webpack.experimental.config.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",

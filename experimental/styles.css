@@ -1,0 +1,96 @@
+body {
+  font-family: "Open Sans";
+  font-size: 1em;
+  color: #444;
+  height: 100%;
+  margin-left: 300px;
+  /*padding:0;*/
+}
+
+.desc {
+  font-weight: 100;
+  color: #777;
+  width: 500px;
+  padding: 5px 0;
+  line-height: 2em;
+  letter-spacing: 0.004em;
+  /*font-size: 1.0em;*/
+}
+
+.desc strong {
+  font-weight: 400;
+  color: #333;
+  font-style: italic;
+  background-color: #FFF6DA;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #444;
+}
+
+a:visited {
+  color: #444;
+}
+
+pre.code-example {
+  color: #333;
+  font-size: 1.0em;
+  font-family: monospace;
+  line-height: 1.7em;
+  background-color: #f6f6f3;
+  padding: 10px;
+  margin: 0 20px 50px 0;
+  border-left: solid 2px #f0f0e0;
+}
+
+.menu {
+  width: 230px;
+
+  padding: 5px 20px 0 20px;
+  margin: 0 30px 0 0;
+  background: #f3f3f3;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+}
+
+.menu h1 {
+  margin-top: 10px;
+}
+
+.menu li {
+  border-bottom: solid 1px #ddd;
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu a {
+  color: #777;
+  font-weight: 200;
+  text-decoration: none;
+  padding: 10px 0 10px 10px;
+  display:block;
+}
+
+.menu a:hover {
+  color: #444;
+  background-color: #e0e0e0;
+}
+
+svg {
+  border: solid 1px #efefe3;
+}
