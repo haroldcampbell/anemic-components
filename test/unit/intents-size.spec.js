@@ -1,8 +1,7 @@
 import {MockNode} from "./utils"
-import {_$} from "../../lib/ancui-core"
 import {$data} from "../../lib/ancui-data"
-import {__createVisual} from "../../lib/ancui-pipeline"
 import {rect} from "../../lib/ancui-core"
+import __createVisual from '../../lib/ancui-create-visual.js'
 
 import {
   $width,

@@ -7,7 +7,8 @@ import {
 import {
   arc
 } from "../../lib/ancui-core"
-import {__createVisual} from "../../lib/ancui-pipeline"
+
+import __createVisual from '../../lib/ancui-create-visual.js'
 
 import {
   $arcSpanOffset,
