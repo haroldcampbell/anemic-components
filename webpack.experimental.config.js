@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    experimental: './experimental/src/experimental.js',
+    experiments: './experimental/src/experiments.js',
   },
 
   plugins: [
