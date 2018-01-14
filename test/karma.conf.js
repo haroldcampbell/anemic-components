@@ -15,8 +15,8 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'lib/*.js': ['webpack'],
-      'test/unit/utils.js': ['webpack'],
+      'lib/*.js': ['webpack', 'sourcemap'],
+      'test/unit/utils.js': ['webpack', 'sourcemap'],
       'test/unit/core-*.spec.js': ['webpack', 'sourcemap'],
       'test/unit/intents-*.spec.js': ['webpack', 'sourcemap'],
       'test/unit/pipeline.spec.js': ['webpack', 'sourcemap'],

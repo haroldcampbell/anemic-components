@@ -19,6 +19,33 @@ import {
   $maxWidth,
 } from "../../lib/ancui-intents"
 
+describe("Alignment intents", () => {
+  let visual = null;
+  let data = $data([10, 20, 0]);
+
+  beforeEach(() => {
+    visual = createMockedVisual(rect, data)
+  });
+
+  it("$alignBottom should set $y to 0 if height was not set", () => {
+    $alignBottom().action(visual);
+
+    let svgNodes = visual.svgNodes;
+    expect(svgNodes[0].$y()).toBe(0);
+    expect(svgNodes[1].$y()).toBe(0);
+    expect(svgNodes[2].$y()).toBe(0);
+  });
+
+  it("$alignRight should set $x to 0 if width was not set", () => {
+    $alignRight().action(visual);
+
+    let svgNodes = visual.svgNodes;
+    expect(svgNodes[0].$x()).toBe(0);
+    expect(svgNodes[1].$x()).toBe(0);
+    expect(svgNodes[2].$x()).toBe(0);
+  });
+});
+
 describe("Alignment Intents $alignBottom", () => {
   let visual = null;
   let data = $data([10, 20, 0]);
@@ -28,15 +55,6 @@ describe("Alignment Intents $alignBottom", () => {
     visual.svgNodes.forEach((v, index) => {
       v._dataProperty = "height";
     });
-  });
-
-  it("should set $y to null if height was not set", () => {
-    $alignBottom().action(visual);
-
-    let svgNodes = visual.svgNodes;
-    expect(svgNodes[0].$y()).toBe(null);
-    expect(svgNodes[1].$y()).toBe(null);
-    expect(svgNodes[2].$y()).toBe(null);
   });
 
   it("should use max height to update $y", () => {
@@ -58,7 +76,7 @@ describe("Alignment Intents $alignBottom", () => {
     expect(svgNodes[1].$y()).toBe(30);
     expect(svgNodes[2].$y()).toBe(50);
   });
-}); /*End of alginBottom*/
+});
 
 describe("Alignment Intents $alignRight", () => {
   let visual = null;
@@ -69,15 +87,6 @@ describe("Alignment Intents $alignRight", () => {
     visual.svgNodes.forEach((v, index) => {
       v._dataProperty = "width";
     });
-  });
-
-  it("should set $x to null if width was not set", () => {
-    $alignRight().action(visual);
-
-    let svgNodes = visual.svgNodes;
-    expect(svgNodes[0].$x()).toBe(null);
-    expect(svgNodes[1].$x()).toBe(null);
-    expect(svgNodes[2].$x()).toBe(null);
   });
 
   it("should use max width to update $x", () => {
