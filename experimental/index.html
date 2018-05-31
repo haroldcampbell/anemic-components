@@ -26,10 +26,14 @@
             font-size: 0.8em;
         }
 
+        .desc-details {
+            color: #c0c0c0;
+            font-size: 0.85em;
+        }
         .experiment {
             width: 600px;
             margin: 40px auto;
-            border-bottom: solid 1px #ccc;
+            border-bottom: solid 3px #ccc;
         }
 
         .experiment:last-of-type {
@@ -49,11 +53,13 @@
 <body>
     <ul class="experiment">
         <li class="title">Experiment 2</li>
-        <li id="experiment-2" class="container ex-tiny"></li>
+        <li id="window-experiment-2" class="container ex-tiny"></li>
         <li>
             <hslider id="s2"></hslider>
             <div id="slider-text-2" class="desc">Drag the knob.</div>
         </li>
+        <li id="unwindowed-experiment-2" class="container ex-tiny"></li>
+        <li class="desc-details">A view of the same data, but without the window</li>
     </ul>
 
     <ul class="experiment">
