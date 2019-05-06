@@ -40,7 +40,7 @@ Build the packages.
 
 ```
 npm run bundle
-npm run bundle-example
+npm run bundle-examples
 ```
 
 Start the server.
