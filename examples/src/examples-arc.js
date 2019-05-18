@@ -8,7 +8,7 @@ import {
     $arcRotateBy,
     $arcSpanUnit,
     $arcSpanOffset,
-    $arcRenderFn,
+    $lambda,
     container,
   } from '../../lib/ancui.js'
 
@@ -45,7 +45,7 @@ function hsl(base) {
 container("arc-4", _ => {
   _.arcs(exArcData1, [
     $x(80), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    $arcRenderFn({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+    $lambda({radius: 50, maxWidth: 3}, (intent, v, i)=>{
       let base = i / (exArcData1.data.length * 1.0);
       v.$strokeColor(hsl(base));
       v.$strokeWidth(intent.data.maxWidth);
@@ -55,7 +55,7 @@ container("arc-4", _ => {
 
   _.arcs(exArcData1, [
     $x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    $arcRenderFn({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+    $lambda({radius: 50, maxWidth: 3}, (intent, v, i)=>{
       let base = i / (exArcData1.data.length * 1.0);
       v.$strokeColor(hsl(base));
       v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
@@ -65,7 +65,7 @@ container("arc-4", _ => {
 
   _.arcs(exArcData1, [
     $x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(0),
-    $arcRenderFn({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
+    $lambda({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
       let strokeWidth = intent.data.maxWidth / v._dataValue;
       v.$attr("stroke-linecap", "butt");
       v.$strokeWidth(strokeWidth);
