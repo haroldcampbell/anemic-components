@@ -7,8 +7,8 @@ import {
 import {
   $rx,
   $ry,
-  $rxOffset,
-  $ryOffset,
+  $cxOffset,
+  $cyOffset,
   $xOffset,
   $yOffset,
   $width,
@@ -29,9 +29,9 @@ describe("rx/ry Offsets: Supporting properties present", () => {
     })
   });
 
-  it("$rxOffset should update $cx when $rx is set", () => {
-    $rx(10).action(visual); // $rxOffset depends on rx being set
-    $rxOffset(10).action(visual);
+  it("$cxOffset should update $cx when $rx is set", () => {
+    $rx(10).action(visual); // $cxOffset depends on rx being set
+    $cxOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cx()).toBe(10);
@@ -40,9 +40,9 @@ describe("rx/ry Offsets: Supporting properties present", () => {
     expect(svgNodes[3].$cx()).toBe(100);
   });
 
-  it("$ryOffset should update $cy when $ry is set", () => {
-    $ry(10).action(visual); // $ryOffset depends on ry being set
-    $ryOffset(10).action(visual);
+  it("$cyOffset should update $cy when $ry is set", () => {
+    $ry(10).action(visual); // $cyOffset depends on ry being set
+    $cyOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cy()).toBe(10);
@@ -65,8 +65,8 @@ describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
     })
   });
 
-  it("$rxOffset should update $cx when $rx is NOT set", () => {
-    $rxOffset(10).action(visual);
+  it("$cxOffset should update $cx when $rx is NOT set", () => {
+    $cxOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cx()).toBe(0);
@@ -75,8 +75,8 @@ describe("rx/ry Offsets: Supporting properties *NOT* present", () => {
     expect(svgNodes[3].$cx()).toBe(30);
   });
 
-  it("$ryOffset should update $cy when $ry is NOT set", () => {
-    $ryOffset(10).action(visual);
+  it("$cyOffset should update $cy when $ry is NOT set", () => {
+    $cyOffset(10).action(visual);
 
     let svgNodes = visual.svgNodes
     expect(svgNodes[0].$cy()).toBe(0);
