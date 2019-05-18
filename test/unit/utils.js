@@ -1,4 +1,4 @@
-import __createVisual from '../../lib/ancui-create-visual.js'
+import __createVisual from '../../lib/ancui-pipeline-create-visual.js'
 import {
   getVisuals,
 } from '../../lib/ancui-pipeline.js'
