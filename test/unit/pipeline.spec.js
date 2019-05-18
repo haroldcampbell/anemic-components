@@ -21,7 +21,7 @@ describe("Pipeline", () => {
 
   it("should call all effects", () => {
     let effectsCalled = 0;
-    const data = $data([])
+    const data = $data([1])
     const mockNode = new utils.MockNode();
     const noopCallback = _ => {
       effectsCalled++;

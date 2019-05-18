@@ -1,6 +1,6 @@
 import {createMockedVisual} from "./utils"
 import {$data} from "../../lib/ancui-data"
-import {rect} from "../../lib/ancui-core"
+import {rect} from "../../lib/ancui-core-rect"
 
 import {
   $width,
