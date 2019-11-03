@@ -3,15 +3,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    experiments: './experimental/src/experiments.js',
+    experiments: './www/experimental/src/experiments.js',
   },
 
   plugins: [
-    new CleanWebpackPlugin(['experimental/dist']),
+    new CleanWebpackPlugin(['www/experimental/dist']),
   ],
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'experimental/dist'),
+    path: path.resolve(__dirname, 'www/experimental/dist'),
   }
 };

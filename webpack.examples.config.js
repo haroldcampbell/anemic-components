@@ -4,19 +4,19 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     examples: [
-      './examples/src/examples-arc.js',
-      './examples/src/examples-bar.js',
-      './examples/src/examples-ellipse.js',
-      './examples/src/examples-advanced.js',
+      './www/examples/src/examples-arc.js',
+      './www/examples/src/examples-bar.js',
+      './www/examples/src/examples-ellipse.js',
+      './www/examples/src/examples-advanced.js',
     ],
   },
 
   plugins: [
-    new CleanWebpackPlugin(['examples/dist']),
+    new CleanWebpackPlugin(['www/examples/dist']),
   ],
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'examples/dist'),
+    path: path.resolve(__dirname, 'www/examples/dist'),
   }
 };
