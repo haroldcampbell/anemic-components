@@ -6,11 +6,8 @@ import {
   $width,
   $maxHeight,
   container,
-} from '../../lib/ancui.js'
-
-import {
   rect,
-} from '../../lib/ancui-core.js'
+} from './../../assets/dist/ancui.js'
 
 let bars1;
 let barsData = $data([10, 20, 30, 40, 50], "height");
@@ -42,6 +39,6 @@ addDataButton.onclick = () => {
     return base + Math.random() * 60;
   };
 
-  barsData.appendDataEnd([dataItem(20)])//, dataItem(5), dataItem(15)]);
+  barsData.appendDataEnd([dataItem(20)]) // , dataItem(5), dataItem(15)]);
   bars1.onDataDidChange();
 }

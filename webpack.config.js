@@ -5,12 +5,13 @@ module.exports = {
   entry: './lib/ancui.js',
 
   plugins: [
-    new CleanWebpackPlugin(['www/assets/js/dist']),
+    new CleanWebpackPlugin(['www/assets/dist']),
   ],
 
   output: {
-    path: path.resolve(__dirname, 'www/assets/js/dist'),
+    path: path.resolve(__dirname, 'www/assets/dist'),
     filename: 'ancui.js',
     library: 'ancui',
+    libraryTarget: 'umd',
   }
 }

@@ -1,5 +1,3 @@
-// @ts-check
-
 import {
     $id,
     $data,
@@ -8,12 +6,8 @@ import {
     $width,
     $maxHeight,
     container,
-  } from '../../lib/ancui.js'
-
-
-  import {
     rect,
-  } from '../../lib/ancui-core.js'
+  } from './../../assets/dist/ancui.js'
 
   let bars1;
   let barsData = $data([10, 20, 30, 40, 50, 40, 30, 20, 10, 50, 60, 10, 30, 80], "height");
