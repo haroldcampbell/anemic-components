@@ -181,13 +181,13 @@ container("arc-3", _ => {
       <div id="example-arc-4" class="container ex-short"></div>
       <p class="desc">
         We can apply custom intents to each arc with
-        <strong>$arcRenderFn(...)</strong>.
+        <strong>$arcLambda(...)</strong>.
       </p>
       <pre class="code-example">
 container("arc-4", _ => {
   _.arcs(exArcData1, [
     $x(80), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+    <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
       let base = i / (exArcData1.data.length * 1.0);
       v.$strokeColor(hsl(base));
       v.$strokeWidth(intent.data.maxWidth);
@@ -197,7 +197,7 @@ container("arc-4", _ => {
 
   _.arcs(exArcData1, [
     $x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
+    <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
       let base = i / (exArcData1.data.length * 1.0);
       v.$strokeColor(hsl(base));
       v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
@@ -207,7 +207,7 @@ container("arc-4", _ => {
 
   _.arcs(exArcData1, [
     $x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(0),
-    <strong>$arcRenderFn</strong>({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
+    <strong>$arcLambda</strong>({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
       let strokeWidth = intent.data.maxWidth / v._dataValue;
       v.$attr("stroke-linecap", "butt");
       v.$strokeWidth(strokeWidth);
