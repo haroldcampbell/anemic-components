@@ -13,7 +13,7 @@ $moveBelow,
 $joinGroupItems,
 $group,
 container,
-} from '../../lib/ancui.js'
+} from './../../assets/dist/ancui.js'
 
 
 /* Advanced example */

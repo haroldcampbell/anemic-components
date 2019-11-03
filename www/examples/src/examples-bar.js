@@ -10,7 +10,7 @@ import {
     $xOffset,
     $yOffset,
     container,
-} from '../../lib/ancui.js';
+} from './../../assets/dist/ancui.js'
 
 let barsData = $data([50, 20, 30, 10, 50], "height");
 

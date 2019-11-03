@@ -7,7 +7,7 @@ import {
   $xOffset,
   $max,
   container,
-} from '../../lib/ancui.js'
+} from './../../assets/dist/ancui.js'
 
 let ellipsesData1 = $data([10, 60, 30, 40, 50], "diameter");
 

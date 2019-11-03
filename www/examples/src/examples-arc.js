@@ -10,7 +10,7 @@ import {
   $arcSpanOffset,
   $arcLambda,
   container,
-} from '../../lib/ancui.js'
+} from './../../assets/dist/ancui.js'
 
 
 let exArcData1 = $data([40, 30, 20, 15, 10], "arc");
