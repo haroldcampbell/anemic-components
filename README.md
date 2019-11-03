@@ -91,7 +91,7 @@ git submodule update --remote
 2. Navigate to the experimental examples
 
 ```
-http://localhost:8001/examples/experimental.html
+http://localhost:8001/experimental/
 ```
 # Pull Requests
 
