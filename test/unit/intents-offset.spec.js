@@ -5,15 +5,18 @@ import {
   ellipse
 } from "../../lib/ancui-core"
 import {
-  $rx,
-  $ry,
-  $cxOffset,
-  $cyOffset,
   $xOffset,
   $yOffset,
   $width,
   $height,
 } from "../../lib/ancui-intents"
+import {
+  $rx,
+  $ry,
+  $cxOffset,
+  $cyOffset,
+} from '../../lib/ancui-intents-ellipses'
+
 import {
   $data
 } from "../../lib/ancui-data"

@@ -13,6 +13,7 @@
     "postinstall": "echo '-x-Done-x-'",
     "prestart": "npm install",
     "start": "http-server ./www -a 0.0.0.0 -p 8001",
+    "start-mocha": "http-server ./ -a 0.0.0.0 -p 8001",
     "pretest": "",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js --single-run --browsers Chrome",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js --single-run",

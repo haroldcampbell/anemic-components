@@ -14,7 +14,7 @@ import {
   $arcRadiusOffset,
   $arcRadius,
   $arcRotateBy,
-  $arcRenderFn,
+  $arcLambda,
   $arcIntentFn,
 } from "../../lib/ancui-intents-arcs"
 
@@ -163,7 +163,7 @@ describe("Arc Intents", () => {
         v.$startAngle(intent.data.first + index * intent.data.increment)
       }
 
-      $arcRenderFn(local, callback).action(visual);
+      $arcLambda(local, callback).action(visual);
 
       let svgNodes = visual.svgNodes
       expect(svgNodes[0].$startAngle()).toBe(local.first);
@@ -194,7 +194,7 @@ describe("Arc Intents", () => {
       expect(svgNodes[1].$startAngle()).toBe(0);
       expect(svgNodes[2].$startAngle()).toBe(0);
 
-      $arcRenderFn({}, callback).action(visual);
+      $arcLambda({}, callback).action(visual);
 
       expect(svgNodes[0].$startAngle()).toBe(100);
       expect(svgNodes[1].$startAngle()).toBe(100);

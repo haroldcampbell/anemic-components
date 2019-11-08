@@ -1,4 +1,5 @@
-import {$x, $y, $rx, $ry} from '../../lib/ancui-intents.js'
+import {$x, $y} from '../../lib/ancui-intents.js'
+import {$rx, $ry} from '../../lib/ancui-intents-ellipses'
 import {$data} from "../../lib/ancui-data"
 import {createMockedVisual} from "./utils"
 import {ellipse} from "../../lib/ancui-core"

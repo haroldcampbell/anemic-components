@@ -27,22 +27,22 @@ describe("Alignment intents", () => {
     visual = createMockedVisual(rect, data)
   });
 
-  it("$alignBottom should set $y to 0 if height was not set", () => {
+  it("$alignBottom should set $y to be max data value 0 if baseline height was not set", () => {
     $alignBottom().action(visual);
 
     let svgNodes = visual.svgNodes;
-    expect(svgNodes[0].$y()).toBe(0);
-    expect(svgNodes[1].$y()).toBe(0);
-    expect(svgNodes[2].$y()).toBe(0);
+    expect(svgNodes[0].$y()).toBe(20);
+    expect(svgNodes[1].$y()).toBe(20);
+    expect(svgNodes[2].$y()).toBe(20);
   });
 
-  it("$alignRight should set $x to 0 if width was not set", () => {
+  it("$alignRight should set $x to be max data value if baseline width was not set", () => {
     $alignRight().action(visual);
 
     let svgNodes = visual.svgNodes;
-    expect(svgNodes[0].$x()).toBe(0);
-    expect(svgNodes[1].$x()).toBe(0);
-    expect(svgNodes[2].$x()).toBe(0);
+    expect(svgNodes[0].$x()).toBe(20);
+    expect(svgNodes[1].$x()).toBe(20);
+    expect(svgNodes[2].$x()).toBe(20);
   });
 });
 

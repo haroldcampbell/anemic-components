@@ -9,9 +9,12 @@ import {
   $maxWidth,
   $maxHeight,
   $maxY,
-  $maxDiameter,
   $maxStrokeWidth
 } from "../../lib/ancui-intents"
+
+import {
+  $maxDiameter,
+} from "../../lib/ancui-intents-ellipses"
 
 describe("Size Intents", () => {
   let visual = null;
