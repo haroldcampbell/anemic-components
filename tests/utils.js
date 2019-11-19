@@ -1,7 +1,11 @@
-import __createVisual from '../../lib/ancui-pipeline-create-visual.js'
+import __createVisual from '../lib/ancui-pipeline-create-visual.js'
 import {
   getVisuals,
-} from '../../lib/ancui-pipeline.js'
+} from '../lib/ancui-pipeline.js'
+
+// For Fake DOM
+import browserEnv from 'browser-env';
+browserEnv();
 
 /**
  * Saves the current childNodes of the document.body

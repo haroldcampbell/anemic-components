@@ -1,0 +1,24 @@
+#bar-1 {
+    width: 300px;
+    height: 300px;
+}
+
+#bar-1 .bar {
+    fill: #006cf0;
+}
+
+.container svg .path,
+.container svg .arc {
+    stroke: rgba(255, 0, 110, 0.5);
+    fill: none;
+}
+
+.business-examples-section .example-grid-container svg {
+    width: 150px;
+    height: 150px;
+    fill: #fff;
+}
+
+.business-examples-section .bar {
+    fill: #006cf0;
+}

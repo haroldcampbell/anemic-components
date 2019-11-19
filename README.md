@@ -76,23 +76,30 @@ This produces the following image:
 
 Please take a look the [wiki](https://github.com/haroldcampbell/anemic-components/wiki) from information.
 
+# Tests
 
-#### Experimental Examples
-
-To run the experimental examples, you will need to:
-
-1. Pull in the submodules by running
+Tests were written using TapeJS
 
 ```
-git submodule init
-git submodule update --remote
+npm install babel-tape-runner -g
 ```
 
-2. Navigate to the experimental examples
+You’ll also need a `.babelrc` file:
 
 ```
-http://localhost:8001/experimental/
+{
+  "presets": ["@babel/preset-env"]
+}
 ```
+Then give it a try:
+
+```
+babel-tape-runner ./tests/tap.js ./tests/*-test.js
+```
+
+More information here: [TapeJS vs Everything else](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)
+
+
 # Pull Requests
 
 Lots of work left to be done. Looking forward to pull requests.
