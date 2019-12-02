@@ -16,7 +16,7 @@ import {
 
 import {
   $noop
-} from "../lib/ancui-intents"
+} from "../lib/intents/intents-core"
 
 import test from "tape"
 

@@ -9,13 +9,13 @@ import {
   $yOffset,
   $width,
   $height,
-} from "../lib/ancui-intents"
+} from "../lib/intents/intents-core"
 import {
   $rx,
   $ry,
   $cxOffset,
   $cyOffset,
-} from '../lib/ancui-intents-ellipses'
+} from '../lib/intents/intents-ellipses'
 
 import {
   $data

@@ -16,7 +16,7 @@ import {
   $arcRotateBy,
   $arcLambda,
   $arcIntentFn,
-} from "../lib/ancui-intents-arcs"
+} from "../lib/intents/intents-arcs"
 
 import test from "tape"
 

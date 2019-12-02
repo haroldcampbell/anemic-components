@@ -16,7 +16,7 @@ import {
   $alignRight,
   $maxHeight,
   $maxWidth,
-} from "../lib/ancui-intents"
+} from "../lib/intents/ancui-intents"
 
 import test from "tape"
 

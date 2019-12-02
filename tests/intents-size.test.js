@@ -16,11 +16,11 @@ import {
   $maxHeight,
   $maxY,
   $maxStrokeWidth
-} from "../lib/ancui-intents"
+} from "../lib/intents/intents-core"
 
 import {
   $maxDiameter,
-} from "../lib/ancui-intents-ellipses"
+} from "../lib/intents/intents-ellipses"
 
 import test from "tape"
 

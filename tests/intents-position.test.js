@@ -1,11 +1,11 @@
 import {
   $x,
   $y
-} from '../lib/ancui-intents.js'
+} from '../lib/intents/intents-core'
 import {
   $rx,
   $ry
-} from '../lib/ancui-intents-ellipses'
+} from '../lib/intents/intents-ellipses'
 import {
   $data
 } from "../lib/ancui-data"
