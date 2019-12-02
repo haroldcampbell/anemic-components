@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     connectedPoints
-} from "../lib/ancui-nodes-connected-points"
+} from "../lib/nodes/nodes-connected-points"
 import {
     $data
 } from "../lib/ancui-data"

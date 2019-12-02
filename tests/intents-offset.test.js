@@ -3,7 +3,7 @@ import {
 } from "./utils"
 import {
   ellipse
-} from "../lib/ancui-nodes"
+} from "../lib/nodes/nodes-ellipse"
 import {
   $xOffset,
   $yOffset,

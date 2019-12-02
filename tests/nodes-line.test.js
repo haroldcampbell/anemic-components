@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     line
-} from "../lib/ancui-nodes-line"
+} from "../lib/nodes/nodes-line"
 
 import test from "tape"
 

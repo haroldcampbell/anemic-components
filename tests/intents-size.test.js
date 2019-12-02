@@ -6,7 +6,7 @@ import {
 } from "../lib/ancui-data"
 import {
   rect
-} from "../lib/ancui-nodes-rect"
+} from "../lib/nodes/nodes-rect"
 
 import {
   $width,

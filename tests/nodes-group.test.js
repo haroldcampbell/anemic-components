@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     group
-} from "../lib/ancui-nodes-group"
+} from "../lib/nodes/nodes-group"
 
 import test from "tape"
 

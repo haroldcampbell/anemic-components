@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     path
-} from "../lib/ancui-nodes-path"
+} from "../lib/nodes/nodes-path"
 
 import test from "tape"
 

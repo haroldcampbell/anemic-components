@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     arc
-} from "../lib/ancui-nodes-arc"
+} from "../lib/nodes/nodes-arc"
 
 import {
     $degreesToRadians

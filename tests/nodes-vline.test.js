@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     vLine
-} from "../lib/ancui-nodes-vline"
+} from "../lib/nodes/nodes-vline"
 
 import test from "tape"
 

@@ -2,7 +2,7 @@ import * as utils from "./utils"
 
 import {
     rect
-} from "../lib/ancui-nodes-rect"
+} from "../lib/nodes/nodes-rect"
 
 import test from "tape"
 
