@@ -6,7 +6,7 @@ import {
 } from "../lib/ancui-data"
 import {
   arc
-} from "../lib/ancui-core"
+} from "../lib/ancui-nodes-arc"
 
 import {
   $arcSpanOffset,

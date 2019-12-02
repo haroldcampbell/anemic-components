@@ -14,7 +14,7 @@ import {
 } from "./utils"
 import {
   ellipse
-} from "../lib/ancui-core"
+} from "../lib/ancui-nodes"
 
 import test from "tape"
 

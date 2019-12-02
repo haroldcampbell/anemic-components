@@ -9,7 +9,7 @@ import {
 } from "../lib/ancui-core"
 import {
   rect
-} from "../lib/ancui-core-rect"
+} from "../lib/ancui-nodes-rect"
 
 import {
   $alignBottom,

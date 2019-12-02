@@ -29,6 +29,23 @@ test("$data", testCase => {
     t.end()
   });
 
+  testCase.test("tuples", t => {
+    const fixture = setupFixture();
+    const data = $data(fixture.rawData);
+    const pairedData = data.collectTuples(2); // Create pairs when tupleLength is 2
+
+    const expected = [
+      [fixture.rawData[0], fixture.rawData[1]],
+      [fixture.rawData[1], fixture.rawData[2]],
+      [fixture.rawData[2], fixture.rawData[3]]
+    ];
+    const actual = pairedData.map(i => i.map(d => d.rawValue))
+
+    t.equal(pairedData.length, 3, "collectTuples() should have the correct length");
+    t.deepEqual(actual, expected, "collectTuples() should create data collections");
+    t.end();
+  })
+
   testCase.test("appendDataStart() add data to front of list", t => {
     const data = setupFixture().appendData;
 

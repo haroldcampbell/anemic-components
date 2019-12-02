@@ -77,7 +77,7 @@ function isLastChild(childReport) {
         return true
     }
 
-    return childReport.parentTest.children[childReport.parentTest.children.length-1].id == childReport.id;
+    return childReport.parentTest.children[childReport.parentTest.children.length - 1].id == childReport.id;
 }
 
 function showReportStatus(report, indentation = 0) {
@@ -122,21 +122,23 @@ function showReportAsserts(report, indentation = 0) {
     let reportArray = [];
     report.asserts.forEach(assert => {
         let padding = "   ".repeat(indentation);
-        let nestingChar = indentation == 0 ? "├─" : "└─";
-        let nestingChild = indentation == 0 ? "│" : " ";
+        let nestingChar = "└─"; //indentation == 0 ? "├─" : "└─";
+        // let nestingChild = indentation == 0 ? " " : "│";
         let assertName = ` ${padding} ${nestingChar} ${cyanText(assert.operator)}: ${redGreenText(assert.name, assert.ok)}`;
 
         reportArray.push(assertName);
 
         if (!assert.ok) {
-            reportArray.push(`${padding} ${nestingChild}  ├─ file: ${yellowText(assert.file)}`)
-            reportArray.push(`${padding} ${nestingChild}  ├─ operator: ${assert.operator}`)
-            reportArray.push(`${padding} ${nestingChild}  ├─ expected: ${assert.expected}`)
-            reportArray.push(`${padding} ${nestingChild}  └─ actual: " ${assert.actual}`)
+            reportArray.push(`${padding}    ├─ file: ${yellowText(assert.file)}`)
+            reportArray.push(`${padding}    ├─ operator: ${assert.operator}`)
+            reportArray.push(`${padding}    ├─ actual: ${assert.actual}`)
+            reportArray.push(`${padding}    └─ expected: ${assert.expected}`)
         }
     });
 
-    console.log(reportArray.join("\n"))
+    if (reportArray.length > 0) {
+        console.log(reportArray.join("\n"))
+    }
 }
 
 function showRunSummary(run) {
@@ -147,9 +149,16 @@ function showRunSummary(run) {
     const resultMessage = " Results: \x1b[1m" + passed + " passed\x1b[0m, \x1b[1m" + failed + " failed\x1b[0m, \x1b[1m" + total + " total\x1b[0m ";
     const messageLength = resultMessage.length - 24; // Need to account for color encoding
 
-    console.log('│ ┌%s┐', "─".repeat(messageLength))
-    console.log('└─┤%s│', resultMessage)
-    console.log('  └%s┘', "─".repeat(messageLength))
+    if (failed == 0) {
+        console.log('│ ┌%s┐', "─".repeat(messageLength))
+        console.log('└─┤%s│', resultMessage)
+        console.log('  └%s┘', "─".repeat(messageLength))
+        return
+    }
+
+    console.log('│ \x1b[31m┌%s┐\x1b[0m', "─".repeat(messageLength))
+    console.log('└─\x1b[31m┤\x1b[0m%s\x1b[31m│\x1b[0m', resultMessage)
+    console.log('  \x1b[31m└%s┘\x1b[0m', "─".repeat(messageLength))
 }
 
 function showRunReport(run) {
@@ -182,8 +191,6 @@ tape.createStream({
 
 tape.onFinish(function () {
     showRunReport(run)
-
-    // console.log(run)
 });
 
 let currentFile = "";

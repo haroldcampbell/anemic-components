@@ -1,1 +1,62 @@
-Hello
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>AnCUI</title>
+    <link href="/assets/css/styles.css" media="all" rel="stylesheet" />
+    <link href="/assets/css/visuals.css" media="all" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+</head>
+
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to AncuiJS</h1>
+
+            <h3>A modern JavaScript visualization library that makes it easy to present rich, data-driven visuals.</h3>
+        </div>
+    </section>
+    <section class="developer-examples-section">
+        <div class="container emphasis-1">
+            <h3 class="title">A fresh <span class="emph">Declarative</span> approach to visualizations</h3>
+            <div class="light-text">Use an expressive list of functions to describe the visual with little to not
+                pre-setup.</div>
+            <div class="left-example-container">
+                <div id="example-bar-1" class="left-example"></div>
+                <div class="right-code">
+                    <pre>
+let barsData = _a.$data([50, 20, 30, 10, 50], <span class="emph">"height"</span>);
+
+_a.container("bar-1", _ => {
+    _.<span class="emph">bars</span>(barsData, [_a.<span class="emph">$maxHeight(50)</span>, _a.$yOffset(30), _a.$width(150)]);
+}, _a.$id("example-bar-1"));</pre>
+                </div>
+                <div class="explanation">
+                    <p>Who does it work?</p>
+                    The data is bound using to a <span class="emph-light">height</span> property using <span
+                        class="emph-light">$data([...], "height")</span>.
+                    The maximum height of each bar is then controlled by <span class="emph">$maxHeight(...)</span>,
+                    while the space between the bars is determined by <span class="emph-light">$yOffset(...)</span>.
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="business-examples-section">
+        <div class="container emphasis-1">
+            <h1 class="title">An <span class="emph">Intuitive</span> approach to visualizations</h1>
+            <div class="light-text">Easily experiment with ideas. Discover a world of possibilities with less code.</div>
+            <div class="example-grid-container">
+                <div id="bus-bar-1" class="example"></div>
+                <div id="bus-bar-2" class="example"></div>
+                <div id="bus-arc-1" class="example"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="/assets/dist/ancui.js" type="module"></script>
+    <script src="/assets/js/site.js" type="module"></script>
+</body>
+
+</html>

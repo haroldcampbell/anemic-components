@@ -1,7 +1,15 @@
-import __createVisual from '../lib/ancui-pipeline-create-visual.js'
+// import __createVisual from '../lib/ancui-pipeline-create-visual.js'
+// import {
+//   // getVisuals,
+// } from '../lib/ancui-pipeline.js'
 import {
-  getVisuals,
+  wrappedShape,
+} from '../lib/ancui-visuals.js'
+
+import {
+  container,
 } from '../lib/ancui-pipeline.js'
+
 
 // For Fake DOM
 import browserEnv from 'browser-env';
@@ -28,7 +36,7 @@ export function captureDocumentBodyChildNodes() {
  *
  * @function resetDocumentBody
  *
- * @param {Arrray} initialChildrenNodes - the nodes that should be in the document.body
+ * @param {Array} initialChildrenNodes - the nodes that should be in the document.body
  */
 export function resetDocumentBody(initialChildrenNodes) {
   document.body.childNodes.forEach(node => {
@@ -40,18 +48,18 @@ export function resetDocumentBody(initialChildrenNodes) {
   });
 }
 
-/**
- * Resets the visuals by removing all of the stored nodes.
- * The method also sets currentContainer and __postRenderCallback to null.
- *
- * @function resetVisuals
- */
-export function resetVisuals() {
-  const visuals = getVisuals();
-  visuals.nodes = {};
-  visuals.currentContainer = null;
-  visuals.__postRenderCallback = null;
-}
+// /**
+//  * Resets the visuals by removing all of the stored nodes.
+//  * The method also sets currentContainer and __postRenderCallback to null.
+//  *
+//  * @function resetVisuals
+//  */
+// export function resetVisuals() {
+//   const visuals = getVisuals();
+//   visuals.nodes = {};
+//   visuals.currentContainer = null;
+//   visuals.__postRenderCallback = null;
+// }
 
 /**
  * Pushes the specified callback into the array n amount of times as specified
@@ -123,9 +131,9 @@ export class MockAttribute {
 /**
  * Represents an Mocked HTML node used for testing.
  *
- * @class MockNode
+ * @class MockHTMLNode
  */
-export class MockNode {
+export class MockHTMLNode {
   constructor() {
     this._attributes = {};
     this._children = [];
@@ -152,14 +160,18 @@ export class MockNode {
 }
 
 export function createMockedVisual(shape, data) {
-  let parentNode = new MockNode();
-  let visual = __createVisual(null, parentNode)
+  let parentElement = new MockHTMLNode();
 
-  visual.withData(data);
-  visual.withSVGShapeCreator((parent) => {
-    return shape(parent)
-  });
-  visual.createShapes();
+  const visuals = [
+    wrappedShape(shape, data, [])
+  ];
 
-  return visual
+  const visualsCallback = _ => {
+    _.addVisuals(visuals)
+  }
+
+  // console.log("createMockedVisual>>", data)
+  container("mocked-visual", visualsCallback, parentElement)
+
+  return visuals[0]
 }
