@@ -5,9 +5,6 @@ import {
   $data
 } from "../../lib/ancui-data"
 import {
-  _$
-} from "../../lib/ancui-core"
-import {
   rect
 } from "../../lib/nodes/nodes-rect"
 
