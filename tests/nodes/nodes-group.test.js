@@ -1,8 +1,8 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     group
-} from "../lib/nodes/nodes-group"
+} from "../../lib/nodes/nodes-group"
 
 import test from "tape"
 

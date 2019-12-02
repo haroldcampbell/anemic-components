@@ -1,25 +1,25 @@
 import {
   createMockedVisual
-} from "./utils"
+} from "../utils"
 import {
   ellipse
-} from "../lib/nodes/nodes-ellipse"
+} from "../../lib/nodes/nodes-ellipse"
 import {
   $xOffset,
   $yOffset,
   $width,
   $height,
-} from "../lib/intents/intents-core"
+} from "../../lib/intents/intents-core"
 import {
   $rx,
   $ry,
   $cxOffset,
   $cyOffset,
-} from '../lib/intents/intents-ellipses'
+} from '../../lib/intents/intents-ellipses'
 
 import {
   $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 
 import test from "tape"
 

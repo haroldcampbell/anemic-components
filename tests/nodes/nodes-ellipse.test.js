@@ -1,8 +1,8 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     ellipse
-} from "../lib/nodes/nodes-ellipse"
+} from "../../lib/nodes/nodes-ellipse"
 
 import test from "tape"
 

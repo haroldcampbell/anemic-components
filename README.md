@@ -91,10 +91,10 @@ You’ll also need a `.babelrc` file:
   "presets": ["@babel/preset-env"]
 }
 ```
-Then give it a try:
+From the root folder run the tests.
 
 ```
-babel-tape-runner ./tests/tap.js ./tests/*-test.js
+babel-tape-runner ./tests/tap.js ./tests/**/*.test.js
 ```
 
 More information here: [TapeJS vs Everything else](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)

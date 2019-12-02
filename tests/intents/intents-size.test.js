@@ -1,12 +1,12 @@
 import {
   createMockedVisual
-} from "./utils"
+} from "../utils"
 import {
   $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 import {
   rect
-} from "../lib/nodes/nodes-rect"
+} from "../../lib/nodes/nodes-rect"
 
 import {
   $width,
@@ -16,11 +16,11 @@ import {
   $maxHeight,
   $maxY,
   $maxStrokeWidth
-} from "../lib/intents/intents-core"
+} from "../../lib/intents/intents-core"
 
 import {
   $maxDiameter,
-} from "../lib/intents/intents-ellipses"
+} from "../../lib/intents/intents-ellipses"
 
 import test from "tape"
 

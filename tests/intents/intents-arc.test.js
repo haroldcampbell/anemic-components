@@ -1,12 +1,12 @@
 import {
   createMockedVisual
-} from "./utils"
+} from "../utils"
 import {
   $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 import {
   arc
-} from "../lib/nodes/nodes-arc"
+} from "../../lib/nodes/nodes-arc"
 
 import {
   $arcSpanOffset,
@@ -16,7 +16,7 @@ import {
   $arcRotateBy,
   $arcLambda,
   $arcIntentFn,
-} from "../lib/intents/intents-arcs"
+} from "../../lib/intents/intents-arcs"
 
 import test from "tape"
 

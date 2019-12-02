@@ -1,11 +1,11 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     connectedPoints
-} from "../lib/nodes/nodes-connected-points"
+} from "../../lib/nodes/nodes-connected-points"
 import {
     $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 
 import test from "tape"
 

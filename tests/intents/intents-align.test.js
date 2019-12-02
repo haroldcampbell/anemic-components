@@ -1,22 +1,22 @@
 import {
   createMockedVisual
-} from "./utils"
+} from "../utils"
 import {
   $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 import {
   _$
-} from "../lib/ancui-core"
+} from "../../lib/ancui-core"
 import {
   rect
-} from "../lib/nodes/nodes-rect"
+} from "../../lib/nodes/nodes-rect"
 
 import {
   $alignBottom,
   $alignRight,
   $maxHeight,
   $maxWidth,
-} from "../lib/intents/ancui-intents"
+} from "../../lib/intents/ancui-intents"
 
 import test from "tape"
 

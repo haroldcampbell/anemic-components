@@ -1,6 +1,6 @@
 import {
   $multiData
-} from "../lib/ancui-data-multi"
+} from "../../lib/ancui-data-multi"
 
 import test from "tape"
 

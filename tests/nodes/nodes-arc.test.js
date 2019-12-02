@@ -1,12 +1,12 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     arc
-} from "../lib/nodes/nodes-arc"
+} from "../../lib/nodes/nodes-arc"
 
 import {
     $degreesToRadians
-} from "../lib/utils"
+} from "../../lib/utils"
 
 import test from "tape"
 

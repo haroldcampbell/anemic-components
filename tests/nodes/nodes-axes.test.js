@@ -1,8 +1,8 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     axes
-} from "../lib/nodes/nodes-axes"
+} from "../../lib/nodes/nodes-axes"
 
 import test from "tape"
 

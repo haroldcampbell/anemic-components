@@ -1,6 +1,6 @@
 import {
   $data
-} from "../lib/ancui-data"
+} from "../../lib/ancui-data"
 
 import test from "tape"
 

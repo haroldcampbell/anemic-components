@@ -1,8 +1,8 @@
-import * as utils from "./utils"
+import * as utils from "../utils"
 
 import {
     line
-} from "../lib/nodes/nodes-line"
+} from "../../lib/nodes/nodes-line"
 
 import test from "tape"
 
