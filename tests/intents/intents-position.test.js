@@ -8,7 +8,7 @@ import {
 } from '../../lib/intents/intents-ellipses'
 import {
   $data
-} from "../../lib/ancui-data"
+} from "../../lib/data/ancui-data"
 import {
   createMockedVisual
 } from "../utils"

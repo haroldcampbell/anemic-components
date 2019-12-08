@@ -5,7 +5,7 @@ import {
 } from "../../lib/nodes/nodes-connected-points"
 import {
     $data
-} from "../../lib/ancui-data"
+} from "../../lib/data/ancui-data"
 
 import test from "tape"
 

@@ -19,7 +19,7 @@ import {
 
 import {
   $data
-} from "../../lib/ancui-data"
+} from "../../lib/data/ancui-data"
 
 import test from "tape"
 

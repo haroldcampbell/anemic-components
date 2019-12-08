@@ -3,7 +3,7 @@ import {
 } from "../utils"
 import {
   $data
-} from "../../lib/ancui-data"
+} from "../../lib/data/ancui-data"
 import {
   arc
 } from "../../lib/nodes/nodes-arc"

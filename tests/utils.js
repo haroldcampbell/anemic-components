@@ -4,11 +4,11 @@
 // } from '../lib/ancui-pipeline.js'
 import {
   wrappedShape,
-} from '../lib/ancui-visuals.js'
+} from '../lib/visuals/ancui-visuals'
 
 import {
   container,
-} from '../lib/ancui-pipeline.js'
+} from '../lib/ancui-pipeline'
 
 
 // For Fake DOM

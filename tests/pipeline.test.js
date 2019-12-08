@@ -1,18 +1,14 @@
 import * as utils from "./utils"
 import {
   $data
-} from "../lib/ancui-data"
+} from "../lib/data/ancui-data"
 import {
   container
 } from "../lib/ancui-pipeline"
 
 import {
   empty,
-  bars,
-  arcs,
-  ellipses,
-  connectingLines,
-} from "../lib/ancui-visuals"
+} from "../lib/visuals/ancui-visuals"
 
 import {
   $noop
@@ -70,7 +66,7 @@ test("Pipeline", testCase => {
 
   testCase.test("container adds svgNode to document.body by default", t => {
     const visuals = [
-      bars($data([1, 2, 3]), [])
+      empty($data([1, 2, 3]), [])
     ];
 
     const visualsCallback = _ => {
@@ -80,82 +76,8 @@ test("Pipeline", testCase => {
     container("test1", visualsCallback);
     const svgNode = document.getElementById("test1");
 
+    t.equal(svgNode.tagName, "svg", "should add svgNode to document.body");
     t.true(svgNode, "should add svgNode to document.body when parentElement is not specified");
     t.end();
-  });
-
-  testCase.test("[adding multiple visuals]", testCase => {
-    testCase.test("arcs should add paths to svgNode", t => {
-      const fixture = setupFixtures();
-
-      const visuals = [
-        arcs(fixture.data, [])
-      ];
-
-      const visualsCallback = _ => {
-        _.addVisuals(visuals)
-      }
-
-      container("test", visualsCallback, fixture.parentElement)
-      const svgNode = fixture.parentElement.childNodes[0];
-
-      t.equal(fixture.parentElement.childNodes.length, 1);
-      t.equal(svgNode.childNodes.length, 3, "should get 3 arc visuals matching the data");
-      t.end();
-    });
-
-    testCase.test("bar should add rects to svgNode", t => {
-      const fixture = setupFixtures();
-
-      const visuals = [
-        bars(fixture.data, [])
-      ];
-
-      const visualsCallback = _ => {
-        _.addVisuals(visuals)
-      }
-
-      container("test", visualsCallback, fixture.parentElement)
-      const svgNode = fixture.parentElement.childNodes[0];
-
-      t.equal(svgNode.childNodes.length, 3, "should get 3 bar visuals matching the data");
-      t.end();
-    });
-
-    testCase.test("ellipses should add ellipses to svgNode", t => {
-      const fixture = setupFixtures();
-
-      const visuals = [
-        ellipses(fixture.data, [])
-      ];
-
-      const visualsCallback = _ => {
-        _.addVisuals(visuals)
-      }
-
-      container("test", visualsCallback, fixture.parentElement)
-      const svgNode = fixture.parentElement.childNodes[0];
-
-      t.equal(svgNode.childNodes.length, 3, "should get 3 ellipse visuals matching the data");
-      t.end();
-    });
-
-    testCase.test("connectingLines should add paths to svgNode", t => {
-      const fixture = setupFixtures();
-
-      const visuals = [
-        connectingLines(fixture.data, [])
-      ];
-
-      const visualsCallback = _ => {
-        _.addVisuals(visuals)
-      }
-
-      container("test", visualsCallback, fixture.parentElement)
-      const svgNode = fixture.parentElement.childNodes[0];
-
-      t.equal(svgNode.childNodes.length, 3, "should get 3 connectingLine visuals matching the data");
-      t.end();
-    });
   });
 });
