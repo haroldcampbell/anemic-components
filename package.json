@@ -17,6 +17,7 @@
     "doc": "./node_modules/.bin/jsdoc lib/*.js --destination ./doc",
     "bundle": "./node_modules/.bin/webpack --watch",
     "bundle-examples": "./node_modules/.bin/webpack --config webpack.examples.config.js",
+    "bundle-examples-watch": "./node_modules/.bin/webpack --watch --config webpack.examples.config.js",
     "bundle-experiment": "./node_modules/.bin/webpack --config webpack.experimental.config.js",
     "bundle-experiment-watch": "./node_modules/.bin/webpack --watch --config webpack.experimental.config.js"
   },

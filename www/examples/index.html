@@ -40,7 +40,9 @@
       </p>
       <pre class="code-example">
 container("bar-1", _ => {
-  _.bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)]);
+    _.addVisuals([
+        bars(barsData, [$maxHeight(50), $yOffset(30), $width(150)])
+    ])
 }, $id("example-bar-1"));</pre>
     </li>
 
@@ -53,7 +55,9 @@ container("bar-1", _ => {
       </p>
       <pre class="code-example">
 container("bar-2", _ => {
-  _.bars(barsData, [$maxHeight(50), $yOffset(30), $xOffset(30), $width(150)]);
+    _.addVisuals([
+        bars(barsData, [$maxHeight(50), $xOffset(30), $width(150), $yOffset(30)])
+    ])
 }, $id("example-bar-2"));</pre>
     </li>
 
@@ -65,7 +69,9 @@ container("bar-2", _ => {
       </p>
       <pre class="code-example">
 container("bar-3", _ => {
-  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $yOffset(30), $height(20)]);
+    _.addVisuals([
+        bars($data(barsData.rawData(), "width"), [$maxWidth(50), $yOffset(30), $height(20)])
+    ])
 }, $id("example-bar-3"));</pre>
     </li>
 
@@ -78,7 +84,9 @@ container("bar-3", _ => {
       </p>
       <pre class="code-example">
 container("bar-4", _ => {
-  _.bars($data(barsData.rawData(), "width"), [$maxWidth(50), $alignRight(), $yOffset(30), $height(20)]);
+    _.addVisuals([
+        bars($data(barsData.rawData(), "width"), [$maxWidth(50), $alignRight(), $yOffset(30), $height(20)])
+    ])
 }, $id("example-bar-4"));</pre>
     </li>
 
@@ -87,7 +95,9 @@ container("bar-4", _ => {
       <div id="example-bar-5" class="container ex-tiny"></div>
       <pre class="code-example">
 container("bar-5", _ => {
-  _.bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)]);
+    _.addVisuals([
+        bars(barsData, [$maxHeight(50), $xOffset(30), $width(15)])
+    ])
 }, $id("example-bar-5"));</pre>
     </li>
 
@@ -100,7 +110,9 @@ container("bar-5", _ => {
       </p>
       <pre class="code-example">
 container("bar-6", _ => {
-  _.bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)]);
+    _.addVisuals([
+        bars(barsData, [$maxHeight(50), $alignBottom(100), $xOffset(30), $width(15)])
+    ])
 }, $id("example-bar-6"));</pre>
     </li>
   </ul>
@@ -112,7 +124,9 @@ container("bar-6", _ => {
       <div id="example-ellipses-1" class="container ex-tiny"></div>
       <pre class="code-example">
 container("ellipses-1", _ => {
-  _.ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)]);
+    _.addVisuals([
+        ellipses(ellipsesData1, [$group("c4-e1"), $y(50), $x(30), $xOffset(70), $max(30)])
+    ]);
 }, $id("example-ellipses-1"));</pre>
     </li>
 
@@ -121,10 +135,12 @@ container("ellipses-1", _ => {
       <div id="example-ellipses-2" class="container ex-tiny"></div>
       <pre class="code-example">
 container("ellipses-2", _ => {
-  _.ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)]);
-  _.ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)]);
-  _.ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)]);
-  _.ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)]);
+    _.addVisuals([
+        ellipses(ellipsesData1, [$group("c5-e1"), $y(50), $x(40), $xOffset(80), $max(20)]),
+        ellipses(ex4EllipsesData2, [$group("c5-e2"), $y(50), $x(40), $xOffset(80), $max(40)]),
+        ellipses(ex4EllipsesData3, [$group("c5-e3"), $y(50), $x(40), $xOffset(80), $max(30)]),
+        ellipses(ex4EllipsesData4, [$group("c5-e4"), $y(50), $x(40), $xOffset(80), $max(15)]),
+    ]);
 }, $id("example-ellipses-2"));</pre>
     </li>
   </ul>
@@ -141,10 +157,11 @@ container("ellipses-2", _ => {
       </p>
       <pre class="code-example">
 container("arc-1", _ => {
-  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), <strong>$arcRadiusOffset(5)</strong>])
-  _.arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), <strong>$arcSpanOffset(10)</strong>, $arcRadius(50)])
-}, $id("example-arc-1"));
-</pre>
+    _.addVisuals([
+        arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), $arcRadiusOffset(5)]),
+        arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50)]),
+    ]);
+}, $id("example-arc-1"));</pre>
     </li>
 
     <li>
@@ -155,9 +172,10 @@ container("arc-1", _ => {
       </p>
       <pre class="code-example">
 container("arc-2", _ => {
-  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), <strong>$arcSpanOffset(10)</strong>, $arcRadius(50), <strong>$arcRadiusOffset(5)</strong>])
-}, $id("example-arc-2"));
-</pre>
+    _.addVisuals([
+        arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), $arcRadiusOffset(5)]),
+    ]);
+}, $id("example-arc-2"));</pre>
     </li>
 
     <li>
@@ -169,11 +187,12 @@ container("arc-2", _ => {
       </p>
       <pre class="code-example">
 container("arc-3", _ => {
-  _.arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), $arcRadiusOffset(5), <strong>$arcRotateBy(30)</strong>])
-  _.arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), <strong>$arcRotateBy(30)</strong>])
-  _.arcs(exArcData1, [$x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), $arcRadiusOffset(5), <strong>$arcRotateBy(30)</strong>])
-}, $id("example-arc-3"));
-</pre>
+    _.addVisuals([
+        arcs(exArcData1, [$x(100), $y(100), $arcSpanUnit(60), $arcRadius(50), $arcRadiusOffset(5), $arcRotateBy(30)]),
+        arcs(exArcData1, [$x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), $arcRotateBy(30)]),
+        arcs(exArcData1, [$x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50), $arcRadiusOffset(5), $arcRotateBy(30)]),
+    ]);
+}, $id("example-arc-3"));</pre>
     </li>
 
     <li>
@@ -185,36 +204,38 @@ container("arc-3", _ => {
       </p>
       <pre class="code-example">
 container("arc-4", _ => {
-  _.arcs(exArcData1, [
-    $x(80), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
-      let base = i / (exArcData1.data.length * 1.0);
-      v.$strokeColor(hsl(base));
-      v.$strokeWidth(intent.data.maxWidth);
-      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
-    }),
-  ]);
+    _.addVisuals([
+        arcs(exArcData1, [
+            $x(80), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
+            <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i) => {
+                let base = i / (exArcData1.data.length * 1.0);
+                v.$strokeColor(hsl(base));
+                v.$strokeWidth(intent.data.maxWidth);
+                v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue / 2.0 + 5);
+            }),
+        ]),
 
-  _.arcs(exArcData1, [
-    $x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
-    <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i)=>{
-      let base = i / (exArcData1.data.length * 1.0);
-      v.$strokeColor(hsl(base));
-      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
-      v.$strokeWidth(intent.data.maxWidth + intent.data.maxWidth * base * 10);
-    }),
-  ]);
+        arcs(exArcData1, [
+            $x(250), $y(100), $arcSpanUnit(60), $arcSpanOffset(10),
+            <strong>$arcLambda</strong>({radius: 50, maxWidth: 3}, (intent, v, i) => {
+                let base = i / (exArcData1.data.length * 1.0);
+                v.$strokeColor(hsl(base));
+                v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue / 2.0 + 5);
+                v.$strokeWidth(intent.data.maxWidth + intent.data.maxWidth * base * 10);
+            }),
+        ]),
 
-  _.arcs(exArcData1, [
-    $x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(0),
-    <strong>$arcLambda</strong>({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i)=>{
-      let strokeWidth = intent.data.maxWidth / v._dataValue;
-      v.$attr("stroke-linecap", "butt");
-      v.$strokeWidth(strokeWidth);
-      v.$strokeColor(intent.data.colors[i]);
-      v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue/2.0 + 5);
-    }),
-  ]);
+        arcs(exArcData1, [
+            $x(400), $y(100), $arcSpanUnit(60), $arcSpanOffset(0),
+            <strong>$arcLambda</strong>({radius: 50, maxWidth: 5, colors: colorsData}, (intent, v, i) => {
+                let strokeWidth = intent.data.maxWidth / v._dataValue;
+                v.$attr("stroke-linecap", "butt");
+                v.$strokeWidth(strokeWidth);
+                v.$strokeColor(intent.data.colors[i]);
+                v.$radius(intent.data.radius + intent.data.maxWidth * v._dataValue / 2.0 + 5);
+            }),
+        ]),
+    ])
 }, $id("example-arc-4"));</pre>
     </li>
   </ul>
@@ -224,15 +245,20 @@ container("arc-4", _ => {
     <li>
       <h2>Advanced Example</h2>
       <div id="example-advanced-1" class="container"></div>
+      <p class="desc">
+        When used together, we can easily create interesting visuals.
+      </p>
       <pre class="code-example">
 container("advanced-1", _ => {
-  _.bars(barsData, [$group("c6-be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]);
-  _.ellipses(ex6EllipsesData1, [$group("c6-e1"), $maxDiameter(50), $y(50), $cyOffset(30), $x(150)]);
-  _.ellipses(ex6EllipsesData2, [$group("c6-e2"), $maxDiameter(60), $y(55), $cyOffset(80), $x(400)]);
-  _.connectingLines(linesData1, [$joinGroupItems(["c6-e1", "c6-e2"]), $group("c6-e3"), $maxStrokeWidth(15)]);
-  _.onRenderCompleted(() => {
-    $moveBelow("c6-e3", "c6-be")
-  });
+    _.addVisuals([
+        <strong>bars</strong>(barsData, [$group("c6-be"), $maxHeight(50), $y(50), $yOffset(30), $width(150)]),
+        <strong>ellipses</strong>(ex6EllipsesData1, [$group("c6-e1"), $maxDiameter(50), $y(50), $cyOffset(30), $x(150)]),
+        <strong>ellipses</strong>(ex6EllipsesData2, [$group("c6-e2"), $maxDiameter(60), $y(55), $cyOffset(80), $x(400)]),
+        <strong>connectingLines</strong>(linesData1, [$joinGroupItems(["c6-e1", "c6-e2"]), $group("c6-e3"), $maxStrokeWidth(15)]),
+    ])
+    _.onRenderCompleted(() => {
+        $moveBelow("c6-e3", "c6-be")
+    })
 }, $id("example-advanced-1"));</pre>
     </li>
   </ul>
