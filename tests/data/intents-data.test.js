@@ -29,6 +29,36 @@ test("$data", testCase => {
     t.end()
   });
 
+  testCase.test("max()", t => {
+    const fixture = setupFixture();
+    const data = $data(fixture.rawData);
+    const maxItem = Math.max(...fixture.rawData, [Number.NEGATIVE_INFINITY]);
+
+    t.equal(data.max(), maxItem, "max() should return max item");
+    t.end();
+  });
+
+  testCase.test("min()", t => {
+    const fixture = setupFixture();
+    const data = $data(fixture.rawData);
+    const minItem = Math.min(...fixture.rawData, [Number.POSITIVE_INFINITY]);
+
+    t.equal(data.min(), minItem, "min() should return smallest item");
+    t.end();
+  });
+
+  testCase.test("summedData()", t => {
+    const fixture = setupFixture();
+    const data = $data(fixture.rawData);
+    const total = fixture.rawData.reduce(
+      (prev, curr) => {
+        return prev + curr
+      }, 0);
+
+    t.equal(data.summedData(), total, "summedData() should return sum of all the items");
+    t.end();
+  });
+
   testCase.test("tuples", t => {
     const fixture = setupFixture();
     const data = $data(fixture.rawData);

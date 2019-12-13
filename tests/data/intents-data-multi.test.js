@@ -4,14 +4,20 @@ import {
 
 import test from "tape"
 
-test("$multiData", testCase => {
-  testCase.test("core features", t => {
-    const rawData = [
+const setupFixture = () => {
+  return {
+    rawData: [
       [10, 25],
       [15, 5],
       [5, 8],
       [20, 10]
-    ];
+    ],
+  };
+};
+
+test("$multiData", testCase => {
+  testCase.test("core features", t => {
+    const rawData = setupFixture().rawData
     let data = $multiData(rawData);
 
     t.equal(data.itemCount(), 4, "itemCount() should return the total number of dataItems")
@@ -27,6 +33,30 @@ test("$multiData", testCase => {
     t.deepEqual(data.rawData(), rawData, "$multiData() should not mutate data");
 
     t.end()
+  });
+
+  testCase.test("max()", t => {
+    const fixture = setupFixture();
+    const data = $multiData(fixture.rawData);
+
+    t.deepEqual(data.max(), [20, 25], "max() should return max item");
+    t.end();
+  });
+
+  testCase.test("min()", t => {
+    const fixture = setupFixture();
+    const data = $multiData(fixture.rawData);
+
+    t.deepEqual(data.min(), [5, 5], "min() should return smallest items");
+    t.end();
+  });
+
+  testCase.test("summedData()", t => {
+    const fixture = setupFixture();
+    const data = $multiData(fixture.rawData);
+
+    t.deepEqual(data.summedData(), [50, 48], "summedData() should return sum of all the items");
+    t.end();
   });
 
   testCase.test("appendDataStart()", t => {
