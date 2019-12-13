@@ -70,11 +70,10 @@ test("arc node", testCase => {
         shape.$y(cy);
         shape.$radius(r);
         shape.$arcSpan(120);
-        let {
-            start,
-            end,
-            largeArcFlag
-        } = shape.__calcRenderData();
+        shape.$calcRenderData();
+        const start = shape.__arcStart();
+        const end = shape.__arcEnd();
+        const largeArcFlag = shape.__largeArcFlag();
 
         let _path = [
             "M", start.x, start.y,
@@ -144,7 +143,8 @@ test("arc node", testCase => {
             let alphaInRadians = $degreesToRadians(alpha)
 
             let y = fixture.cy + fixture.r * Math.sin(alphaInRadians);
-            let end = shape.__calcRenderData().end;
+            shape.$calcRenderData();
+            const end = shape.__arcEnd();
 
             t.equal(end.y, y, "should calculate the arc's end.y");
             t.end();
@@ -161,7 +161,8 @@ test("arc node", testCase => {
             let alphaInRadians = $degreesToRadians(alpha)
 
             let x = fixture.cx + fixture.r * Math.cos(alphaInRadians);
-            let end = shape.__calcRenderData().end;
+            shape.$calcRenderData();
+            const end = shape.__arcEnd();
 
             t.equal(end.x, x, "should calculate the arc's end.x");
             t.end();
@@ -177,7 +178,8 @@ test("arc node", testCase => {
             let alphaInRadians = $degreesToRadians(alpha)
 
             let y = fixture.cy + fixture.r * Math.sin(alphaInRadians);
-            let start = shape.__calcRenderData().start;
+            shape.$calcRenderData();
+            const start = shape.__arcStart();
 
             t.equal(start.y, y, "should calculate the arc's start.y");
             t.end();
@@ -193,7 +195,8 @@ test("arc node", testCase => {
             let alphaInRadians = $degreesToRadians(alpha)
 
             let x = fixture.cx + fixture.r * Math.cos(alphaInRadians);
-            let start = shape.__calcRenderData().start;
+            shape.$calcRenderData();
+            const start = shape.__arcStart();
 
             t.equal(start.x, x, "should calculate the arc's start.x");
             t.end();
