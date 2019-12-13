@@ -113,11 +113,11 @@ test("rect node", testCase => {
             const shape = setupFixture().shape;
 
             shape.$x(30);
-            shape.$width(10);
+            shape.$width(10, true);
 
             t.equal(shape.$x(), 25, "$x() should be updated to middle of shape");
 
-            shape.$width(20);
+            shape.$width(20, true);
             // Width changed by 10 px, so $x() needs to be updated by 10/2 = 5px
             t.equal(shape.$x(), 30, "$x() should still be centered");
             t.equal(shape.$width(), 20, "$width() should be updated");
@@ -162,11 +162,11 @@ test("rect node", testCase => {
             const shape = setupFixture().shape;
 
             shape.$y(30);
-            shape.$height(10);
+            shape.$height(10, true);
 
             t.equal(shape.$y(), 25, "$y() should be updated to middle of shape");
 
-            shape.$height(20);
+            shape.$height(20, true);
             // Height changed by 10 px, so $y() needs to be updated by 10/2 = 5px
             t.equal(shape.$y(), 30, "$y() should still be centered");
             t.equal(shape.$height(), 20, "$width() should be updated");
