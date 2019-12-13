@@ -240,6 +240,41 @@ container("arc-4", _ => {
     </li>
   </ul>
 
+  <a name="segments"></a>
+  <ul class="examples-containers">
+    <li>
+      <h2>Segment Example 1</h2>
+      <div id="example-segment-1" class="container"></div>
+      <p class="desc">
+        When used together, we can easily create interesting visuals.
+      </p>
+      <pre class="code-example">
+container("segment-1", _ => {
+    _.addVisuals([
+        segments(exSegmentData1, [$x(100), $y(100), $arcSpanUnit(60), $arcSpanOffset(20), $arcRadius(50)]),
+    ]);
+}, $id("example-segment-1"));</pre>
+    </li>
+
+    <li>
+      <h2>Segment Example 2</h2>
+      <div id="example-segment-2" class="container"></div>
+      <p class="desc">
+        When used together, we can easily create interesting visuals.
+      </p>
+      <pre class="code-example">
+container("segment-2", _ => {
+    _.addVisuals([
+        segments(exSegmentData1, [
+            $x(100),
+            $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50),
+            $radialOffset(10, 2)
+        ]),
+    ]);
+}, $id("example-segment-2"));</pre>
+    </li>
+  </ul>
+
   <a name="advanced"></a>
   <ul class="examples-containers">
     <li>

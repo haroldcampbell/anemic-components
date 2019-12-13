@@ -16,15 +16,18 @@ import {
   $arcRotateBy,
   $arcLambda,
   $arcIntentFn,
+  $arcSpread,
 } from "../../lib/intents/intents-arcs"
 
 import test from "tape"
 
 const setupFixture = () => {
-  const data = $data([8, 5, 10]);
+  const rawData = [8, 5, 10]
+  const data = $data(rawData);
   const visual = createMockedVisual(arc, data);
 
   return {
+    rawData,
     data: data,
     visual: visual
   };
@@ -56,6 +59,30 @@ test("Arc Intents", testCase => {
     t.equal(svgNodes[2].$radius(), 20);
     t.end()
   });
+
+  testCase.test("$arcSpread() should fill specified span", t => {
+    const spreadData = 60;
+    const fixture = setupFixture();
+
+    const rawData = fixture.rawData;
+    const maxValue = fixture.data.max();
+    const spanRatio = fixture.data.summedData() / spreadData;
+    const spanFactor = maxValue / spanRatio;
+
+    const visual = fixture.visual;
+    const svgNodes = visual.svgNodes
+
+    $arcSpread(spreadData).action(visual);
+    const normalize = dataItem => dataItem / maxValue;
+
+    // apply the spanFactor to the normalized data
+    let expectedArcSpread = rawData.map(r => spanFactor * normalize(r));
+    let actualArcSpan = svgNodes.map(node => node.$arcSpan());
+
+    t.deepEqual(actualArcSpan, expectedArcSpread, "should calculate spread for the node")
+    t.end()
+  });
+
 
   testCase.test("$arcSpanUnit() should set the relative span/length of each arc", t => {
     const visual = setupFixture().visual;
