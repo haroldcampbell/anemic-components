@@ -4,24 +4,30 @@
   height: 400px;
 }
 
-.ex-tiny svg{
+.ex-tiny svg {
   height: 120px;
 }
 
-.ex-short svg{
+.ex-short svg {
   height: 200px;
 }
 
 .container svg .path,
-.container svg .segment,
 .container svg .arc {
   stroke: rgba(255, 0, 110, 0.5);
   fill: none;
 }
 
 .container svg .segment {
-fill: rgba(255, 0, 110, 0.25);
+  stroke: rgba(255, 0, 110, 0.5);
+  fill: rgba(255, 0, 110, 0.25);
 }
+
+.container svg .in-active .segment {
+  stroke: rgba(110, 110, 110, 0.5);
+  fill: rgba(50, 50, 50, 0.25);
+}
+
 #c6-e3>.path:nth-last-child(3n) {
   stroke: rgba(0, 120, 255, 0.5);
 }
