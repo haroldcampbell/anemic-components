@@ -17,6 +17,8 @@ import {
   $arcLambda,
   $arcIntentFn,
   $arcSpread,
+  $arcSpanInset,
+  $arcStartAngle,
 } from "../../lib/intents/intents-arcs"
 
 import test from "tape"
@@ -73,16 +75,36 @@ test("Arc Intents", testCase => {
     const svgNodes = visual.svgNodes
 
     $arcSpread(spreadData).action(visual);
-    const normalize = dataItem => dataItem / maxValue;
 
+    const normalize = dataItem => dataItem / maxValue;
+    const actualArcSpan = svgNodes.map(node => node.$arcSpan());
     // apply the spanFactor to the normalized data
-    let expectedArcSpread = rawData.map(r => spanFactor * normalize(r));
-    let actualArcSpan = svgNodes.map(node => node.$arcSpan());
+    const expectedArcSpread = rawData.map(r => spanFactor * normalize(r));
 
     t.deepEqual(actualArcSpan, expectedArcSpread, "should calculate spread for the node")
     t.end()
   });
 
+  testCase.test("$arcSpread() should update startAngles", t => {
+    const fixture = setupFixture();
+    const visual = fixture.visual;
+    const svgNodes = visual.svgNodes
+
+    $arcSpread(60).action(visual);
+
+    let prevStartAngle = 0;
+    let expectedStartAngles = [];
+    const actualArcSpan = svgNodes.map(node => node.$arcSpan());
+    const actualStartAngles = svgNodes.map(node => node.$startAngle());
+
+    actualArcSpan.map((span, index) => {
+      expectedStartAngles[index] = prevStartAngle;
+      prevStartAngle = prevStartAngle + span;
+    })
+
+    t.deepEqual(actualStartAngles, expectedStartAngles, "start angles should be the cumulative sum of the spans")
+    t.end()
+  });
 
   testCase.test("$arcSpanUnit() should set the relative span/length of each arc", t => {
     const visual = setupFixture().visual;
@@ -119,7 +141,6 @@ test("Arc Intents", testCase => {
       const visual = setupFixture().visual;
 
       visual.svgNodes.forEach((v, index) => {
-        // v._dataValue = normalizedData[index];
         v.$startAngle(startAngleInDegrees);
       });
 
@@ -151,6 +172,65 @@ test("Arc Intents", testCase => {
       t.end()
     });
   }); // end describe $arcSpanOffset
+
+  testCase.test("$arcSpanInset", testCase => {
+    const spanInset = 4;
+
+    testCase.test("should reduce the span of each arc", t => {
+      const fixture = setupFixture();
+      const visual = fixture.visual;
+
+      $arcSpanUnit(fixture.data.max()).action(visual); // de-normalize the data
+      let svgNodes = visual.svgNodes
+      const arcSpans = svgNodes.map(node => node.$arcSpan());
+
+      $arcSpanInset(spanInset).action(visual);
+
+      t.equal(svgNodes[0].$arcSpan(), arcSpans[0] - spanInset * 2);
+      t.equal(svgNodes[1].$arcSpan(), arcSpans[1] - spanInset * 2);
+      t.equal(svgNodes[2].$arcSpan(), arcSpans[2] - spanInset * 2);
+      t.end()
+    });
+
+    testCase.test("should shift the startAngle of each arc", t => {
+      const fixture = setupFixture();
+      const visual = fixture.visual;
+
+      $arcStartAngle(0).action(visual);
+      $arcSpanUnit(fixture.data.max()).action(visual); // de-normalize the data
+
+      let cumulativeSpan = 0;
+      const expectedArcSpans = [];
+      const svgNodes = visual.svgNodes
+
+      svgNodes.forEach((_, index) => {
+        cumulativeSpan = (index == 0) ? spanInset : cumulativeSpan + svgNodes[index - 1].$arcSpan();
+        expectedArcSpans[index] = cumulativeSpan;
+      });
+
+      $arcSpanInset(spanInset).action(visual);
+
+      t.equal(svgNodes[0].$startAngle(), expectedArcSpans[0]);
+      t.equal(svgNodes[1].$startAngle(), expectedArcSpans[1]);
+      t.equal(svgNodes[2].$startAngle(), expectedArcSpans[2]);
+      t.end()
+    });
+  }); // end describe $arcSpanInset
+
+  testCase.test("$arcStartAngle", t => {
+    const fixture = setupFixture();
+    const visual = fixture.visual;
+    const startAngle = 60;
+
+    $arcStartAngle(startAngle).action(visual);
+
+    const svgNodes = visual.svgNodes
+    const expectedStartAngles = [startAngle, startAngle, startAngle];
+    const actualStartAngles = svgNodes.map(node => node.$startAngle());
+
+    t.deepEqual(actualStartAngles, expectedStartAngles, "should set start angle of each arc");
+    t.end()
+  });
 
   testCase.test("$arcRotateBy", testCase => {
     const spanOffset = 50;
@@ -272,4 +352,6 @@ test("Arc Intents", testCase => {
     t.equal(visualCount, 3);
     t.end()
   });
+
+
 });
