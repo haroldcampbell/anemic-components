@@ -28,10 +28,30 @@
   fill: rgba(50, 50, 50, 0.25);
 }
 
+.container svg .chord {
+  stroke: rgba(255, 0, 110, 0.5);
+}
+
+.container svg .filled-chord {
+  stroke: rgba(110, 110, 110, 0.5);
+  fill: rgba(50, 50, 50, 0.25);
+}
+
 .container svg .polygon {
   stroke: rgba(255, 0, 110, 0.5);
   fill: #FEC4DB;
 }
+
+.container svg .radial-line {
+  stroke: rgba(255, 0, 110, 0.5);
+  /* fill: #FEC4DB; */
+}
+
+.container svg .radial-line-dark {
+  stroke: rgba(110, 110, 110, 0.5);
+  /* fill: #FEC4DB; */
+}
+
 #c6-e3>.path:nth-last-child(3n) {
   stroke: rgba(0, 120, 255, 0.5);
 }
@@ -51,7 +71,7 @@
 }
 
 .ellipse {
-  fill: rgb(0, 120, 255);
+  fill: rgb(0, 120, 255, 0.5);
 }
 
 #c6-b1 .bar,
