@@ -248,9 +248,8 @@ container("arc-4", _ => {
         The <strong>segments</strong> visual works with the various arc intents.
       </p>
       <div id="example-segments" class="container"></div>
-      <p class="desc"> Mouse-over the segments for code snippets</p>
+      <p class="desc">Mouse-over the segments for the relevant code snippets</p>
 
-      <!-- <span class="full-code">see full code</span> -->
       <pre id="segments-code-preview" class="code-example">
 segments(exSegmentData1, [...])
 </pre>
@@ -272,33 +271,20 @@ chords(exChordData1, [...])
 </pre>
     </li>
   </ul>
-      <p class="desc">
-        When used together, we can easily create interesting visuals.
-      </p>
-      <pre class="code-example">
-container("segment-1", _ => {
-    _.addVisuals([
-        segments(exSegmentData1, [$x(100), $y(100), $arcSpanUnit(60), $arcSpanOffset(20), $arcRadius(50)]),
-    ]);
-}, $id("example-segment-1"));</pre>
-    </li>
 
+  <a name="segments"></a>
+  <ul class="examples-containers">
     <li>
-      <h2>Segment Example 2</h2>
-      <div id="example-segment-2" class="container"></div>
+      <h2>Polygons</h2>
       <p class="desc">
-        When used together, we can easily create interesting visuals.
+        The <strong>polygon</strong> visual works with the various arc intents.
       </p>
-      <pre class="code-example">
-container("segment-2", _ => {
-    _.addVisuals([
-        segments(exSegmentData1, [
-            $x(100),
-            $y(100), $arcSpanUnit(60), $arcSpanOffset(10), $arcRadius(50),
-            $radialOffset(10, 2)
-        ]),
-    ]);
-}, $id("example-segment-2"));</pre>
+      <div id="example-polygon" class="container"></div>
+      <p class="desc">Mouse-over the segments for the relevant code snippets</p>
+
+      <pre id="segments-code-preview" class="code-example">
+polygon(exSegmentData1, [...])
+</pre>
     </li>
   </ul>
 
