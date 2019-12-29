@@ -28,6 +28,10 @@
   fill: rgba(50, 50, 50, 0.25);
 }
 
+.container svg .polygon {
+  stroke: rgba(255, 0, 110, 0.5);
+  fill: #FEC4DB;
+}
 #c6-e3>.path:nth-last-child(3n) {
   stroke: rgba(0, 120, 255, 0.5);
 }

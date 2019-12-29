@@ -8,6 +8,7 @@ module.exports = {
       './www/examples/src/examples-bar.js',
       './www/examples/src/examples-ellipse.js',
       './www/examples/src/examples-segment.js',
+      './www/examples/src/examples-polygon.js',
       './www/examples/src/examples-advanced.js',
     ],
   },
